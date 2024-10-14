@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="adminSalesContent" prefHeight="800.0" prefWidth="1026.0" style="-fx-background-color: #dfe4ea;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rdfcarrentals.controller.AdminSalesFormController">
+   <children>
+      <AnchorPane layoutX="38.0" prefHeight="102.0" prefWidth="998.0" style="-fx-background-color: white;">
+         <children>
+            <Label alignment="CENTER" layoutX="368.0" layoutY="30.0" prefHeight="43.0" prefWidth="115.0" text="Sales" textFill="#ffc029">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
