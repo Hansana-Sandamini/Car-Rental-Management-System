@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane fx:id="creditsContent" prefHeight="800.0" prefWidth="1026.0" style="-fx-background-color: #dfe4ea;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rdfcarrentals.controller.CreditsFormController">
    <children>
@@ -16,5 +17,14 @@
             </Label>
          </children>
       </AnchorPane>
+      <TableView fx:id="tblCredits" layoutX="33.0" layoutY="457.0" prefHeight="324.0" prefWidth="978.0">
+         <columns>
+            <TableColumn fx:id="colCreditID" prefWidth="160.0" style="-fx-background-color: #ffc42a;" text="Credit ID" />
+            <TableColumn fx:id="colTotalAmount" prefWidth="207.0" style="-fx-background-color: #ffc42a;" text="Total Amount" />
+            <TableColumn fx:id="colAmountPaid" prefWidth="211.0" style="-fx-background-color: #ffc42a;" text="Amount Paid" />
+            <TableColumn fx:id="colAmountToPay" minWidth="1.0" prefWidth="202.0" style="-fx-background-color: #ffc42a;" text="Amount To Pay" />
+            <TableColumn fx:id="colDueDate" prefWidth="197.0" style="-fx-background-color: #ffc42a;" text="Due Date" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

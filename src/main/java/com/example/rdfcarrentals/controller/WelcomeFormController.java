@@ -38,9 +38,9 @@ public class WelcomeFormController implements Initializable {
 
     public void navigateTo(String fxmlPath) {
         try {
-            selectRolePane.getChildren().clear();
+            welcomePane.getChildren().clear();
             AnchorPane load = FXMLLoader.load(getClass().getResource(fxmlPath));
-            selectRolePane.getChildren().add(load);
+            welcomePane.getChildren().add(load);
         } catch (IOException e) {
             new Alert(Alert.AlertType.ERROR, "Fail to load page!").show();
         }
@@ -48,6 +48,5 @@ public class WelcomeFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }

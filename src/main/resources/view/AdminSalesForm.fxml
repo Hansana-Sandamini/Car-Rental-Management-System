@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane fx:id="adminSalesContent" prefHeight="800.0" prefWidth="1026.0" style="-fx-background-color: #dfe4ea;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rdfcarrentals.controller.AdminSalesFormController">
    <children>
@@ -16,5 +17,16 @@
             </Label>
          </children>
       </AnchorPane>
+      <TableView fx:id="tblSales" layoutX="38.0" layoutY="373.0" prefHeight="383.0" prefWidth="973.0">
+        <columns>
+          <TableColumn fx:id="colReservationID" prefWidth="128.0" style="-fx-background-color: #ffc42a;" text="Reservation ID" />
+          <TableColumn fx:id="colCustomerNic" prefWidth="158.0" style="-fx-background-color: #ffc42a;" text="Customer NIC" />
+            <TableColumn fx:id="colDate" prefWidth="134.0" style="-fx-background-color: #ffc42a;" text="Date" />
+            <TableColumn fx:id="colTime" prefWidth="135.0" style="-fx-background-color: #ffc42a;" text="Time" />
+            <TableColumn fx:id="colCost" prefWidth="144.0" style="-fx-background-color: #ffc42a;" text="Cost" />
+            <TableColumn fx:id="ColPaymentStatus" prefWidth="146.0" style="-fx-background-color: #ffc42a;" text="Payment Status" />
+            <TableColumn fx:id="colOption" prefWidth="127.0" style="-fx-background-color: #ffc42a;" text="Option" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

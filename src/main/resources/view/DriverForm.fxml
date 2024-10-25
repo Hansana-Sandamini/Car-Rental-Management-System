@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="driverContent" prefHeight="800.0" prefWidth="1026.0" style="-fx-background-color: #dfe4ea;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rdfcarrentals.controller.DriverFormController">
+   <children>
+      <AnchorPane layoutX="38.0" layoutY="1.0" prefHeight="102.0" prefWidth="998.0" style="-fx-background-color: white;">
+         <children>
+            <Label alignment="CENTER" layoutX="368.0" layoutY="30.0" prefHeight="43.0" prefWidth="115.0" text="Drivers" textFill="#ffc029">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tblDrivers" layoutX="38.0" layoutY="454.0" onMouseClicked="#tblDriversOnAction" prefHeight="324.0" prefWidth="978.0">
+         <columns>
+            <TableColumn fx:id="colNic" prefWidth="163.0" style="-fx-background-color: #ffc42a;" text="NIC" />
+            <TableColumn fx:id="colName" prefWidth="191.0" style="-fx-background-color: #ffc42a;" text="Name" />
+            <TableColumn fx:id="colEmail" prefWidth="197.0" style="-fx-background-color: #ffc42a;" text="Email" />
+            <TableColumn fx:id="colAvailabilityStatus" minWidth="1.0" prefWidth="153.0" style="-fx-background-color: #ffc42a;" text="Availability Status" />
+            <TableColumn fx:id="colContactNumber" prefWidth="151.0" style="-fx-background-color: #ffc42a;" text="Contact Number" />
+            <TableColumn fx:id="colOption" prefWidth="124.0" style="-fx-background-color: #ffc42a;" text="Option" />
+         </columns>
+      </TableView>
+      <AnchorPane fx:id="driverFormPane" layoutX="38.0" layoutY="129.0" prefHeight="255.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+         <children>
+            <Label layoutX="14.0" layoutY="4.0" prefHeight="43.0" prefWidth="145.0" text="Driver NIC">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="50.0" prefHeight="43.0" prefWidth="145.0" text="Driver Name">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="100.0" prefHeight="43.0" prefWidth="145.0" text="Email">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="196.0" prefHeight="43.0" prefWidth="145.0" text="Contact Number">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtFldName" layoutX="179.0" layoutY="56.0" prefHeight="35.0" prefWidth="398.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtFldEmail" layoutX="179.0" layoutY="105.0" prefHeight="35.0" prefWidth="398.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtFldContactNumber" layoutX="179.0" layoutY="201.0" prefHeight="35.0" prefWidth="398.0" promptText="0777777777">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtFldNIC" layoutX="179.0" layoutY="8.0" prefHeight="35.0" prefWidth="398.0" promptText="000000000000">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Button fx:id="btnSave" layoutX="713.0" layoutY="197.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #dff9fb; -fx-border-color: #ffc029; -fx-border-radius: 10;" text="SAVE" textFill="#ffc029">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnUpdate" layoutX="713.0" layoutY="134.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #dff9fb; -fx-border-color: #ffc029; -fx-border-radius: 10;" text="    UPDATE" textFill="#ffc029">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <FontAwesomeIcon fill="#ffc029" iconName="SAVE" layoutX="734.0" layoutY="226.0" size="2em" />
+            <FontAwesomeIcon fill="#ffc029" iconName="WRENCH" layoutX="733.0" layoutY="160.0" size="2em" />
+            <Label fx:id="txtFldAvailabilityStatus" layoutX="14.0" layoutY="153.0" prefHeight="43.0" prefWidth="145.0" text="Availability Status">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cmbAvailabilityStatus" layoutX="179.0" layoutY="151.0" onAction="#cmbAvailabilityStatusOnAction" prefHeight="35.0" prefWidth="398.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
+         </children>
+      </AnchorPane>
+      <TextField fx:id="txtFldSearchHere" layoutX="252.0" layoutY="405.0" onKeyReleased="#txtFldSearchHereOnAction" prefHeight="35.0" prefWidth="500.0" promptText="       Search Here">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <FontAwesomeIcon fill="#c3bfbf" iconName="SEARCH" layoutX="266.0" layoutY="428.0" />
+      <Button fx:id="btnViewDriverAssignment" layoutX="682.0" layoutY="147.0" mnemonicParsing="false" onAction="#btnViewDriverAssignmentOnAction" prefHeight="40.0" prefWidth="297.0" style="-fx-background-color: #dfe6e9; -fx-border-radius: 10; -fx-border-color: #00b894;" text="      VIEW DRIVER ASSIGNMENT" textFill="#00b894">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <FontAwesomeIcon fill="#00b894" iconName="EYE" layoutX="692.0" layoutY="175.0" size="2em" />
+   </children>
+</AnchorPane>

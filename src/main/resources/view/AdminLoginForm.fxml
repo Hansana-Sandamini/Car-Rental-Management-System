@@ -3,32 +3,51 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="adminLoginPane" prefHeight="407.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rdfcarrentals.controller.AdminLoginFormController">
+<AnchorPane fx:id="adminLoginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #dfe4ea;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rdfcarrentals.controller.AdminLoginFormController">
    <children>
-      <Label alignment="CENTER" layoutX="70.0" layoutY="21.0" prefHeight="62.0" prefWidth="267.0" text="Admin Login">
-         <font>
-            <Font name="System Bold" size="32.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnAdminLogin" layoutX="80.0" layoutY="324.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="261.0" style="-fx-background-radius: 100,100;" text="Let's Started!">
-         <font>
-            <Font size="28.0" />
-         </font>
-      </Button>
-      <Label layoutX="32.0" layoutY="128.0" prefHeight="52.0" prefWidth="145.0" text="User Name">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <Label layoutX="32.0" layoutY="208.0" prefHeight="52.0" prefWidth="145.0" text="Password">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtFldAdminUserName" layoutX="177.0" layoutY="128.0" prefHeight="52.0" prefWidth="211.0" />
-      <TextField fx:id="txtFldAdminPassword" layoutX="177.0" layoutY="208.0" prefHeight="52.0" prefWidth="211.0" />
+      <AnchorPane layoutX="196.0" layoutY="137.0" prefHeight="407.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+         <children>
+            <Label alignment="CENTER" layoutX="65.0" layoutY="25.0" prefHeight="56.0" prefWidth="273.0" text="Admin Login">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnAdminLogin" layoutX="92.0" layoutY="320.0" mnemonicParsing="false" onAction="#btnAdminLoginOnAction" prefHeight="47.0" prefWidth="261.0" style="-fx-background-radius: 10; -fx-background-color: #ffc42a;" text="Let's Started" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Label layoutX="32.0" layoutY="127.0" prefHeight="52.0" prefWidth="145.0" text="User Name" textFill="#ffc42a">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="32.0" layoutY="209.0" prefHeight="52.0" prefWidth="145.0" text="Password" textFill="#ffc42a">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtFldCashierUserName" layoutX="177.0" layoutY="127.0" prefHeight="52.0" prefWidth="211.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtFldCashierPassword" layoutX="177.0" layoutY="209.0" prefHeight="52.0" prefWidth="211.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="415.0" fitWidth="605.0" layoutX="627.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asserts/Login.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="reservationsContent" prefHeight="800.0" prefWidth="1026.0" style="-fx-background-color: #dfe4ea;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rdfcarrentals.controller.ReservationsFormController">
+   <children>
+      <AnchorPane layoutX="37.0" layoutY="1.0" prefHeight="102.0" prefWidth="998.0" style="-fx-background-color: white;">
+         <children>
+            <Label alignment="CENTER" layoutX="300.0" layoutY="24.0" prefHeight="54.0" prefWidth="176.0" text="Reservations" textFill="#ffc029">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tblReservations" layoutX="37.0" layoutY="458.0" prefHeight="324.0" prefWidth="978.0">
+         <columns>
+            <TableColumn fx:id="colReservationID" prefWidth="90.0" style="-fx-background-color: #ffc42a;" text="Reservation&#10;        ID" />
+            <TableColumn fx:id="colCreditID" prefWidth="81.0" style="-fx-background-color: #ffc42a;" text="Credit ID" />
+            <TableColumn fx:id="colCustomerNIC" prefWidth="112.0" style="-fx-background-color: #ffc42a;" text="Customer NIC" />
+            <TableColumn fx:id="colCashierUserName" minWidth="1.0" prefWidth="129.0" style="-fx-background-color: #ffc42a;" text="  Cashier &#10;UserName" />
+            <TableColumn fx:id="colPickUpDate" prefWidth="97.0" style="-fx-background-color: #ffc42a;" text="Pick Up &#10;  Date" />
+            <TableColumn fx:id="colPickUpTime" prefWidth="94.0" style="-fx-background-color: #ffc42a;" text="Pick Up &#10; Time" />
+            <TableColumn fx:id="colReturnDate" prefWidth="95.0" style="-fx-background-color: #ffc42a;" text="Return Date" />
+            <TableColumn fx:id="colReturnTime" prefWidth="93.0" style="-fx-background-color: #ffc42a;" text="Return Time" />
+            <TableColumn fx:id="colIsDriverWant" prefWidth="104.0" style="-fx-background-color: #ffc42a;" text="Is Driver&#10; Want" />
+            <TableColumn fx:id="colOption" prefWidth="82.0" style="-fx-background-color: #ffc42a;" text="Option" />
+         </columns>
+      </TableView>
+      <AnchorPane fx:id="reservationFormPane" layoutX="37.0" layoutY="129.0" prefHeight="261.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+         <children>
+            <Label layoutX="14.0" layoutY="4.0" prefHeight="43.0" prefWidth="145.0" text="Reservation ID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="100.0" prefHeight="43.0" prefWidth="145.0" text="Pick Up Date">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="468.0" layoutY="145.0" prefHeight="43.0" prefWidth="111.0" text="Return Time">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnAddReservation" layoutX="737.0" layoutY="207.0" mnemonicParsing="false" onAction="#btnAddReservationOnAction" prefHeight="40.0" prefWidth="228.0" style="-fx-background-color: #dff9fb; -fx-border-color: #ffc029; -fx-border-radius: 10;" text="     ADD RESERVATION" textFill="#ffc029">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnViewReservationDetails" layoutX="422.0" layoutY="207.0" mnemonicParsing="false" onAction="#btnViewReservationDetailsOnAction" prefHeight="40.0" prefWidth="297.0" style="-fx-background-color: #dfe6e9; -fx-border-radius: 10; -fx-border-color: #00b894;" text="      VIEW RESERVATION DETAILS" textFill="#00b894">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <FontAwesomeIcon fill="#ffc029" iconName="CART_PLUS" layoutX="752.0" layoutY="236.0" size="2em" />
+            <Label fx:id="txtFldAvailabilityStatus" layoutX="14.0" layoutY="148.0" prefHeight="43.0" prefWidth="145.0" text="Return Date">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cmbCashierUserName" layoutX="615.0" layoutY="58.0" onAction="#cmbCashierUserNameOnAction" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
+            <ComboBox fx:id="cmbCustomerNIC" layoutX="162.0" layoutY="58.0" onAction="#cmbCustomerNICOnAction" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
+            <Label layoutX="14.0" layoutY="54.0" prefHeight="43.0" prefWidth="145.0" text="Customer NIC">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblReservationID" layoutX="162.0" layoutY="4.0" prefHeight="43.0" prefWidth="236.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="463.0" layoutY="54.0" prefHeight="43.0" prefWidth="145.0" text="Cashier UserName">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="466.0" layoutY="100.0" prefHeight="43.0" prefWidth="145.0" text="Pick Up Time">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="464.0" layoutY="9.0" prefHeight="43.0" prefWidth="145.0" text="Credit ID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cmbCreditID" layoutX="615.0" layoutY="13.0" onAction="#cmbCreditIDOnAction" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
+            <Label fx:id="txtFldAvailabilityStatus1" layoutX="14.0" layoutY="197.0" prefHeight="43.0" prefWidth="145.0" text="Is Driver Want">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cmbIsDriverWant" layoutX="162.0" layoutY="201.0" onAction="#cmbIsDriverWantOnAction" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
+            <DatePicker fx:id="txtPickUpDate" layoutX="162.0" layoutY="105.0" prefHeight="35.0" prefWidth="236.0" />
+            <DatePicker fx:id="txtReturnDate" layoutX="162.0" layoutY="152.0" prefHeight="35.0" prefWidth="236.0" />
+            <DatePicker fx:id="txtPickUpTime" layoutX="615.0" layoutY="104.0" prefHeight="35.0" prefWidth="236.0" />
+            <DatePicker fx:id="txtReturnTime" layoutX="615.0" layoutY="149.0" prefHeight="35.0" prefWidth="236.0" />
+            <FontAwesomeIcon fill="#00b894" iconName="EYE" layoutX="432.0" layoutY="235.0" size="2em" />
+         </children>
+      </AnchorPane>
+      <TextField fx:id="txtFldSearchHere" layoutX="262.0" layoutY="407.0" onKeyReleased="#txtFldSearchHereOnAction" prefHeight="35.0" prefWidth="500.0" promptText="       Search Here">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <FontAwesomeIcon fill="#c3bfbf" iconName="SEARCH" layoutX="275.0" layoutY="430.0" />
+   </children>
+</AnchorPane>

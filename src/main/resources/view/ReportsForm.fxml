@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="reportsContent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1026.0" style="-fx-background-color: #dfe4ea;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="reportsContent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1026.0" style="-fx-background-color: #dfe4ea;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rdfcarrentals.controller.ReportsFormController">
    <children>
       <AnchorPane layoutX="28.0" layoutY="1.0" prefHeight="102.0" prefWidth="998.0" style="-fx-background-color: white;">
          <children>
@@ -23,7 +22,7 @@
       <AnchorPane layoutX="28.0" layoutY="141.0" prefHeight="300.0" prefWidth="283.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <DatePicker fx:id="txtTo" layoutX="39.0" layoutY="159.0" prefHeight="40.0" prefWidth="213.0" promptText="To" style="-fx-background-color: #ffc42a;" />
-            <DatePicker fx:id="txtFrom1" layoutX="39.0" layoutY="98.0" prefHeight="40.0" prefWidth="213.0" promptText="From" style="-fx-background-color: #ffc42a;" />
+            <DatePicker fx:id="txtFrom" layoutX="39.0" layoutY="98.0" prefHeight="40.0" prefWidth="213.0" promptText="From" style="-fx-background-color: #ffc42a;" />
             <Button fx:id="btnDurationReportGenerate" layoutX="39.0" layoutY="232.0" mnemonicParsing="false" onAction="#btnDurationReportGenerateOnAction" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #ffc42a; -fx-background-radius: 10;" text="GENERATE" textFill="WHITE">
                <font>
                   <Font size="18.0" />
@@ -48,7 +47,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbSelectRange1" layoutX="38.0" layoutY="34.0" opacity="0.54" prefHeight="40.0" prefWidth="213.0" promptText="Select" style="-fx-background-color: white;">
+            <ComboBox fx:id="cmbSelectYear" layoutX="38.0" layoutY="34.0" opacity="0.54" prefHeight="40.0" prefWidth="213.0" promptText="Select" style="-fx-background-color: white;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -67,7 +66,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbSelectRange11" layoutX="37.0" layoutY="33.0" opacity="0.54" prefHeight="40.0" prefWidth="213.0" promptText="Select" style="-fx-background-color: white;">
+            <ComboBox fx:id="cmbSelectMonth" layoutX="37.0" layoutY="33.0" opacity="0.54" prefHeight="40.0" prefWidth="213.0" promptText="Select" style="-fx-background-color: white;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

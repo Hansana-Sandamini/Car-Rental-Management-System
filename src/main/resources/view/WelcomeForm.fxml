@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="800.0" fitWidth="885.0" layoutX="-1.0">
          <image>
-            <Image url="@../../../../../../Downloads/WelcomePage.jpeg" />
+            <Image url="@../asserts/WelcomePage.jpeg" />
          </image>
       </ImageView>
       <Label layoutX="136.0" layoutY="14.0" prefHeight="82.0" prefWidth="671.0" text="Welcome to RDF Car Rentals">

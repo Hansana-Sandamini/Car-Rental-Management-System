@@ -1,9 +1,14 @@
 package com.example.rdfcarrentals.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+
+import java.io.IOException;
 
 public class CashierLoginFormController {
 
@@ -18,5 +23,19 @@ public class CashierLoginFormController {
 
     @FXML
     private TextField txtFldCashierUserName;
+
+    @FXML
+    void btnCashierLoginOnAction(ActionEvent event) throws IOException {
+        String userName = txtFldCashierUserName.getText();
+        String password = txtFldCashierPassword.getText();
+
+        if(userName.equals("cashier") && password.equals("1234")) {
+            cashierLoginPane.getChildren().clear();
+            AnchorPane load = FXMLLoader.load(getClass().getResource("/view/CashierDashboardMenuForm.fxml"));
+            cashierLoginPane.getChildren().add(load);
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Invalid username or password").show();
+        }
+    }
 
 }
