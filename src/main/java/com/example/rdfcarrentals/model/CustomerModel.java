@@ -51,5 +51,4 @@ public class CustomerModel {
     public boolean deleteCustomer(String customerNIC) throws SQLException {
         return CrudUtil.execute("DELETE FROM customer WHERE nic = ?", customerNIC);
     }
-
 }

@@ -99,7 +99,7 @@ public class CashierDashboardMenuFormController implements Initializable {
 
     @FXML
     void btnSalesOnAction(ActionEvent event) {
-
+        navigateTo("/view/AdminSalesForm.fxml");
     }
 
     @Override

@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="driverContent" prefHeight="800.0" prefWidth="1026.0" style="-fx-background-color: #dfe4ea;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rdfcarrentals.controller.DriverFormController">
    <children>
-      <AnchorPane layoutX="38.0" layoutY="1.0" prefHeight="102.0" prefWidth="998.0" style="-fx-background-color: white;">
+      <AnchorPane layoutX="36.0" prefHeight="102.0" prefWidth="998.0" style="-fx-background-color: white;">
          <children>
             <Label alignment="CENTER" layoutX="368.0" layoutY="30.0" prefHeight="43.0" prefWidth="115.0" text="Drivers" textFill="#ffc029">
                <font>
@@ -21,7 +21,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="tblDrivers" layoutX="38.0" layoutY="454.0" onMouseClicked="#tblDriversOnAction" prefHeight="324.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
+      <TableView fx:id="tblDrivers" layoutX="35.0" layoutY="454.0" onMouseClicked="#tblDriversOnAction" prefHeight="324.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
          <columns>
             <TableColumn fx:id="colNic" prefWidth="163.0" text="NIC" />
             <TableColumn fx:id="colName" prefWidth="191.0" text="Name" />
@@ -31,7 +31,7 @@
             <TableColumn fx:id="colOption" prefWidth="124.0" text="Option" />
          </columns>
       </TableView>
-      <AnchorPane fx:id="driverFormPane" layoutX="38.0" layoutY="129.0" prefHeight="255.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <AnchorPane fx:id="driverFormPane" layoutX="33.0" layoutY="129.0" prefHeight="255.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <Label layoutX="14.0" layoutY="4.0" prefHeight="43.0" prefWidth="145.0" text="Driver NIC">
                <font>
@@ -91,6 +91,11 @@
                </font>
             </Label>
             <ComboBox fx:id="cmbAvailabilityStatus" layoutX="179.0" layoutY="151.0" onAction="#cmbAvailabilityStatusOnAction" prefHeight="35.0" prefWidth="398.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
+            <Button fx:id="btnRefresh" layoutX="713.0" layoutY="80.0" mnemonicParsing="false" onAction="#btnRefreshOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #dff9fb; -fx-border-radius: 10; -fx-border-color: #ffc029;" text="      REFRESH" textFill="#ffc029">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <TextField fx:id="txtFldSearchHere" layoutX="252.0" layoutY="405.0" onKeyReleased="#txtFldSearchHereOnAction" prefHeight="35.0" prefWidth="500.0" promptText="       Search Here">
@@ -105,11 +110,6 @@
          </font>
       </Button>
       <FontAwesomeIcon fill="#00b894" iconName="EYE" layoutX="692.0" layoutY="175.0" size="2em" />
-      <Button fx:id="btnRefresh" layoutX="749.0" layoutY="207.0" mnemonicParsing="false" onAction="#btnRefreshOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #dff9fb; -fx-border-radius: 10; -fx-border-color: #ffc029;" text="      REFRESH" textFill="#ffc029">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
       <FontAwesomeIcon fill="#ffc029" iconName="REFRESH" layoutX="768.0" layoutY="238.0" size="2em" />
    </children>
 </AnchorPane>

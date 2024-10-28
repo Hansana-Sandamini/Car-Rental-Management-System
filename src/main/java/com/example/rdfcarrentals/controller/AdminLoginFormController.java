@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -27,6 +29,8 @@ public class AdminLoginFormController implements Initializable {
     @FXML
     private TextField txtFldCashierUserName;
 
+    @FXML
+    private ImageView adminLoginBackIcon;
 
     @FXML
     void btnAdminLoginOnAction(ActionEvent event) throws IOException {
@@ -40,6 +44,13 @@ public class AdminLoginFormController implements Initializable {
         } else {
             new Alert(Alert.AlertType.ERROR, "Invalid username or password...").show();
         }
+    }
+
+    @FXML
+    void adminLoginBackIconOnAction(MouseEvent event) throws IOException {
+        adminLoginPane.getChildren().clear();
+        AnchorPane load = FXMLLoader.load(getClass().getResource("/view/WelcomeForm.fxml"));
+        adminLoginPane.getChildren().add(load);
     }
 
     @Override

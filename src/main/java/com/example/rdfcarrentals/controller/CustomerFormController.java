@@ -100,7 +100,6 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) throws SQLException {
-
         if (validateTextFields()) {
             CustomerDTO customerDTO = getTextFieldsValues();
 
@@ -137,7 +136,6 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) throws SQLException {
-
         if (validateTextFields()) {
             CustomerDTO customerDTO = getTextFieldsValues();
 

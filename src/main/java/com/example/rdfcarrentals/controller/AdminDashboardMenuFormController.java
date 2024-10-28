@@ -71,7 +71,7 @@ public class AdminDashboardMenuFormController implements Initializable {
 
     @FXML
     void btnBuysOnAction(ActionEvent event) {
-
+        navigateTo("/view/BuysForm.fxml");
     }
 
     @FXML
@@ -81,7 +81,7 @@ public class AdminDashboardMenuFormController implements Initializable {
 
     @FXML
     void btnCashiersOnAction(ActionEvent event) {
-
+        navigateTo("/view/CashierSignUpForm.fxml");
     }
 
     @FXML

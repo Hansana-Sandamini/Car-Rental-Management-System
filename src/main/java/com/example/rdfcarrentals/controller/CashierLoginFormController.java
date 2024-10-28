@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -25,6 +27,9 @@ public class CashierLoginFormController {
     private TextField txtFldCashierUserName;
 
     @FXML
+    private ImageView cashierLoginBackIcon;
+
+    @FXML
     void btnCashierLoginOnAction(ActionEvent event) throws IOException {
         String userName = txtFldCashierUserName.getText();
         String password = txtFldCashierPassword.getText();
@@ -38,4 +43,10 @@ public class CashierLoginFormController {
         }
     }
 
+    @FXML
+    void cashierLoginBackIconOnAction(MouseEvent event) throws IOException {
+        cashierLoginPane.getChildren().clear();
+        AnchorPane load = FXMLLoader.load(getClass().getResource("/view/WelcomeForm.fxml"));
+        cashierLoginPane.getChildren().add(load);
+    }
 }
