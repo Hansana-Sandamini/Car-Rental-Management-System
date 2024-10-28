@@ -104,13 +104,13 @@
          </font>
       </TextField>
       <FontAwesomeIcon fill="#c3bfbf" iconName="SEARCH" layoutX="256.0" layoutY="417.0" />
-      <TableView fx:id="tblCustomers" layoutX="28.0" layoutY="449.0" onMouseClicked="#tblCustomersOnClicked" prefHeight="331.0" prefWidth="978.0">
+      <TableView fx:id="tblCustomers" layoutX="28.0" layoutY="449.0" onMouseClicked="#tblCustomersOnClicked" prefHeight="331.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
         <columns>
-          <TableColumn fx:id="colNic" prefWidth="161.0" style="-fx-background-color: #ffc42a;" text="NIC" />
-          <TableColumn fx:id="colName" prefWidth="221.0" style="-fx-background-color: #ffc42a;" text="Name" />
-            <TableColumn fx:id="colAddress" prefWidth="185.0" style="-fx-background-color: #ffc42a;" text="Address" />
-            <TableColumn fx:id="colEmail" minWidth="1.0" prefWidth="234.0" style="-fx-background-color: #ffc42a;" text="Email" />
-            <TableColumn fx:id="colContactNumber" prefWidth="176.0" style="-fx-background-color: #ffc42a;" text="Contact Number" />
+          <TableColumn fx:id="colNic" prefWidth="161.0" text="NIC" />
+          <TableColumn fx:id="colName" prefWidth="221.0" text="Name" />
+            <TableColumn fx:id="colAddress" prefWidth="185.0" text="Address" />
+            <TableColumn fx:id="colEmail" minWidth="1.0" prefWidth="234.0" text="Email" />
+            <TableColumn fx:id="colContactNumber" prefWidth="176.0" text="Contact Number" />
         </columns>
       </TableView>
    </children>

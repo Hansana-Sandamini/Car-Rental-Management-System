@@ -17,13 +17,13 @@
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="tblCredits" layoutX="33.0" layoutY="457.0" prefHeight="324.0" prefWidth="978.0">
+      <TableView fx:id="tblCredits" layoutX="33.0" layoutY="457.0" prefHeight="324.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
          <columns>
-            <TableColumn fx:id="colCreditID" prefWidth="160.0" style="-fx-background-color: #ffc42a;" text="Credit ID" />
-            <TableColumn fx:id="colTotalAmount" prefWidth="207.0" style="-fx-background-color: #ffc42a;" text="Total Amount" />
-            <TableColumn fx:id="colAmountPaid" prefWidth="211.0" style="-fx-background-color: #ffc42a;" text="Amount Paid" />
-            <TableColumn fx:id="colAmountToPay" minWidth="1.0" prefWidth="202.0" style="-fx-background-color: #ffc42a;" text="Amount To Pay" />
-            <TableColumn fx:id="colDueDate" prefWidth="197.0" style="-fx-background-color: #ffc42a;" text="Due Date" />
+            <TableColumn fx:id="colCreditID" prefWidth="160.0" text="Credit ID" />
+            <TableColumn fx:id="colTotalAmount" prefWidth="207.0" text="Total Amount" />
+            <TableColumn fx:id="colAmountPaid" prefWidth="211.0" text="Amount Paid" />
+            <TableColumn fx:id="colAmountToPay" minWidth="1.0" prefWidth="202.0" text="Amount To Pay" />
+            <TableColumn fx:id="colDueDate" prefWidth="197.0" text="Due Date" />
          </columns>
       </TableView>
    </children>

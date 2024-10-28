@@ -22,16 +22,16 @@
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="tblPayments" layoutX="37.0" layoutY="458.0" prefHeight="324.0" prefWidth="978.0">
+      <TableView fx:id="tblPayments" layoutX="37.0" layoutY="458.0" prefHeight="324.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
          <columns>
-            <TableColumn fx:id="colPaymentID" prefWidth="100.0" style="-fx-background-color: #ffc42a;" text="Payment ID" />
-            <TableColumn fx:id="colReservationID" prefWidth="108.0" style="-fx-background-color: #ffc42a;" text="Reservation ID" />
-            <TableColumn fx:id="colBillID" prefWidth="101.0" style="-fx-background-color: #ffc42a;" text="Bill ID" />
-            <TableColumn fx:id="colPaymentMethod" minWidth="1.0" prefWidth="153.0" style="-fx-background-color: #ffc42a;" text="Payment Method" />
-            <TableColumn fx:id="colAmount" prefWidth="138.0" style="-fx-background-color: #ffc42a;" text="Amount" />
-            <TableColumn fx:id="colDate" prefWidth="140.0" style="-fx-background-color: #ffc42a;" text="Date" />
-            <TableColumn fx:id="colTime" prefWidth="130.0" style="-fx-background-color: #ffc42a;" text="Time" />
-            <TableColumn fx:id="colOption" prefWidth="107.0" style="-fx-background-color: #ffc42a;" text="Option" />
+            <TableColumn fx:id="colPaymentID" prefWidth="100.0" text="Payment ID" />
+            <TableColumn fx:id="colReservationID" prefWidth="120.0" text="Reservation ID" />
+            <TableColumn fx:id="colBillID" prefWidth="89.0" text="Bill ID" />
+            <TableColumn fx:id="colPaymentMethod" minWidth="1.0" prefWidth="153.0" text="Payment Method" />
+            <TableColumn fx:id="colAmount" prefWidth="138.0" text="Amount" />
+            <TableColumn fx:id="colDate" prefWidth="146.0" text="Date" />
+            <TableColumn fx:id="colTime" prefWidth="139.0" text="Time" />
+            <TableColumn fx:id="colOption" prefWidth="92.0" text="Option" />
          </columns>
       </TableView>
       <AnchorPane layoutX="37.0" layoutY="129.0" prefHeight="261.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 20;">

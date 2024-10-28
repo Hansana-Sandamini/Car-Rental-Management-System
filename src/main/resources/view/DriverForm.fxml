@@ -21,14 +21,14 @@
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="tblDrivers" layoutX="38.0" layoutY="454.0" onMouseClicked="#tblDriversOnAction" prefHeight="324.0" prefWidth="978.0">
+      <TableView fx:id="tblDrivers" layoutX="38.0" layoutY="454.0" onMouseClicked="#tblDriversOnAction" prefHeight="324.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
          <columns>
-            <TableColumn fx:id="colNic" prefWidth="163.0" style="-fx-background-color: #ffc42a;" text="NIC" />
-            <TableColumn fx:id="colName" prefWidth="191.0" style="-fx-background-color: #ffc42a;" text="Name" />
-            <TableColumn fx:id="colEmail" prefWidth="197.0" style="-fx-background-color: #ffc42a;" text="Email" />
-            <TableColumn fx:id="colAvailabilityStatus" minWidth="1.0" prefWidth="153.0" style="-fx-background-color: #ffc42a;" text="Availability Status" />
-            <TableColumn fx:id="colContactNumber" prefWidth="151.0" style="-fx-background-color: #ffc42a;" text="Contact Number" />
-            <TableColumn fx:id="colOption" prefWidth="124.0" style="-fx-background-color: #ffc42a;" text="Option" />
+            <TableColumn fx:id="colNic" prefWidth="163.0" text="NIC" />
+            <TableColumn fx:id="colName" prefWidth="191.0" text="Name" />
+            <TableColumn fx:id="colEmail" prefWidth="197.0" text="Email" />
+            <TableColumn fx:id="colAvailabilityStatus" minWidth="1.0" prefWidth="153.0" text="Availability Status" />
+            <TableColumn fx:id="colContactNumber" prefWidth="151.0" text="Contact Number" />
+            <TableColumn fx:id="colOption" prefWidth="124.0" text="Option" />
          </columns>
       </TableView>
       <AnchorPane fx:id="driverFormPane" layoutX="38.0" layoutY="129.0" prefHeight="255.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 20;">
@@ -84,8 +84,8 @@
                </font>
             </Button>
             <FontAwesomeIcon fill="#ffc029" iconName="SAVE" layoutX="734.0" layoutY="226.0" size="2em" />
-            <FontAwesomeIcon fill="#ffc029" iconName="WRENCH" layoutX="733.0" layoutY="160.0" size="2em" />
-            <Label fx:id="txtFldAvailabilityStatus" layoutX="14.0" layoutY="153.0" prefHeight="43.0" prefWidth="145.0" text="Availability Status">
+            <FontAwesomeIcon fill="#ffc029" iconName="WRENCH" layoutX="733.0" layoutY="163.0" size="2em" />
+            <Label fx:id="txtFldAvailabilityStatus" layoutX="14.0" layoutY="149.0" prefHeight="43.0" prefWidth="145.0" text="Availability Status">
                <font>
                   <Font size="14.0" />
                </font>
@@ -105,5 +105,11 @@
          </font>
       </Button>
       <FontAwesomeIcon fill="#00b894" iconName="EYE" layoutX="692.0" layoutY="175.0" size="2em" />
+      <Button fx:id="btnRefresh" layoutX="749.0" layoutY="207.0" mnemonicParsing="false" onAction="#btnRefreshOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #dff9fb; -fx-border-radius: 10; -fx-border-color: #ffc029;" text="      REFRESH" textFill="#ffc029">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <FontAwesomeIcon fill="#ffc029" iconName="REFRESH" layoutX="768.0" layoutY="238.0" size="2em" />
    </children>
 </AnchorPane>

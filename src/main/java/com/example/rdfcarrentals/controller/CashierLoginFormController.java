@@ -34,7 +34,7 @@ public class CashierLoginFormController {
             AnchorPane load = FXMLLoader.load(getClass().getResource("/view/CashierDashboardMenuForm.fxml"));
             cashierLoginPane.getChildren().add(load);
         } else {
-            new Alert(Alert.AlertType.ERROR, "Invalid username or password").show();
+            new Alert(Alert.AlertType.ERROR, "Invalid username or password...").show();
         }
     }
 

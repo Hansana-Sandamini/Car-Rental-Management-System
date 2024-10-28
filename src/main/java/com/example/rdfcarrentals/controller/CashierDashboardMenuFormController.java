@@ -53,7 +53,7 @@ public class CashierDashboardMenuFormController implements Initializable {
             AnchorPane load = FXMLLoader.load(getClass().getResource(fxmlPath));
             cashierDashboardRightPane.getChildren().add(load);
         } catch (IOException e) {
-            new Alert(Alert.AlertType.ERROR, "Fail to load page!").show();
+            new Alert(Alert.AlertType.ERROR, "Fail to load page...!").show();
         }
     }
 

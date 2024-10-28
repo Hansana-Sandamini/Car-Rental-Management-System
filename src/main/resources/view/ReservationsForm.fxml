@@ -22,18 +22,18 @@
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="tblReservations" layoutX="37.0" layoutY="458.0" prefHeight="324.0" prefWidth="978.0">
+      <TableView fx:id="tblReservations" layoutX="37.0" layoutY="458.0" prefHeight="324.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
          <columns>
-            <TableColumn fx:id="colReservationID" prefWidth="90.0" style="-fx-background-color: #ffc42a;" text="Reservation&#10;        ID" />
-            <TableColumn fx:id="colCreditID" prefWidth="81.0" style="-fx-background-color: #ffc42a;" text="Credit ID" />
-            <TableColumn fx:id="colCustomerNIC" prefWidth="112.0" style="-fx-background-color: #ffc42a;" text="Customer NIC" />
-            <TableColumn fx:id="colCashierUserName" minWidth="1.0" prefWidth="129.0" style="-fx-background-color: #ffc42a;" text="  Cashier &#10;UserName" />
-            <TableColumn fx:id="colPickUpDate" prefWidth="97.0" style="-fx-background-color: #ffc42a;" text="Pick Up &#10;  Date" />
-            <TableColumn fx:id="colPickUpTime" prefWidth="94.0" style="-fx-background-color: #ffc42a;" text="Pick Up &#10; Time" />
-            <TableColumn fx:id="colReturnDate" prefWidth="95.0" style="-fx-background-color: #ffc42a;" text="Return Date" />
-            <TableColumn fx:id="colReturnTime" prefWidth="93.0" style="-fx-background-color: #ffc42a;" text="Return Time" />
-            <TableColumn fx:id="colIsDriverWant" prefWidth="104.0" style="-fx-background-color: #ffc42a;" text="Is Driver&#10; Want" />
-            <TableColumn fx:id="colOption" prefWidth="82.0" style="-fx-background-color: #ffc42a;" text="Option" />
+            <TableColumn fx:id="colReservationID" prefWidth="97.0" text="Reservation&#10;        ID" />
+            <TableColumn fx:id="colCreditID" prefWidth="74.0" text="Credit ID" />
+            <TableColumn fx:id="colCustomerNIC" prefWidth="112.0" text="Customer NIC" />
+            <TableColumn fx:id="colCashierUserName" minWidth="1.0" prefWidth="129.0" text="  Cashier &#10;UserName" />
+            <TableColumn fx:id="colPickUpDate" prefWidth="97.0" text="Pick Up &#10;  Date" />
+            <TableColumn fx:id="colPickUpTime" prefWidth="94.0" text="Pick Up &#10; Time" />
+            <TableColumn fx:id="colReturnDate" prefWidth="95.0" text="Return &#10;  Date" />
+            <TableColumn fx:id="colReturnTime" prefWidth="93.0" text="Return &#10;  Time" />
+            <TableColumn fx:id="colIsDriverWant" prefWidth="104.0" text="Is Driver&#10; Want" />
+            <TableColumn fx:id="colOption" prefWidth="82.0" text="Option" />
          </columns>
       </TableView>
       <AnchorPane fx:id="reservationFormPane" layoutX="37.0" layoutY="129.0" prefHeight="261.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 20;">

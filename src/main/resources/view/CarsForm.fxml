@@ -127,15 +127,15 @@
          </font>
       </TextField>
       <FontAwesomeIcon fill="#c3bfbf" iconName="SEARCH" layoutX="256.0" layoutY="417.0" />
-      <TableView fx:id="tblCars" layoutX="28.0" layoutY="449.0" onMouseClicked="#tblCarsOnClicked" prefHeight="331.0" prefWidth="978.0">
+      <TableView fx:id="tblCars" layoutX="28.0" layoutY="449.0" onMouseClicked="#tblCarsOnClicked" prefHeight="331.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
          <columns>
-            <TableColumn fx:id="colLicensePlateNo" prefWidth="131.0" style="-fx-background-color: #ffc42a;" text="License Plate No" />
-            <TableColumn fx:id="colTypeID" prefWidth="119.0" style="-fx-background-color: #ffc42a;" text="Type ID" />
-            <TableColumn fx:id="colModel" prefWidth="171.0" style="-fx-background-color: #ffc42a;" text="Model" />
-            <TableColumn fx:id="colColour" minWidth="1.0" prefWidth="119.0" style="-fx-background-color: #ffc42a;" text="Colour" />
-            <TableColumn fx:id="colDailyRate" prefWidth="147.0" style="-fx-background-color: #ffc42a;" text="Daily Rate" />
-            <TableColumn fx:id="colMonthlyRate" prefWidth="149.0" style="-fx-background-color: #ffc42a;" text="Monthly Rate" />
-            <TableColumn fx:id="colAvailabilityStatus" prefWidth="141.0" style="-fx-background-color: #ffc42a;" text="Availability Status" />
+            <TableColumn fx:id="colLicensePlateNo" prefWidth="131.0" text="License Plate No" />
+            <TableColumn fx:id="colTypeID" prefWidth="119.0" text="Type ID" />
+            <TableColumn fx:id="colModel" prefWidth="171.0" text="Model" />
+            <TableColumn fx:id="colColour" minWidth="1.0" prefWidth="119.0" text="Colour" />
+            <TableColumn fx:id="colDailyRate" prefWidth="147.0" text="Daily Rate" />
+            <TableColumn fx:id="colMonthlyRate" prefWidth="149.0" text="Monthly Rate" />
+            <TableColumn fx:id="colAvailabilityStatus" prefWidth="141.0" text="Availability Status" />
          </columns>
       </TableView>
    </children>

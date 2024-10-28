@@ -38,12 +38,11 @@ public class AdminLoginFormController implements Initializable {
             AnchorPane load = FXMLLoader.load(getClass().getResource("/view/AdminDashboardMenuForm.fxml"));
             adminLoginPane.getChildren().add(load);
         } else {
-            new Alert(Alert.AlertType.ERROR, "Invalid username or password").show();
+            new Alert(Alert.AlertType.ERROR, "Invalid username or password...").show();
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }

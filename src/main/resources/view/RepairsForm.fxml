@@ -22,14 +22,14 @@
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="tblRepairs" layoutX="32.0" layoutY="447.0" prefHeight="332.0" prefWidth="976.0">
+      <TableView fx:id="tblRepairs" layoutX="32.0" layoutY="447.0" prefHeight="332.0" prefWidth="976.0" stylesheets="@../asserts/TableStyle.css">
         <columns>
-          <TableColumn fx:id="colRepairID" prefWidth="117.0" style="-fx-background-color: #ffc42a;" text="Repair ID" />
-          <TableColumn fx:id="colLicensePlateNo" prefWidth="124.0" style="-fx-background-color: #ffc42a;" text="License Plate No" />
-            <TableColumn fx:id="colDescription" prefWidth="308.0" style="-fx-background-color: #ffc42a;" text="Description" />
-            <TableColumn fx:id="colDate" prefWidth="151.0" style="-fx-background-color: #ffc42a;" text="Date" />
-            <TableColumn fx:id="colCost" prefWidth="165.0" style="-fx-background-color: #ffc42a;" text="Cost" />
-            <TableColumn fx:id="colOption" prefWidth="110.0" style="-fx-background-color: #ffc42a;" text="Option" />
+          <TableColumn fx:id="colRepairID" prefWidth="117.0" text="Repair ID" />
+          <TableColumn fx:id="colLicensePlateNo" prefWidth="140.0" text="License Plate No" />
+            <TableColumn fx:id="colDescription" prefWidth="292.0" text="Description" />
+            <TableColumn fx:id="colDate" prefWidth="151.0" text="Date" />
+            <TableColumn fx:id="colCost" prefWidth="165.0" text="Cost" />
+            <TableColumn fx:id="colOption" prefWidth="110.0" text="Option" />
         </columns>
       </TableView>
       <AnchorPane layoutX="30.0" layoutY="119.0" prefHeight="261.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 20;">

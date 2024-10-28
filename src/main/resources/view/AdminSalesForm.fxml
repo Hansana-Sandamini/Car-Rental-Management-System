@@ -17,15 +17,15 @@
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="tblSales" layoutX="38.0" layoutY="373.0" prefHeight="383.0" prefWidth="973.0">
+      <TableView fx:id="tblSales" layoutX="38.0" layoutY="373.0" prefHeight="383.0" prefWidth="973.0" stylesheets="@../asserts/TableStyle.css">
         <columns>
-          <TableColumn fx:id="colReservationID" prefWidth="128.0" style="-fx-background-color: #ffc42a;" text="Reservation ID" />
-          <TableColumn fx:id="colCustomerNic" prefWidth="158.0" style="-fx-background-color: #ffc42a;" text="Customer NIC" />
-            <TableColumn fx:id="colDate" prefWidth="134.0" style="-fx-background-color: #ffc42a;" text="Date" />
-            <TableColumn fx:id="colTime" prefWidth="135.0" style="-fx-background-color: #ffc42a;" text="Time" />
-            <TableColumn fx:id="colCost" prefWidth="144.0" style="-fx-background-color: #ffc42a;" text="Cost" />
-            <TableColumn fx:id="ColPaymentStatus" prefWidth="146.0" style="-fx-background-color: #ffc42a;" text="Payment Status" />
-            <TableColumn fx:id="colOption" prefWidth="127.0" style="-fx-background-color: #ffc42a;" text="Option" />
+          <TableColumn fx:id="colReservationID" prefWidth="128.0" text="Reservation ID" />
+          <TableColumn fx:id="colCustomerNic" prefWidth="158.0" text="Customer NIC" />
+            <TableColumn fx:id="colDate" prefWidth="134.0" text="Date" />
+            <TableColumn fx:id="colTime" prefWidth="135.0" text="Time" />
+            <TableColumn fx:id="colCost" prefWidth="144.0" text="Cost" />
+            <TableColumn fx:id="ColPaymentStatus" prefWidth="146.0" text="Payment Status" />
+            <TableColumn fx:id="colOption" prefWidth="127.0" text="Option" />
         </columns>
       </TableView>
    </children>

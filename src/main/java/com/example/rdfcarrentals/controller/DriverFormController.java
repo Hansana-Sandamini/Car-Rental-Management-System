@@ -1,5 +1,6 @@
 package com.example.rdfcarrentals.controller;
 
+import com.example.rdfcarrentals.tm.DriverTM;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,28 +22,31 @@ public class DriverFormController {
     private Button btnUpdate;
 
     @FXML
+    private Button btnRefresh;
+
+    @FXML
     private Button btnViewDriverAssignment;
 
     @FXML
     private ComboBox<?> cmbAvailabilityStatus;
 
     @FXML
-    private TableColumn<?, ?> colAvailabilityStatus;
+    private TableColumn<DriverTM, String> colAvailabilityStatus;
 
     @FXML
-    private TableColumn<?, ?> colContactNumber;
+    private TableColumn<DriverTM, String> colContactNumber;
 
     @FXML
-    private TableColumn<?, ?> colEmail;
+    private TableColumn<DriverTM, String> colEmail;
 
     @FXML
-    private TableColumn<?, ?> colName;
+    private TableColumn<DriverTM, String> colName;
 
     @FXML
-    private TableColumn<?, ?> colNic;
+    private TableColumn<DriverTM, String> colNic;
 
     @FXML
-    private TableColumn<?, ?> colOption;
+    private TableColumn<DriverTM, String> colOption;
 
     @FXML
     private AnchorPane driverContent;
@@ -51,7 +55,7 @@ public class DriverFormController {
     private AnchorPane driverFormPane;
 
     @FXML
-    private TableView<?> tblDrivers;
+    private TableView<DriverTM> tblDrivers;
 
     @FXML
     private Label txtFldAvailabilityStatus;
@@ -78,6 +82,11 @@ public class DriverFormController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnRefreshOnAction(ActionEvent event) {
 
     }
 
