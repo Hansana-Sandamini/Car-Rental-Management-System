@@ -61,19 +61,18 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnRefresh" layoutX="406.0" layoutY="207.0" mnemonicParsing="false" onAction="#btnRefreshOnAction" prefHeight="40.0" prefWidth="187.0" style="-fx-background-color: #dff9fb; -fx-border-radius: 10; -fx-border-color: #ffc029;" text="      REFRESH" textFill="#ffc029">
+            <Button fx:id="btnRefresh" layoutX="476.0" layoutY="207.0" mnemonicParsing="false" onAction="#btnRefreshOnAction" prefHeight="40.0" prefWidth="187.0" style="-fx-background-color: #dff9fb; -fx-border-radius: 10; -fx-border-color: #ffc029;" text="      REFRESH" textFill="#ffc029">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
             <FontAwesomeIcon fill="#ffc029" iconName="SAVE" layoutX="716.0" layoutY="236.0" size="2em" />
-            <FontAwesomeIcon fill="#ffc029" iconName="REFRESH" layoutX="433.0" layoutY="236.0" size="2em" />
+            <FontAwesomeIcon fill="#ffc029" iconName="REFRESH" layoutX="503.0" layoutY="236.0" size="2em" />
             <Label fx:id="txtFldAvailabilityStatus" layoutX="14.0" layoutY="152.0" prefHeight="43.0" prefWidth="145.0" text="Date">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbBillID" layoutX="615.0" layoutY="58.0" onAction="#cmbBillIDOnAction" prefHeight="35.0" prefWidth="176.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
             <ComboBox fx:id="cmbReservationID" layoutX="162.0" layoutY="58.0" onAction="#cmbReservationIDOnAction" prefHeight="35.0" prefWidth="167.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
             <Label layoutX="14.0" layoutY="54.0" prefHeight="43.0" prefWidth="145.0" text="Reservation ID">
                <font>
@@ -102,6 +101,11 @@
             </TextField>
             <DatePicker fx:id="txtDate" layoutX="162.0" layoutY="156.0" prefHeight="35.0" prefWidth="236.0" />
             <DatePicker fx:id="txtTime" layoutX="615.0" layoutY="152.0" prefHeight="35.0" prefWidth="236.0" />
+            <Label fx:id="lblBillID" layoutX="615.0" layoutY="54.0" prefHeight="43.0" prefWidth="145.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <TextField fx:id="txtFldSearchHere" layoutX="262.0" layoutY="407.0" onKeyReleased="#txtFldSearchHereOnAction" prefHeight="35.0" prefWidth="500.0" promptText="       Search Here">

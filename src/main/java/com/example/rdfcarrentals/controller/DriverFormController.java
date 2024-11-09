@@ -170,6 +170,7 @@ public class DriverFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cmbAvailabilityStatus.getItems().addAll("Yes", "No");
+
         colNic.setCellValueFactory(new PropertyValueFactory<>("nic"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));

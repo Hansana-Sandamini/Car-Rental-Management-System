@@ -21,9 +21,6 @@ public class PaymentsFormController {
     private Button btnRefresh;
 
     @FXML
-    private ComboBox<?> cmbBillID;
-
-    @FXML
     private ComboBox<?> cmbReservationID;
 
     @FXML
@@ -84,11 +81,6 @@ public class PaymentsFormController {
 
     @FXML
     void btnRefreshOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cmbBillIDOnAction(ActionEvent event) {
 
     }
 

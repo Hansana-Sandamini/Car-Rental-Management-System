@@ -97,7 +97,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtFldContactNumber1" layoutX="518.0" layoutY="148.0" prefHeight="35.0" prefWidth="196.0">
+            <TextField fx:id="txtFldMonthlyRate" layoutX="518.0" layoutY="148.0" prefHeight="35.0" prefWidth="196.0">
                <font>
                   <Font size="14.0" />
                </font>

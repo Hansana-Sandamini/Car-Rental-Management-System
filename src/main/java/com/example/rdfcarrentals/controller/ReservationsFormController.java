@@ -24,9 +24,6 @@ public class ReservationsFormController {
     private ComboBox<?> cmbCashierUserName;
 
     @FXML
-    private ComboBox<?> cmbCreditID;
-
-    @FXML
     private ComboBox<?> cmbCustomerNIC;
 
     @FXML
@@ -107,11 +104,6 @@ public class ReservationsFormController {
 
     @FXML
     void cmbCashierUserNameOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cmbCreditIDOnAction(ActionEvent event) {
 
     }
 

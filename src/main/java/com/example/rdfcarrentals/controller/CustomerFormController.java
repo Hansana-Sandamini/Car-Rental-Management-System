@@ -74,6 +74,8 @@ public class CustomerFormController implements Initializable {
     @FXML
     private TextField txtFldSearchHere;
 
+    CustomerModel customerModel = new CustomerModel();
+
     @FXML
     void btnDeleteOnAction(ActionEvent event) throws SQLException {
         String customerNIC = txtFldNIC.getText();
@@ -171,8 +173,6 @@ public class CustomerFormController implements Initializable {
     void txtFldSearchHereOnAction(KeyEvent event) {
 
     }
-
-    CustomerModel customerModel = new CustomerModel();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

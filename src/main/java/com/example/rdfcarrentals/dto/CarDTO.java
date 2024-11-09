@@ -1,5 +1,12 @@
 package com.example.rdfcarrentals.dto;
 
+import lombok.*;
+
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class CarDTO {
     private String licensePlateNo;
     private String model;
@@ -7,4 +14,6 @@ public class CarDTO {
     private double dailyRate;
     private double monthlyRate;
     private String availabilityStatus;
+    private String typeId;
+
 }

@@ -15,7 +15,7 @@
    <children>
       <AnchorPane layoutX="32.0" layoutY="1.0" prefHeight="102.0" prefWidth="998.0" style="-fx-background-color: white;">
          <children>
-            <Label alignment="CENTER" layoutX="300.0" layoutY="24.0" prefHeight="54.0" prefWidth="176.0" text="Reservations" textFill="#ffc029">
+            <Label alignment="CENTER" layoutX="313.0" layoutY="24.0" prefHeight="54.0" prefWidth="176.0" text="Reservations" textFill="#ffc029">
                <font>
                   <Font size="18.0" />
                </font>
@@ -69,7 +69,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbCashierUserName" layoutX="615.0" layoutY="58.0" onAction="#cmbCashierUserNameOnAction" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
+            <ComboBox fx:id="cmbCashierUserName" layoutX="615.0" layoutY="18.0" onAction="#cmbCashierUserNameOnAction" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
             <ComboBox fx:id="cmbCustomerNIC" layoutX="162.0" layoutY="58.0" onAction="#cmbCustomerNICOnAction" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
             <Label layoutX="14.0" layoutY="54.0" prefHeight="43.0" prefWidth="145.0" text="Customer NIC">
                <font>
@@ -81,7 +81,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="463.0" layoutY="54.0" prefHeight="43.0" prefWidth="145.0" text="Cashier UserName">
+            <Label layoutX="463.0" layoutY="14.0" prefHeight="43.0" prefWidth="145.0" text="Cashier UserName">
                <font>
                   <Font size="14.0" />
                </font>
@@ -91,18 +91,12 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="464.0" layoutY="9.0" prefHeight="43.0" prefWidth="145.0" text="Credit ID">
+            <Label fx:id="txtFldAvailabilityStatus1" layoutX="463.0" layoutY="57.0" prefHeight="43.0" prefWidth="145.0" text="Is Driver Want">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbCreditID" layoutX="615.0" layoutY="13.0" onAction="#cmbCreditIDOnAction" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
-            <Label fx:id="txtFldAvailabilityStatus1" layoutX="13.0" layoutY="197.0" prefHeight="43.0" prefWidth="145.0" text="Is Driver Want">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <ComboBox fx:id="cmbIsDriverWant" layoutX="162.0" layoutY="201.0" onAction="#cmbIsDriverWantOnAction" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
+            <ComboBox fx:id="cmbIsDriverWant" layoutX="615.0" layoutY="61.0" onAction="#cmbIsDriverWantOnAction" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
             <DatePicker fx:id="txtPickUpDate" layoutX="162.0" layoutY="105.0" prefHeight="35.0" prefWidth="236.0" />
             <DatePicker fx:id="txtReturnDate" layoutX="162.0" layoutY="152.0" prefHeight="35.0" prefWidth="236.0" />
             <DatePicker fx:id="txtPickUpTime" layoutX="615.0" layoutY="104.0" prefHeight="35.0" prefWidth="236.0" />
