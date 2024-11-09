@@ -1,5 +1,6 @@
 package com.example.rdfcarrentals.controller;
 
+import com.example.rdfcarrentals.tm.CarTM;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -29,34 +30,34 @@ public class CarsFormController {
     private AnchorPane carsContent;
 
     @FXML
-    private ComboBox<?> cmbAvailabilityStatus;
+    private ComboBox<String> cmbAvailabilityStatus;
 
     @FXML
-    private ComboBox<?> cmbTypeID;
+    private ComboBox<String> cmbTypeID;
 
     @FXML
-    private TableColumn<?, ?> colAvailabilityStatus;
+    private TableColumn<CarTM, String> colAvailabilityStatus;
 
     @FXML
-    private TableColumn<?, ?> colColour;
+    private TableColumn<CarTM, String> colColour;
 
     @FXML
-    private TableColumn<?, ?> colDailyRate;
+    private TableColumn<CarTM, Double> colDailyRate;
 
     @FXML
-    private TableColumn<?, ?> colLicensePlateNo;
+    private TableColumn<CarTM, String> colLicensePlateNo;
 
     @FXML
-    private TableColumn<?, ?> colModel;
+    private TableColumn<CarTM, String> colModel;
 
     @FXML
-    private TableColumn<?, ?> colMonthlyRate;
+    private TableColumn<CarTM, Double> colMonthlyRate;
 
     @FXML
-    private TableColumn<?, ?> colTypeID;
+    private TableColumn<CarTM, String> colTypeID;
 
     @FXML
-    private TableView<?> tblCars;
+    private TableView<CarTM> tblCars;
 
     @FXML
     private TextField txtFldColour;
@@ -96,11 +97,6 @@ public class CarsFormController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cmbAvailabilityStatusOnAction(ActionEvent event) {
 
     }
 

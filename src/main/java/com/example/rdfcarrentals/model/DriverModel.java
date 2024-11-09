@@ -1,5 +1,6 @@
 package com.example.rdfcarrentals.model;
 
+import com.example.rdfcarrentals.dto.CustomerDTO;
 import com.example.rdfcarrentals.dto.DriverDTO;
 import com.example.rdfcarrentals.util.CrudUtil;
 
@@ -36,5 +37,16 @@ public class DriverModel {
             driverDTOS.add(driverDTO);
         }
         return driverDTOS;
+    }
+
+    public boolean updateDriver(DriverDTO driverDTO) throws SQLException {
+        return CrudUtil.execute(
+                "UPDATE driver SET name = ?, email = ?, availability_status = ?, contact_number = ? WHERE nic = ?",
+                driverDTO.getName(),
+                driverDTO.getEmail(),
+                driverDTO.getAvailabilityStatus(),
+                driverDTO.getContactNumber(),
+                driverDTO.getNic()
+        );
     }
 }

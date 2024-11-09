@@ -102,7 +102,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <ComboBox fx:id="cmbAvailabilityStatus" layoutX="149.0" layoutY="196.0" onAction="#cmbAvailabilityStatusOnAction" prefHeight="35.0" prefWidth="196.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
+            <ComboBox fx:id="cmbAvailabilityStatus" layoutX="149.0" layoutY="199.0" prefHeight="35.0" prefWidth="196.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
             <ComboBox fx:id="cmbTypeID" layoutX="149.0" layoutY="55.0" onAction="#cmbTypeIDOnAction" prefHeight="35.0" prefWidth="196.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
             <TextField fx:id="txtFldLicensePlateNo" layoutX="149.0" layoutY="8.0" prefHeight="35.0" prefWidth="196.0">
                <font>

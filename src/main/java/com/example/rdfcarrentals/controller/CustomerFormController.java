@@ -124,7 +124,7 @@ public class CustomerFormController implements Initializable {
         return new CustomerDTO(nic, name, address, email, contactNumber);
     }
 
-    boolean validateTextFields(){
+    boolean validateTextFields() {
         boolean isValidNic = ValidationUtil.isValidNic(txtFldNIC);
         boolean isValidName = ValidationUtil.isValidName(txtFldName);
         boolean isValidAddress = ValidationUtil.isValidAddress(txtFldAddress);
