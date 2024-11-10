@@ -22,7 +22,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="tblPayments" layoutX="37.0" layoutY="458.0" prefHeight="324.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
+      <TableView fx:id="tblPayments" layoutX="37.0" layoutY="458.0" onMouseClicked="#tblPaymentsOnClicked" prefHeight="324.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
          <columns>
             <TableColumn fx:id="colPaymentID" prefWidth="100.0" text="Payment ID" />
             <TableColumn fx:id="colReservationID" prefWidth="120.0" text="Reservation ID" />
@@ -68,7 +68,7 @@
             </Button>
             <FontAwesomeIcon fill="#ffc029" iconName="SAVE" layoutX="716.0" layoutY="236.0" size="2em" />
             <FontAwesomeIcon fill="#ffc029" iconName="REFRESH" layoutX="503.0" layoutY="236.0" size="2em" />
-            <Label fx:id="txtFldAvailabilityStatus" layoutX="14.0" layoutY="152.0" prefHeight="43.0" prefWidth="145.0" text="Date">
+            <Label layoutX="14.0" layoutY="152.0" prefHeight="43.0" prefWidth="145.0" text="Date">
                <font>
                   <Font size="14.0" />
                </font>
@@ -79,7 +79,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lblPaymentID" layoutX="162.0" layoutY="6.0" prefHeight="43.0" prefWidth="145.0">
+            <Label fx:id="lblPaymentID" layoutX="162.0" layoutY="6.0" prefHeight="43.0" prefWidth="145.0" text="1">
                <font>
                   <Font size="14.0" />
                </font>
@@ -100,12 +100,16 @@
                </font>
             </TextField>
             <DatePicker fx:id="txtDate" layoutX="162.0" layoutY="156.0" prefHeight="35.0" prefWidth="236.0" />
-            <DatePicker fx:id="txtTime" layoutX="615.0" layoutY="152.0" prefHeight="35.0" prefWidth="236.0" />
-            <Label fx:id="lblBillID" layoutX="615.0" layoutY="54.0" prefHeight="43.0" prefWidth="145.0">
+            <Label fx:id="lblBillID" layoutX="615.0" layoutY="54.0" prefHeight="43.0" prefWidth="145.0" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
+            <TextField fx:id="txtTime" layoutX="616.0" layoutY="153.0" prefHeight="35.0" prefWidth="236.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
       <TextField fx:id="txtFldSearchHere" layoutX="262.0" layoutY="407.0" onKeyReleased="#txtFldSearchHereOnAction" prefHeight="35.0" prefWidth="500.0" promptText="       Search Here">

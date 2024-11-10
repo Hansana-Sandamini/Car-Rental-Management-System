@@ -1,6 +1,5 @@
 package com.example.rdfcarrentals.model;
 
-import com.example.rdfcarrentals.dto.CustomerDTO;
 import com.example.rdfcarrentals.dto.DriverDTO;
 import com.example.rdfcarrentals.util.CrudUtil;
 

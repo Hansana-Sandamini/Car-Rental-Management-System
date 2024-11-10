@@ -236,7 +236,6 @@ public class CreditsFormController implements Initializable {
     }
 
     private void refreshTable() throws SQLException {
-        lblCreditID.setText(creditModel.getNextCreditId());
         ArrayList<CreditDTO> creditDTOS = creditModel.getAllCredits();
         ObservableList<CreditTM> creditTMS = FXCollections.observableArrayList();
 

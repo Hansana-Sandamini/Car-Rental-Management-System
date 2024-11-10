@@ -1,18 +1,33 @@
 package com.example.rdfcarrentals.controller;
 
+import com.example.rdfcarrentals.dto.PaymentDTO;
+import com.example.rdfcarrentals.dto.ReservationDTO;
+import com.example.rdfcarrentals.model.BillModel;
+import com.example.rdfcarrentals.model.PaymentModel;
+import com.example.rdfcarrentals.model.ReservationModel;
+import com.example.rdfcarrentals.tm.PaymentTM;
+import com.example.rdfcarrentals.util.CrudUtil;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
-public class PaymentsFormController {
+import java.net.URL;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
+public class PaymentsFormController implements Initializable {
 
     @FXML
     private Button btnAddPayment;
@@ -21,40 +36,43 @@ public class PaymentsFormController {
     private Button btnRefresh;
 
     @FXML
-    private ComboBox<?> cmbReservationID;
+    private ComboBox<String> cmbReservationID;
 
     @FXML
-    private TableColumn<?, ?> colAmount;
+    private TableColumn<PaymentTM, Double> colAmount;
 
     @FXML
-    private TableColumn<?, ?> colBillID;
+    private TableColumn<PaymentTM, String> colBillID;
 
     @FXML
-    private TableColumn<?, ?> colDate;
+    private TableColumn<PaymentTM, Date> colDate;
 
     @FXML
     private TableColumn<?, ?> colOption;
 
     @FXML
-    private TableColumn<?, ?> colPaymentID;
+    private TableColumn<PaymentTM, String> colPaymentID;
 
     @FXML
-    private TableColumn<?, ?> colPaymentMethod;
+    private TableColumn<PaymentTM, String> colPaymentMethod;
 
     @FXML
-    private TableColumn<?, ?> colReservationID;
+    private TableColumn<PaymentTM, String> colReservationID;
 
     @FXML
-    private TableColumn<?, ?> colTime;
+    private TableColumn<PaymentTM, String> colTime;
 
     @FXML
     private Label lblPaymentID;
 
     @FXML
+    private Label lblBillID;
+
+    @FXML
     private AnchorPane paymentsContent;
 
     @FXML
-    private TableView<?> tblPayments;
+    private TableView<PaymentTM> tblPayments;
 
     @FXML
     private DatePicker txtDate;
@@ -63,30 +81,61 @@ public class PaymentsFormController {
     private TextField txtFldAmount;
 
     @FXML
-    private Label txtFldAvailabilityStatus;
-
-    @FXML
     private TextField txtFldPaymentMethod;
 
     @FXML
     private TextField txtFldSearchHere;
 
     @FXML
-    private DatePicker txtTime;
+    private TextField txtTime;
+
+    PaymentModel paymentModel = new PaymentModel();
+    private final ObservableList<PaymentTM> paymentTMS = FXCollections.observableArrayList();
+    private final ReservationModel reservationModel = new ReservationModel();
+    private final BillModel billModel = new BillModel();
 
     @FXML
-    void btnAddPaymentOnAction(ActionEvent event) {
+    void btnAddPaymentOnAction(ActionEvent event) throws SQLException {
+        PaymentDTO paymentDTO = getTextFieldsValues();
 
+        boolean isAdded = paymentModel.addPayment(paymentDTO);
+
+        if (isAdded) {
+            new Alert(Alert.AlertType.INFORMATION, "Payment Added...!").show();
+            refreshPage();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Fail to Add Payment...!").show();
+        }
+    }
+
+    PaymentDTO getTextFieldsValues() {
+        String paymentID = lblPaymentID.getText();
+        String reservationID = cmbReservationID.getValue();
+        String billID = lblBillID.getText();
+        String paymentMethod = txtFldPaymentMethod.getText();
+        double amount = Double.parseDouble(txtFldAmount.getText());
+        Date date = Date.valueOf(txtDate.getValue());
+        String time = txtTime.getText();
+
+        return new PaymentDTO(paymentID, reservationID, billID, paymentMethod, amount, date, time);
     }
 
     @FXML
-    void btnRefreshOnAction(ActionEvent event) {
-
+    void btnRefreshOnAction(ActionEvent event) throws SQLException {
+        refreshPage();
     }
 
     @FXML
-    void cmbReservationIDOnAction(ActionEvent event) {
+    void cmbReservationIDOnAction(ActionEvent event) throws SQLException {
+        String selectedReservationID = cmbReservationID.getSelectionModel().getSelectedItem();
+        ReservationDTO reservationDTO = reservationModel.findByReservationID(selectedReservationID);
+    }
 
+    private void loadReservationIDs() throws SQLException {
+        ArrayList<String> reservationIDs = reservationModel.getAllReservationIDS();
+        ObservableList<String> observableList = FXCollections.observableArrayList();
+        observableList.addAll(reservationIDs);
+        cmbReservationID.setItems(observableList);
     }
 
     @FXML
@@ -94,4 +143,103 @@ public class PaymentsFormController {
 
     }
 
+    @FXML
+    void tblPaymentsOnClicked(MouseEvent event) {
+        PaymentTM selectedItem = tblPayments.getSelectionModel().getSelectedItem();
+
+        if (selectedItem != null) {
+            lblPaymentID.setText(selectedItem.getPaymentId());
+            cmbReservationID.setValue(selectedItem.getReservationId());
+            lblBillID.setText(selectedItem.getBillId());
+            txtFldPaymentMethod.setText(selectedItem.getPaymentMethod());
+            txtFldAmount.setText(String.valueOf(selectedItem.getAmount()));
+            txtDate.setValue(selectedItem.getDate().toLocalDate());
+            txtTime.setText(selectedItem.getTime());
+
+            btnAddPayment.setDisable(true);
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        colPaymentID.setCellValueFactory(new PropertyValueFactory<>("paymentId"));
+        colReservationID.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
+        colBillID.setCellValueFactory(new PropertyValueFactory<>("billId"));
+        colPaymentMethod.setCellValueFactory(new PropertyValueFactory<>("paymentMethod"));
+        colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+
+        tblPayments.getColumns().get(7).setCellValueFactory(param -> {
+            Button btnRemove = new Button("Remove");
+
+            btnRemove.setOnMouseClicked(event -> {
+                PaymentTM selectedPayment = param.getValue();
+                tblPayments.getSelectionModel().select(selectedPayment);
+                setBtnRemove(event);
+            });
+            return new ReadOnlyObjectWrapper(new HBox(100, btnRemove));
+        });
+
+        try {
+            refreshPage();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void setBtnRemove(MouseEvent event) {
+        PaymentTM selectedPayment = tblPayments.getSelectionModel().getSelectedItem();
+
+        if (selectedPayment != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to remove this Payment?", ButtonType.YES, ButtonType.NO);
+
+            Optional<ButtonType> buttonType = alert.showAndWait();
+
+            if (buttonType.isPresent() && buttonType.get().equals(ButtonType.YES)) {
+                try {
+                    CrudUtil.execute("DELETE FROM payment WHERE payment_id = ?", selectedPayment.getPaymentId());
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION, "Payment Successfully Deleted...!");
+                    successAlert.showAndWait();
+                    refreshTable();
+                } catch (SQLException e) {
+                    new Alert(Alert.AlertType.ERROR, "Error: " + e.getMessage()).show();
+                }
+            }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "No payment selected to remove...!").show();
+        }
+    }
+
+    private void refreshPage() throws SQLException {
+        refreshTable();
+        loadReservationIDs();
+
+        lblPaymentID.setText(paymentModel.getNextPaymentId());
+        cmbReservationID.setValue("");
+        lblBillID.setText(billModel.getNextBillId());
+        txtFldPaymentMethod.setText("");
+        txtFldAmount.setText("");
+        txtDate.setValue(null);
+        txtTime.setText("");
+    }
+
+    private void refreshTable() throws SQLException {
+        ArrayList<PaymentDTO> paymentDTOS = paymentModel.getAllPayments();
+        paymentTMS.clear();
+
+        for (PaymentDTO paymentDTO : paymentDTOS) {
+            PaymentTM paymentTM = new PaymentTM(
+                    paymentDTO.getPaymentId(),
+                    paymentDTO.getReservationId(),
+                    paymentDTO.getBillId(),
+                    paymentDTO.getPaymentMethod(),
+                    paymentDTO.getAmount(),
+                    paymentDTO.getDate(),
+                    paymentDTO.getTime()
+            );
+            paymentTMS.add(paymentTM);
+        }
+        tblPayments.setItems(paymentTMS);
+    }
 }

@@ -14,13 +14,4 @@ public class DriverTM {
     private String email;
     private String availabilityStatus;
     private String contactNumber;
-    private Button btnRemove;
-
-    public DriverTM(String nic, String name, String email, String availabilityStatus, String contactNumber) {
-        this.nic = nic;
-        this.name = name;
-        this.email = email;
-        this.availabilityStatus = availabilityStatus;
-        this.contactNumber = contactNumber;
-    }
 }

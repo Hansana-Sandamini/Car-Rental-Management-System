@@ -9,8 +9,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class RepairTM {
     private String repairId;
+    private String licensePlateNo;
     private String description;
     private Date date;
     private Double cost;
-    private String licensePlateNo;
 }
