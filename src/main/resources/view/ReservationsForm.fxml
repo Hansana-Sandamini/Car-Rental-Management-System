@@ -22,21 +22,21 @@
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="tblReservations" layoutX="32.0" layoutY="458.0" prefHeight="324.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
+      <TableView fx:id="tblReservations" layoutX="32.0" layoutY="458.0" onMouseClicked="#tblReservationsOnClicked" prefHeight="324.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
          <columns>
             <TableColumn fx:id="colReservationID" prefWidth="97.0" text="Reservation&#10;        ID" />
-            <TableColumn fx:id="colCreditID" prefWidth="74.0" text="Credit ID" />
-            <TableColumn fx:id="colCustomerNIC" prefWidth="112.0" text="Customer NIC" />
+            <TableColumn fx:id="colCreditID" prefWidth="56.0" text="Credit &#10;    ID" />
+            <TableColumn fx:id="colCustomerNIC" prefWidth="130.0" text="Customer NIC" />
             <TableColumn fx:id="colCashierUserName" minWidth="1.0" prefWidth="129.0" text="  Cashier &#10;UserName" />
             <TableColumn fx:id="colPickUpDate" prefWidth="97.0" text="Pick Up &#10;  Date" />
             <TableColumn fx:id="colPickUpTime" prefWidth="94.0" text="Pick Up &#10; Time" />
             <TableColumn fx:id="colReturnDate" prefWidth="95.0" text="Return &#10;  Date" />
             <TableColumn fx:id="colReturnTime" prefWidth="93.0" text="Return &#10;  Time" />
-            <TableColumn fx:id="colIsDriverWant" prefWidth="104.0" text="Is Driver&#10; Want" />
-            <TableColumn fx:id="colOption" prefWidth="82.0" text="Option" />
+            <TableColumn fx:id="colIsDriverWant" prefWidth="77.0" text="Is Driver&#10; Want" />
+            <TableColumn fx:id="colOption" prefWidth="109.0" text="Option" />
          </columns>
       </TableView>
-      <AnchorPane fx:id="reservationFormPane" layoutX="32.0" layoutY="129.0" prefHeight="261.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <AnchorPane fx:id="reservationFormPane" layoutX="32.0" layoutY="129.0" prefHeight="261.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 10;">
          <children>
             <Label layoutX="14.0" layoutY="4.0" prefHeight="43.0" prefWidth="145.0" text="Reservation ID">
                <font>
@@ -64,7 +64,7 @@
                </font>
             </Button>
             <FontAwesomeIcon fill="#ffc029" iconName="CART_PLUS" layoutX="752.0" layoutY="236.0" size="2em" />
-            <Label fx:id="txtFldAvailabilityStatus" layoutX="14.0" layoutY="148.0" prefHeight="43.0" prefWidth="145.0" text="Return Date">
+            <Label layoutX="14.0" layoutY="148.0" prefHeight="43.0" prefWidth="145.0" text="Return Date">
                <font>
                   <Font size="14.0" />
                </font>
@@ -76,7 +76,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lblReservationID" layoutX="162.0" layoutY="4.0" prefHeight="43.0" prefWidth="236.0">
+            <Label fx:id="lblReservationID" layoutX="162.0" layoutY="4.0" prefHeight="43.0" prefWidth="236.0" text="1">
                <font>
                   <Font size="14.0" />
                </font>
@@ -91,17 +91,17 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="txtFldAvailabilityStatus1" layoutX="463.0" layoutY="57.0" prefHeight="43.0" prefWidth="145.0" text="Is Driver Want">
+            <Label layoutX="463.0" layoutY="57.0" prefHeight="43.0" prefWidth="145.0" text="Is Driver Want">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbIsDriverWant" layoutX="615.0" layoutY="61.0" onAction="#cmbIsDriverWantOnAction" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
+            <ComboBox fx:id="cmbIsDriverWant" layoutX="615.0" layoutY="61.0" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
             <DatePicker fx:id="txtPickUpDate" layoutX="162.0" layoutY="105.0" prefHeight="35.0" prefWidth="236.0" />
             <DatePicker fx:id="txtReturnDate" layoutX="162.0" layoutY="152.0" prefHeight="35.0" prefWidth="236.0" />
-            <DatePicker fx:id="txtPickUpTime" layoutX="615.0" layoutY="104.0" prefHeight="35.0" prefWidth="236.0" />
-            <DatePicker fx:id="txtReturnTime" layoutX="615.0" layoutY="149.0" prefHeight="35.0" prefWidth="236.0" />
             <FontAwesomeIcon fill="#00b894" iconName="EYE" layoutX="432.0" layoutY="235.0" size="2em" />
+            <TextField fx:id="txtPickUpTime" layoutX="614.0" layoutY="107.0" prefHeight="35.0" prefWidth="236.0" />
+            <TextField fx:id="txtReturnTime" layoutX="614.0" layoutY="149.0" prefHeight="35.0" prefWidth="236.0" />
          </children>
       </AnchorPane>
       <TextField fx:id="txtFldSearchHere" layoutX="262.0" layoutY="407.0" onKeyReleased="#txtFldSearchHereOnAction" prefHeight="35.0" prefWidth="500.0" promptText="       Search Here">

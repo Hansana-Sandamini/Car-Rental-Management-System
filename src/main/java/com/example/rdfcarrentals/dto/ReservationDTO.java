@@ -15,8 +15,8 @@ public class ReservationDTO {
     private String cashierUsername;
     private String creditId;
     private Date pickUpDate;
-    private Time pickUpTime;
+    private String pickUpTime;
     private Date returnDate;
-    private Time returnTime;
+    private String returnTime;
     private String isDriverWant;
 }

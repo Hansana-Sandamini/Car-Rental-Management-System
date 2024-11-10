@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.rdfcarrentals.controller.DriverAssignmentFormController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane fx:id="driverAssignmentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="255.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tblDriverAssignment" layoutX="65.0" layoutY="20.0" prefHeight="216.0" prefWidth="570.0" stylesheets="@../asserts/TableStyle.css">
+         <columns>
+            <TableColumn fx:id="colLicensePlateNo" prefWidth="160.0" text="License Plate No" />
+            <TableColumn fx:id="colDriverNic" prefWidth="207.0" text="Driver NIC" />
+            <TableColumn fx:id="colPricePerKm" prefWidth="201.0" text="Price Per km" />
+         </columns>
+      </TableView>
+   </children>
 </AnchorPane>

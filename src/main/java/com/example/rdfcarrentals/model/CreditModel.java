@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class CreditModel {
 
     public String getNextCreditId() throws SQLException {
-        ResultSet rst = CrudUtil.execute("select credit_id from credit order by credit_id desc limit 1");
+        ResultSet rst = CrudUtil.execute("SELECT credit_id FROM credit ORDER BY credit_id DESC LIMIT 1");
 
         if (rst.next()) {
             String lastId = rst.getString(1);

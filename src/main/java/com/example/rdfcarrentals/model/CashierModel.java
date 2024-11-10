@@ -1,7 +1,6 @@
 package com.example.rdfcarrentals.model;
 
 import com.example.rdfcarrentals.dto.CashierDTO;
-import com.example.rdfcarrentals.dto.CustomerDTO;
 import com.example.rdfcarrentals.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -53,4 +52,29 @@ public class CashierModel {
         return CrudUtil.execute("DELETE FROM cashier WHERE username = ?", cashierUserName);
     }
 
+    public ArrayList<String> getAllCashierUsernames() throws SQLException {
+        ResultSet rst = CrudUtil.execute("SELECT username FROM cashier");
+
+        ArrayList<String> cashierUsernames = new ArrayList<>();
+
+        while (rst.next()) {
+            cashierUsernames.add(rst.getString(1));
+        }
+        return cashierUsernames;
+    }
+
+    public CashierDTO findByUsername(String selectedCashierUsername) throws SQLException {
+        ResultSet rst = CrudUtil.execute("SELECT * FROM cashier WHERE username = ?", selectedCashierUsername);
+
+        if (rst.next()) {
+            return new CashierDTO(
+                    rst.getString(1),
+                    rst.getString(2),
+                    rst.getString(3),
+                    rst.getString(4),
+                    rst.getString(5)
+            );
+        }
+        return null;
+    }
 }

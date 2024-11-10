@@ -83,6 +83,9 @@ public class DriverFormController implements Initializable {
     @FXML
     private TextField txtFldSearchHere;
 
+    DriverModel driverModel = new DriverModel();
+    private final ObservableList<DriverTM> driverTMS = FXCollections.observableArrayList();
+
     @FXML
     void btnSaveOnAction(ActionEvent event) throws SQLException {
         if (validateTextFields()) {
@@ -163,9 +166,6 @@ public class DriverFormController implements Initializable {
     void txtFldSearchHereOnAction(KeyEvent event) {
 
     }
-
-    DriverModel driverModel = new DriverModel();
-    private final ObservableList<DriverTM> driverTMS = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
