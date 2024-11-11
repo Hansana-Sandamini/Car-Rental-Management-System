@@ -1,7 +1,5 @@
 package com.example.rdfcarrentals.tm;
 
-import javafx.collections.ObservableList;
-import javafx.scene.control.Button;
 import lombok.*;
 
 @Getter
@@ -14,4 +12,5 @@ public class DriverTM {
     private String email;
     private String availabilityStatus;
     private String contactNumber;
+    private Double pricePerKm;
 }

@@ -210,7 +210,7 @@ public class CarsFormController implements Initializable {
         colDailyRate.setCellValueFactory(new PropertyValueFactory<>("dailyRate"));
         colMonthlyRate.setCellValueFactory(new PropertyValueFactory<>("monthlyRate"));
         colAvailabilityStatus.setCellValueFactory(new PropertyValueFactory<>("availabilityStatus"));
-        colTypeID.setCellValueFactory(new PropertyValueFactory<>("typeID"));
+        colTypeID.setCellValueFactory(new PropertyValueFactory<>("typeId"));
 
         try {
             refreshPage();

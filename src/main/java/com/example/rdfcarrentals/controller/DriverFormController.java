@@ -12,12 +12,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -59,6 +63,9 @@ public class DriverFormController implements Initializable {
     private TableColumn<DriverTM, String> colNic;
 
     @FXML
+    private TableColumn<DriverTM, Double> colPricePerKm;
+
+    @FXML
     private TableColumn<?, ?> colOption;
 
     @FXML
@@ -85,6 +92,9 @@ public class DriverFormController implements Initializable {
     @FXML
     private TextField txtFldSearchHere;
 
+    @FXML
+    private TextField txtPricePerKm;
+
     DriverModel driverModel = new DriverModel();
     private final ObservableList<DriverTM> driverTMS = FXCollections.observableArrayList();
 
@@ -110,8 +120,9 @@ public class DriverFormController implements Initializable {
         String email = txtFldEmail.getText();
         String availabilityStatus = cmbAvailabilityStatus.getValue();
         String contactNumber = txtFldContactNumber.getText();
+        double pricePerKm = Double.parseDouble(txtPricePerKm.getText());
 
-        return new DriverDTO(nic, name, email, availabilityStatus, contactNumber);
+        return new DriverDTO(nic, name, email, availabilityStatus, contactNumber, pricePerKm);
     }
 
     boolean validateTextFields() {
@@ -147,9 +158,14 @@ public class DriverFormController implements Initializable {
     @FXML
     void btnViewDriverAssignmentOnAction(ActionEvent event) {
         try {
-            driverFormPane.getChildren().clear();
-            AnchorPane load = FXMLLoader.load(getClass().getResource("/view/DriverAssignmentForm.fxml"));
-            driverFormPane.getChildren().addAll(load);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DriverAssignmentForm.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
         } catch (IOException e) {
             new Alert(Alert.AlertType.ERROR, "Fail to load page...!").show();
         }
@@ -164,6 +180,7 @@ public class DriverFormController implements Initializable {
             txtFldEmail.setText(selectedItem.getEmail());
             cmbAvailabilityStatus.setValue(selectedItem.getAvailabilityStatus());
             txtFldContactNumber.setText(selectedItem.getContactNumber());
+            txtPricePerKm.setText(String.valueOf(selectedItem.getPricePerKm()));
 
             btnSave.setDisable(true);
             btnUpdate.setDisable(false);
@@ -184,8 +201,9 @@ public class DriverFormController implements Initializable {
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colAvailabilityStatus.setCellValueFactory(new PropertyValueFactory<>("availabilityStatus"));
         colContactNumber.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
+        colPricePerKm.setCellValueFactory(new PropertyValueFactory<>("pricePerKm"));
 
-        tblDrivers.getColumns().get(5).setCellValueFactory(param -> {
+        tblDrivers.getColumns().get(6).setCellValueFactory(param -> {
             Button btnRemove = new Button("Remove");
 
             btnRemove.setOnMouseClicked(event -> {
@@ -211,6 +229,7 @@ public class DriverFormController implements Initializable {
         txtFldEmail.setText("");
         cmbAvailabilityStatus.setValue("");
         txtFldContactNumber.setText("");
+        txtPricePerKm.setText("");
 
         btnSave.setDisable(false);
         btnUpdate.setDisable(true);
@@ -226,7 +245,8 @@ public class DriverFormController implements Initializable {
                     driverDTO.getName(),
                     driverDTO.getEmail(),
                     driverDTO.getAvailabilityStatus(),
-                    driverDTO.getContactNumber()
+                    driverDTO.getContactNumber(),
+                    driverDTO.getPricePerKm()
             );
             driverTMS.add(driverTM);
         }
