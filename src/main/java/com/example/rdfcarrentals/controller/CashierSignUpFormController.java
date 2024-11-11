@@ -77,6 +77,8 @@ public class CashierSignUpFormController implements Initializable {
     @FXML
     private TextField txtFldUserName;
 
+    private final CashierModel cashierModel = new CashierModel();
+
     @FXML
     void btnDeleteOnAction(ActionEvent event) throws SQLException {
         String cashierUserName = txtFldUserName.getText();
@@ -172,8 +174,6 @@ public class CashierSignUpFormController implements Initializable {
             btnUpdate.setDisable(false);
         }
     }
-
-    CashierModel cashierModel = new CashierModel();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

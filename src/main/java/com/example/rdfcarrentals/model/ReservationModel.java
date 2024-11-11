@@ -1,13 +1,17 @@
 package com.example.rdfcarrentals.model;
 
+import com.example.rdfcarrentals.db.DBConnection;
 import com.example.rdfcarrentals.dto.ReservationDTO;
 import com.example.rdfcarrentals.util.CrudUtil;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ReservationModel {
+
+    private final ReservationDetailModel reservationDetailModel = new ReservationDetailModel();
 
     public String getNextReservationId() throws SQLException {
         ResultSet rst = CrudUtil.execute("SELECT reservation_id FROM reservation ORDER BY reservation_id DESC LIMIT 1");
@@ -23,7 +27,11 @@ public class ReservationModel {
     }
 
     public boolean addReservation(ReservationDTO reservationDTO) throws SQLException {
-        return CrudUtil.execute(
+        Connection connection = DBConnection.getInstance().getConnection();
+
+        try {
+            connection.setAutoCommit(false);
+            boolean isReservationSaved = CrudUtil.execute(
                 "INSERT INTO reservation VALUES (?,?,?,?,?,?,?,?,?)",
                 reservationDTO.getReservationId(),
                 reservationDTO.getCustomerNic(),
@@ -34,7 +42,23 @@ public class ReservationModel {
                 reservationDTO.getReturnDate(),
                 reservationDTO.getReturnTime(),
                 reservationDTO.getIsDriverWant()
-        );
+            );
+
+            if (isReservationSaved) {
+                boolean isReservationDetailListSaved = reservationDetailModel.saveReservationDetailList(reservationDTO.getReservationDetailDTOS());
+                if (isReservationDetailListSaved) {
+                    connection.commit();
+                    return true;
+                }
+            }
+            connection.rollback();
+            return false;
+        } catch (SQLException e) {
+            connection.rollback();
+            return false;
+        } finally {
+            connection.setAutoCommit(true);
+        }
     }
 
     public ArrayList<ReservationDTO> getAllReservations() throws SQLException {

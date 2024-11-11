@@ -48,7 +48,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="468.0" layoutY="145.0" prefHeight="43.0" prefWidth="111.0" text="Return Time">
+            <Label layoutX="378.0" layoutY="145.0" prefHeight="43.0" prefWidth="111.0" text="Return Time">
                <font>
                   <Font size="14.0" />
                </font>
@@ -69,39 +69,57 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbCashierUserName" layoutX="615.0" layoutY="18.0" onAction="#cmbCashierUserNameOnAction" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
-            <ComboBox fx:id="cmbCustomerNIC" layoutX="162.0" layoutY="58.0" onAction="#cmbCustomerNICOnAction" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
+            <ComboBox fx:id="cmbCashierUserName" layoutX="525.0" layoutY="18.0" onAction="#cmbCashierUserNameOnAction" prefHeight="35.0" prefWidth="125.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
+            <ComboBox fx:id="cmbCustomerNIC" layoutX="162.0" layoutY="58.0" onAction="#cmbCustomerNICOnAction" prefHeight="35.0" prefWidth="145.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
             <Label layoutX="14.0" layoutY="54.0" prefHeight="43.0" prefWidth="145.0" text="Customer NIC">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lblReservationID" layoutX="162.0" layoutY="4.0" prefHeight="43.0" prefWidth="236.0" text="1">
+            <Label fx:id="lblReservationID" layoutX="162.0" layoutY="4.0" prefHeight="43.0" prefWidth="145.0" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="463.0" layoutY="14.0" prefHeight="43.0" prefWidth="145.0" text="Cashier UserName">
+            <Label layoutX="373.0" layoutY="14.0" prefHeight="43.0" prefWidth="145.0" text="Cashier UserName">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="466.0" layoutY="100.0" prefHeight="43.0" prefWidth="145.0" text="Pick Up Time">
+            <Label layoutX="376.0" layoutY="100.0" prefHeight="43.0" prefWidth="145.0" text="Pick Up Time">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="463.0" layoutY="57.0" prefHeight="43.0" prefWidth="145.0" text="Is Driver Want">
+            <Label layoutX="373.0" layoutY="57.0" prefHeight="43.0" prefWidth="145.0" text="Is Driver Want">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbIsDriverWant" layoutX="615.0" layoutY="61.0" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
-            <DatePicker fx:id="txtPickUpDate" layoutX="162.0" layoutY="105.0" prefHeight="35.0" prefWidth="236.0" />
-            <DatePicker fx:id="txtReturnDate" layoutX="162.0" layoutY="152.0" prefHeight="35.0" prefWidth="236.0" />
+            <ComboBox fx:id="cmbIsDriverWant" layoutX="524.0" layoutY="61.0" prefHeight="35.0" prefWidth="125.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
+            <DatePicker fx:id="txtPickUpDate" layoutX="162.0" layoutY="105.0" prefHeight="35.0" prefWidth="145.0" />
+            <DatePicker fx:id="txtReturnDate" layoutX="162.0" layoutY="152.0" prefHeight="35.0" prefWidth="145.0" />
             <FontAwesomeIcon fill="#00b894" iconName="EYE" layoutX="432.0" layoutY="235.0" size="2em" />
-            <TextField fx:id="txtPickUpTime" layoutX="614.0" layoutY="107.0" prefHeight="35.0" prefWidth="236.0" />
-            <TextField fx:id="txtReturnTime" layoutX="614.0" layoutY="149.0" prefHeight="35.0" prefWidth="236.0" />
+            <TextField fx:id="txtPickUpTime" layoutX="524.0" layoutY="107.0" prefHeight="35.0" prefWidth="125.0" />
+            <TextField fx:id="txtReturnTime" layoutX="524.0" layoutY="149.0" prefHeight="35.0" prefWidth="125.0" />
+            <Label layoutX="692.0" layoutY="14.0" prefHeight="43.0" prefWidth="145.0" text="License Plate No">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cmbLicensePlateNo" layoutX="823.0" layoutY="16.0" onAction="#cmbLicensePlateNoOnAction" prefHeight="35.0" prefWidth="125.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
+            <Label layoutX="692.0" layoutY="61.0" prefHeight="43.0" prefWidth="145.0" text="Driver Cost">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="692.0" layoutY="106.0" prefHeight="43.0" prefWidth="145.0" text="Total Amount">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtDriverCost" layoutX="823.0" layoutY="64.0" prefHeight="35.0" prefWidth="125.0" />
+            <TextField fx:id="txtTotalAmount" layoutX="823.0" layoutY="110.0" prefHeight="35.0" prefWidth="125.0" />
          </children>
       </AnchorPane>
       <TextField fx:id="txtFldSearchHere" layoutX="262.0" layoutY="407.0" onKeyReleased="#txtFldSearchHereOnAction" prefHeight="35.0" prefWidth="500.0" promptText="       Search Here">

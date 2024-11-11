@@ -1,8 +1,9 @@
 package com.example.rdfcarrentals.controller;
 
+import com.example.rdfcarrentals.dto.CarDTO;
 import com.example.rdfcarrentals.dto.RepairDTO;
+import com.example.rdfcarrentals.model.CarModel;
 import com.example.rdfcarrentals.model.RepairModel;
-import com.example.rdfcarrentals.tm.PaymentTM;
 import com.example.rdfcarrentals.tm.RepairTM;
 import com.example.rdfcarrentals.util.CrudUtil;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -20,8 +21,9 @@ import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -75,12 +77,32 @@ public class RepairsFormController implements Initializable {
     @FXML
     private TextField txtFldSearchHere;
 
-    RepairModel repairModel = new RepairModel();
+    private final RepairModel repairModel = new RepairModel();
     private final ObservableList<RepairTM> repairTMS = FXCollections.observableArrayList();
+    private final CarModel carModel = new CarModel();
 
     @FXML
-    void btnAddRepairOnAction(ActionEvent event) {
+    void btnAddRepairOnAction(ActionEvent event) throws SQLException {
+        RepairDTO repairDTO = getTextFieldsValues();
 
+        boolean isSaved = repairModel.addRepair(repairDTO);
+
+        if (isSaved) {
+            new Alert(Alert.AlertType.INFORMATION, "Repair Saved...!").show();
+            refreshPage();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Fail to Save Repair...!").show();
+        }
+    }
+
+    RepairDTO getTextFieldsValues() {
+        String repairId = lblRepairID.getText();
+        String licensePlateNo = cmbLicensePlateNo.getValue();
+        String description = txtFldDescription.getText();
+        Date date = java.sql.Date.valueOf(txtDate.getValue());
+        double cost = Double.parseDouble(txtFldCost.getText());
+
+        return new RepairDTO(repairId, description, date, cost, licensePlateNo);
     }
 
     @FXML
@@ -89,8 +111,16 @@ public class RepairsFormController implements Initializable {
     }
 
     @FXML
-    void cmbLicensePlateNoOnAction(ActionEvent event) {
+    void cmbLicensePlateNoOnAction(ActionEvent event) throws SQLException {
+        String selectedLicensePlateNo = cmbLicensePlateNo.getSelectionModel().getSelectedItem();
+        CarDTO carDTO = carModel.findByLicensePlateNo(selectedLicensePlateNo);
+    }
 
+    private void loadLicensePlateNos() throws SQLException {
+        ArrayList<String> licensePlateNos = carModel.getAllLicensePlateNos();
+        ObservableList<String> observableList = FXCollections.observableArrayList();
+        observableList.addAll(licensePlateNos);
+        cmbLicensePlateNo.setItems(observableList);
     }
 
     @FXML
@@ -100,7 +130,15 @@ public class RepairsFormController implements Initializable {
 
     @FXML
     void tblRepairsOnClicked(MouseEvent event) {
+        RepairTM selectedItem = tblRepairs.getSelectionModel().getSelectedItem();
 
+        if (selectedItem != null) {
+            lblRepairID.setText(selectedItem.getRepairId());
+            cmbLicensePlateNo.setValue(selectedItem.getLicensePlateNo());
+            txtFldDescription.setText(selectedItem.getDescription());
+            txtDate.setValue(LocalDate.parse(LocalDate.now().toString()));
+            txtFldCost.setText(String.valueOf(selectedItem.getCost()));
+        }
     }
 
 
@@ -155,8 +193,9 @@ public class RepairsFormController implements Initializable {
 
     private void refreshPage() throws SQLException {
         refreshTable();
+        loadLicensePlateNos();
 
-        lblRepairID.setText("");
+        lblRepairID.setText(repairModel.getNextRepairId());
         cmbLicensePlateNo.setValue("");
         txtFldDescription.setText("");
         txtFldCost.setText("");

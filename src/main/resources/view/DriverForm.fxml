@@ -108,16 +108,17 @@
                   <FontAwesomeIcon fill="#00b894" iconName="EYE" size="1.5em" />
                </graphic>
             </Button>
-            <Label layoutX="456.0" layoutY="145.0" prefHeight="43.0" prefWidth="95.0" text="Price Per km">
+            <Label layoutX="456.0" layoutY="195.0" prefHeight="43.0" prefWidth="95.0" text="Price Per km">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtPricePerKm" layoutX="564.0" layoutY="151.0" prefHeight="35.0" prefWidth="130.0">
+            <TextField fx:id="txtPricePerKm" layoutX="564.0" layoutY="201.0" prefHeight="35.0" prefWidth="145.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
+            <ComboBox fx:id="cmbLicensePlateNo" layoutX="565.0" layoutY="152.0" onAction="#cmbLicensePlateNoOnAction" prefHeight="35.0" prefWidth="145.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
          </children>
       </AnchorPane>
       <TextField fx:id="txtFldSearchHere" layoutX="252.0" layoutY="405.0" onKeyReleased="#txtFldSearchHereOnAction" prefHeight="35.0" prefWidth="500.0" promptText="       Search Here">
@@ -126,5 +127,10 @@
          </font>
       </TextField>
       <FontAwesomeIcon fill="#c3bfbf" iconName="SEARCH" layoutX="266.0" layoutY="428.0" />
+      <Label layoutX="472.0" layoutY="274.0" prefHeight="43.0" prefWidth="145.0" text="License Plate No">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -1,6 +1,9 @@
 package com.example.rdfcarrentals.controller;
 
+import com.example.rdfcarrentals.dto.CarDTO;
+import com.example.rdfcarrentals.dto.DriverAssignmentDTO;
 import com.example.rdfcarrentals.dto.DriverDTO;
+import com.example.rdfcarrentals.model.CarModel;
 import com.example.rdfcarrentals.model.DriverModel;
 import com.example.rdfcarrentals.tm.DriverTM;
 import com.example.rdfcarrentals.util.CrudUtil;
@@ -27,6 +30,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -46,6 +50,9 @@ public class DriverFormController implements Initializable {
 
     @FXML
     private ComboBox<String> cmbAvailabilityStatus;
+
+    @FXML
+    private ComboBox<String> cmbLicensePlateNo;
 
     @FXML
     private TableColumn<DriverTM, String> colAvailabilityStatus;
@@ -95,8 +102,9 @@ public class DriverFormController implements Initializable {
     @FXML
     private TextField txtPricePerKm;
 
-    DriverModel driverModel = new DriverModel();
+    private final DriverModel driverModel = new DriverModel();
     private final ObservableList<DriverTM> driverTMS = FXCollections.observableArrayList();
+    private final CarModel carModel = new CarModel();
 
     @FXML
     void btnSaveOnAction(ActionEvent event) throws SQLException {
@@ -121,8 +129,14 @@ public class DriverFormController implements Initializable {
         String availabilityStatus = cmbAvailabilityStatus.getValue();
         String contactNumber = txtFldContactNumber.getText();
         double pricePerKm = Double.parseDouble(txtPricePerKm.getText());
+        String licensePlateNo = cmbLicensePlateNo.getValue();
 
-        return new DriverDTO(nic, name, email, availabilityStatus, contactNumber, pricePerKm);
+        DriverAssignmentDTO driverAssignmentDTO = new DriverAssignmentDTO(
+                licensePlateNo, nic, pricePerKm
+        );
+        ArrayList<DriverAssignmentDTO> driverAssignmentDTOS = new ArrayList<>(Collections.singletonList(driverAssignmentDTO));
+
+        return new DriverDTO(nic, name, email, availabilityStatus, contactNumber, pricePerKm, driverAssignmentDTOS);
     }
 
     boolean validateTextFields() {
@@ -153,6 +167,19 @@ public class DriverFormController implements Initializable {
     @FXML
     void btnRefreshOnAction(ActionEvent event) throws SQLException {
         refreshPage();
+    }
+
+    @FXML
+    void cmbLicensePlateNoOnAction(ActionEvent event) throws SQLException {
+        String selectedLicensePlateNo = cmbLicensePlateNo.getSelectionModel().getSelectedItem();
+        CarDTO carDTO = carModel.findByLicensePlateNo(selectedLicensePlateNo);
+    }
+
+    private void loadLicensePlateNos() throws SQLException {
+        ArrayList<String> licensePlateNos = carModel.getAllLicensePlateNos();
+        ObservableList<String> observableList = FXCollections.observableArrayList();
+        observableList.addAll(licensePlateNos);
+        cmbLicensePlateNo.setItems(observableList);
     }
 
     @FXML
@@ -223,6 +250,7 @@ public class DriverFormController implements Initializable {
 
     private void refreshPage() throws SQLException {
         refreshTable();
+        loadLicensePlateNos();
 
         txtFldNIC.setText("");
         txtFldName.setText("");
@@ -230,6 +258,7 @@ public class DriverFormController implements Initializable {
         cmbAvailabilityStatus.setValue("");
         txtFldContactNumber.setText("");
         txtPricePerKm.setText("");
+        cmbLicensePlateNo.setValue("");
 
         btnSave.setDisable(false);
         btnUpdate.setDisable(true);

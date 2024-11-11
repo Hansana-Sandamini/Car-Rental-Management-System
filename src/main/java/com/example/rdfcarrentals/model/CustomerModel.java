@@ -1,7 +1,6 @@
 package com.example.rdfcarrentals.model;
 
 import com.example.rdfcarrentals.dto.CustomerDTO;
-import com.example.rdfcarrentals.dto.FuelTypeDTO;
 import com.example.rdfcarrentals.util.CrudUtil;
 
 import java.sql.ResultSet;

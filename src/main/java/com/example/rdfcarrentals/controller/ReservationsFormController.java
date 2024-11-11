@@ -1,8 +1,7 @@
 package com.example.rdfcarrentals.controller;
 
-import com.example.rdfcarrentals.dto.CashierDTO;
-import com.example.rdfcarrentals.dto.CustomerDTO;
-import com.example.rdfcarrentals.dto.ReservationDTO;
+import com.example.rdfcarrentals.dto.*;
+import com.example.rdfcarrentals.model.CarModel;
 import com.example.rdfcarrentals.model.CashierModel;
 import com.example.rdfcarrentals.model.CustomerModel;
 import com.example.rdfcarrentals.model.ReservationModel;
@@ -13,14 +12,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Time;
@@ -28,6 +33,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -47,6 +53,9 @@ public class ReservationsFormController implements Initializable {
 
     @FXML
     private ComboBox<String> cmbIsDriverWant;
+
+    @FXML
+    private ComboBox<String> cmbLicensePlateNo;
 
     @FXML
     private TableColumn<ReservationTM, String> colCashierUserName;
@@ -103,12 +112,19 @@ public class ReservationsFormController implements Initializable {
     private TextField txtReturnTime;
 
     @FXML
+    private TextField txtDriverCost;
+
+    @FXML
+    private TextField txtTotalAmount;
+
+    @FXML
     private AnchorPane reservationFormPane;
 
     ReservationModel reservationModel = new ReservationModel();
     private final ObservableList<ReservationTM> reservationTMS = FXCollections.observableArrayList();
     private final CustomerModel customerModel = new CustomerModel();
     private final CashierModel cashierModel = new CashierModel();
+    private final CarModel carModel = new CarModel();
 
     @FXML
     void btnAddReservationOnAction(ActionEvent event) throws SQLException {
@@ -125,22 +141,41 @@ public class ReservationsFormController implements Initializable {
     }
 
     ReservationDTO getTextFieldsValues() {
-        String reservationID = lblReservationID.getText();
-        String customerNIC = cmbCustomerNIC.getValue();
-        String cashierUserName = cmbCashierUserName.getValue();
+        String reservationId = lblReservationID.getText();
+        String customerNic = cmbCustomerNIC.getValue();
+        String cashierUsername = cmbCashierUserName.getValue();
+        String licensePlateNo = cmbLicensePlateNo.getValue();
         String creditId = null;
         Date pickUpDate = Date.valueOf(txtPickUpDate.getValue());
         String pickUpTime = txtPickUpTime.getText();
         Date returnDate = Date.valueOf(txtReturnDate.getValue());
         String returnTime = txtReturnTime.getText();
         String isDriverWant = cmbIsDriverWant.getValue();
+        Double driverCost = Double.valueOf(txtDriverCost.getText());
+        Double totalAmount = Double.valueOf(txtTotalAmount.getText());
 
-        return new ReservationDTO(reservationID, customerNIC,cashierUserName, creditId, pickUpDate, pickUpTime, returnDate, returnTime, isDriverWant);
+        ReservationDetailDTO reservationDetailDTO = new ReservationDetailDTO(
+                reservationId, licensePlateNo, driverCost, totalAmount
+        );
+        ArrayList<ReservationDetailDTO> reservationDetailDTOS = new ArrayList<>(Collections.singletonList(reservationDetailDTO));
+
+        return new ReservationDTO(reservationId, customerNic, cashierUsername, creditId, pickUpDate, pickUpTime, returnDate, returnTime, isDriverWant, reservationDetailDTOS);
     }
 
     @FXML
     void btnViewReservationDetailsOnAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ReservationDetailForm.fxml"));
+            Parent root = loader.load();
 
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Fail to load page...!").show();
+        }
     }
 
     @FXML
@@ -167,6 +202,19 @@ public class ReservationsFormController implements Initializable {
         ObservableList<String> observableList = FXCollections.observableArrayList();
         observableList.addAll(customerNICs);
         cmbCustomerNIC.setItems(observableList);
+    }
+
+    @FXML
+    void cmbLicensePlateNoOnAction(ActionEvent event) throws SQLException {
+        String selectedLicensePlateNo = cmbLicensePlateNo.getSelectionModel().getSelectedItem();
+        CarDTO carDTO = carModel.findByLicensePlateNo(selectedLicensePlateNo);
+    }
+
+    private void loadLicensePlateNos() throws SQLException {
+        ArrayList<String> licensePlateNos = carModel.getAllLicensePlateNos();
+        ObservableList<String> observableList = FXCollections.observableArrayList();
+        observableList.addAll(licensePlateNos);
+        cmbLicensePlateNo.setItems(observableList);
     }
 
     @FXML
@@ -252,6 +300,7 @@ public class ReservationsFormController implements Initializable {
         refreshTable();
         loadCustomerNICs();
         loadCashierUsernames();
+        loadLicensePlateNos();
 
         lblReservationID.setText(reservationModel.getNextReservationId());
         cmbCustomerNIC.setValue("");
@@ -260,7 +309,10 @@ public class ReservationsFormController implements Initializable {
         txtPickUpTime.setText("");
         txtReturnDate.setValue(null);
         txtReturnTime.setText("");
-        cmbIsDriverWant.setValue(null);
+        cmbIsDriverWant.setValue("");
+        txtTotalAmount.setText("");
+        txtDriverCost.setText("");
+        cmbIsDriverWant.setValue("");
     }
 
     private void refreshTable() throws SQLException {

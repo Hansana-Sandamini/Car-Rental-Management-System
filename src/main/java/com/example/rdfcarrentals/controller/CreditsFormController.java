@@ -22,7 +22,6 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -86,7 +85,7 @@ public class CreditsFormController implements Initializable {
     @FXML
     private TextField txtFldTotalAmount;
 
-    CreditModel creditModel = new CreditModel();
+    private final CreditModel creditModel = new CreditModel();
     private final CustomerModel customerModel = new CustomerModel();
     private final ReservationModel reservationModel = new ReservationModel();
 

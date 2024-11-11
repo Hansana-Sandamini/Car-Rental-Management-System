@@ -74,7 +74,7 @@ public class CustomerFormController implements Initializable {
     @FXML
     private TextField txtFldSearchHere;
 
-    CustomerModel customerModel = new CustomerModel();
+    private final CustomerModel customerModel = new CustomerModel();
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) throws SQLException {

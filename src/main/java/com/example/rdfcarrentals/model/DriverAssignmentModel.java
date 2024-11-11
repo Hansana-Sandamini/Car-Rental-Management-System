@@ -6,7 +6,6 @@ import com.example.rdfcarrentals.util.CrudUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DriverAssignmentModel {
 
@@ -29,15 +28,12 @@ public class DriverAssignmentModel {
         );
     }
 
-    public List<DriverAssignmentDTO> getDriverAssignments() throws SQLException {
+    public ArrayList<DriverAssignmentDTO> getDriverAssignments() throws SQLException {
         ResultSet resultSet = CrudUtil.execute(
-                "SELECT da.license_plate_no, d.nic AS driver_nic, d.price_per_km " +
-                        "FROM driver_assignment da " +
-                        "JOIN car c ON da.license_plate_no = c.license_plate_no " +
-                        "JOIN driver d ON da.driver_nic = d.nic;"
+                "SELECT * FROM driver_assignment"
         );
 
-        List<DriverAssignmentDTO> driverAssignmentDTOS = new ArrayList<>();
+        ArrayList<DriverAssignmentDTO> driverAssignmentDTOS = new ArrayList<>();
 
         while (resultSet.next()) {
             DriverAssignmentDTO driverAssignmentDTO = new DriverAssignmentDTO(

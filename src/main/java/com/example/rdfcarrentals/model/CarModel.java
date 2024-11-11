@@ -57,4 +57,32 @@ public class CarModel {
     public boolean deleteCar(String LicensePlateNo) throws SQLException {
         return CrudUtil.execute("DELETE FROM car WHERE license_plate_no = ?", LicensePlateNo);
     }
+
+    public CarDTO findByLicensePlateNo(String selectedLicensePlateNo) throws SQLException {
+        ResultSet rst = CrudUtil.execute("SELECT * FROM car WHERE license_plate_no = ?", selectedLicensePlateNo);
+
+        if (rst.next()) {
+            return new CarDTO(
+                    rst.getString(1),
+                    rst.getString(2),
+                    rst.getString(3),
+                    rst.getDouble(4),
+                    rst.getDouble(5),
+                    rst.getString(6),
+                    rst.getString(7)
+            );
+        }
+        return null;
+    }
+
+    public ArrayList<String> getAllLicensePlateNos() throws SQLException {
+        ResultSet rst = CrudUtil.execute("SELECT license_plate_no FROM car");
+
+        ArrayList<String> licensePlateNos = new ArrayList<>();
+
+        while (rst.next()) {
+            licensePlateNos.add(rst.getString(1));
+        }
+        return licensePlateNos;
+    }
 }

@@ -1,12 +1,10 @@
 package com.example.rdfcarrentals.controller;
 
 import com.example.rdfcarrentals.dto.CarDTO;
-import com.example.rdfcarrentals.dto.CustomerDTO;
 import com.example.rdfcarrentals.dto.FuelTypeDTO;
 import com.example.rdfcarrentals.model.CarModel;
 import com.example.rdfcarrentals.model.FuelTypeModel;
 import com.example.rdfcarrentals.tm.CarTM;
-import com.example.rdfcarrentals.tm.CustomerTM;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -93,7 +91,7 @@ public class CarsFormController implements Initializable {
     private TextField txtFldTypeName;
 
     private final FuelTypeModel fuelTypeModel = new FuelTypeModel();
-    CarModel carModel = new CarModel();
+    private final CarModel carModel = new CarModel();
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) throws SQLException {

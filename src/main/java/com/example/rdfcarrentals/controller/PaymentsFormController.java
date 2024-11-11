@@ -89,7 +89,7 @@ public class PaymentsFormController implements Initializable {
     @FXML
     private TextField txtTime;
 
-    PaymentModel paymentModel = new PaymentModel();
+    private final PaymentModel paymentModel = new PaymentModel();
     private final ObservableList<PaymentTM> paymentTMS = FXCollections.observableArrayList();
     private final ReservationModel reservationModel = new ReservationModel();
     private final BillModel billModel = new BillModel();

@@ -6,8 +6,9 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DriverAssignmentDTO {
+public class ReservationDetailDTO {
+    private String reservationId;
     private String licensePlateNo;
-    private String driverNic;
-    private Double pricePerKm;
+    private Double driverCost;
+    private Double totalAmount;
 }
