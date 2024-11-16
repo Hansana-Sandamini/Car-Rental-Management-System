@@ -1,0 +1,172 @@
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="MonthReport" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b999ab94-5e97-41f5-9d8c-270eeb0cf058">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="RdfDBConnection"/>
+	<parameter name="p_Date" class="java.lang.String"/>
+	<query language="SQL"><![CDATA[SELECT cu.name AS customer_name,
+       cs.name AS cashier_name,
+       rd.license_plate_no,
+       r.reservation_id,
+       r.pick_up_date,
+       r.return_date,
+       p.amount
+FROM customer cu
+         LEFT JOIN reservation r ON cu.nic = r.customer_nic
+         LEFT JOIN reservation_detail rd ON r.reservation_id = rd.reservation_id
+         LEFT JOIN payment p ON r.reservation_id = p.reservation_id
+         LEFT JOIN cashier cs ON r.cashier_username = cs.username;
+]]></query>
+	<field name="customer_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="customer_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="cashier_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="cashier_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cashier"/>
+	</field>
+	<field name="license_plate_no" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="license_plate_no"/>
+		<property name="com.jaspersoft.studio.field.label" value="license_plate_no"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservation_detail"/>
+	</field>
+	<field name="reservation_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="reservation_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="reservation_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservation"/>
+	</field>
+	<field name="return_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="return_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="return_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservation"/>
+	</field>
+	<field name="pick_up_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="pick_up_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="pick_up_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservation"/>
+	</field>
+	<field name="amount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="amount"/>
+		<property name="com.jaspersoft.studio.field.label" value="amount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payment"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="79" splitType="Stretch">
+		<element kind="staticText" uuid="c462b421-8141-46a0-b606-e9e9364b3051" x="100" y="13" width="360" height="47" fontSize="18.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[RDF Car Rentals]]></text>
+		</element>
+	</title>
+	<pageHeader height="35" splitType="Stretch">
+		<element kind="textField" uuid="82d3c1c9-c8c2-4f3c-9704-fe21f7346743" x="420" y="2" width="100" height="30" fontSize="12.0" hTextAlign="Right">
+			<expression><![CDATA[$P{p_Date}]]></expression>
+		</element>
+	</pageHeader>
+	<columnHeader height="60" splitType="Stretch">
+		<element kind="staticText" uuid="f3767abc-7844-43bc-a2cd-7b984603a7a3" x="0" y="30" width="81" height="30" fontSize="11.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[customer_name]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="82950d80-3e2f-43a1-88fd-a31d762c4fb1"/>
+			<box>
+				<pen lineWidth="1.0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="fb4c5a22-2df9-4f9d-98b1-b1ddea8d528f" x="81" y="30" width="79" height="30" fontSize="11.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[cashier_name]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cb896fb1-3999-4eb3-ac88-42efa5faf753"/>
+			<box>
+				<pen lineWidth="1.0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="f1712bc5-073c-41eb-96e6-0de87c4f1dca" x="160" y="30" width="79" height="30" fontSize="11.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[license_plate_no]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="00ebda92-36b0-4e90-b81f-203ca99c43db"/>
+			<box>
+				<pen lineWidth="1.0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="84c93666-e017-4ce4-9504-7f7e77199a1f" x="239" y="30" width="79" height="30" fontSize="11.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[reservation_id]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5b6472a2-c1f6-4fa3-bece-598462514f7e"/>
+			<box>
+				<pen lineWidth="1.0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="8eab1c75-b340-4b99-8947-4aedd5704a86" x="318" y="30" width="79" height="30" fontSize="11.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[return_date]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e462259-a3ad-4b78-8ece-0e34f1cde56a"/>
+			<box>
+				<pen lineWidth="1.0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="643c3627-a275-4390-bbb2-b67fd46c838f" x="397" y="30" width="79" height="30" fontSize="11.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[pick_up_date]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6e385281-6471-421d-ac1c-d972a6b0e921"/>
+			<box>
+				<pen lineWidth="1.0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="2b433537-f53e-4993-ab5a-93d77712ec80" x="476" y="30" width="79" height="30" fontSize="11.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[amount]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="938c1172-84dd-4a73-be92-c88940f237e4"/>
+			<box>
+				<pen lineWidth="1.0"/>
+			</box>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<element kind="textField" uuid="c8885073-aac7-4ed8-b1a6-34a63cd71064" x="0" y="0" width="81" height="30" fontSize="11.0" hTextAlign="Center">
+				<expression><![CDATA[$F{customer_name}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="82950d80-3e2f-43a1-88fd-a31d762c4fb1"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="f6ea0e94-be76-4b43-ab8e-5169d6ec5993" x="81" y="0" width="79" height="30" fontSize="11.0" hTextAlign="Center">
+				<expression><![CDATA[$F{cashier_name}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cb896fb1-3999-4eb3-ac88-42efa5faf753"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="bedbd5f9-2486-4f58-8a18-2f303b38f404" x="160" y="0" width="79" height="30" fontSize="11.0" hTextAlign="Center">
+				<expression><![CDATA[$F{license_plate_no}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="00ebda92-36b0-4e90-b81f-203ca99c43db"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="db96ccf2-9ce2-4bd7-91f6-bc037e7029f3" x="239" y="0" width="79" height="30" fontSize="11.0" hTextAlign="Center">
+				<expression><![CDATA[$F{reservation_id}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5b6472a2-c1f6-4fa3-bece-598462514f7e"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="1ee9ff58-5579-432a-9f79-4a06fb1d7c78" x="318" y="0" width="79" height="30" fontSize="11.0" hTextAlign="Center">
+				<expression><![CDATA[$F{return_date}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e462259-a3ad-4b78-8ece-0e34f1cde56a"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="217369da-17e9-4db9-93e8-83edff4b6fd5" x="397" y="0" width="79" height="30" fontSize="11.0" hTextAlign="Center">
+				<expression><![CDATA[$F{pick_up_date}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6e385281-6471-421d-ac1c-d972a6b0e921"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="a8b2c90f-3ff1-4f35-bdfb-b9f0bdde87f7" x="476" y="0" width="79" height="30" fontSize="11.0" hTextAlign="Center">
+				<expression><![CDATA[$F{amount}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="938c1172-84dd-4a73-be92-c88940f237e4"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch"/>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>

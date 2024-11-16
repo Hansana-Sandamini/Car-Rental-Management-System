@@ -1,11 +1,21 @@
 package com.example.rdfcarrentals.controller;
 
+import com.example.rdfcarrentals.db.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.AnchorPane;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ReportsFormController {
 
@@ -25,13 +35,13 @@ public class ReportsFormController {
     private Button btnYearReportGenerate;
 
     @FXML
-    private ComboBox<?> cmbSelectMonth;
+    private ComboBox<String> cmbSelectMonth;
 
     @FXML
-    private ComboBox<?> cmbSelectRange;
+    private ComboBox<String> cmbSelectRange;
 
     @FXML
-    private ComboBox<?> cmbSelectYear;
+    private ComboBox<String> cmbSelectYear;
 
     @FXML
     private AnchorPane reportsContent;
@@ -54,8 +64,28 @@ public class ReportsFormController {
 
     @FXML
     void btnMonthReportGenerateOnAction(ActionEvent event) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("p_Date", LocalDate.now().toString());
 
+            JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/MonthReport.jrxml"));
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    jasperReport,
+                    parameters,
+                    connection
+            );
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException e) {
+            new Alert(Alert.AlertType.ERROR, "Fail to load Report..!").show();
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Data Empty..!").show();
+        } catch (Exception e) {
+        new Alert(Alert.AlertType.ERROR, "Fail to load Report..!").show();
+        e.printStackTrace();
     }
+}
 
     @FXML
     void btnYearOverviewGenerateOnAction(ActionEvent event) {
@@ -64,7 +94,27 @@ public class ReportsFormController {
 
     @FXML
     void btnYearReportGenerateOnAction(ActionEvent event) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("p_Date", LocalDate.now().toString());
 
+            JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/YearReport.jrxml"));
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    jasperReport,
+                    parameters,
+                    connection
+            );
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException e) {
+            new Alert(Alert.AlertType.ERROR, "Fail to load Report..!").show();
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Data Empty..!").show();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Fail to load Report..!").show();
+            e.printStackTrace();
+        }
     }
 
 }

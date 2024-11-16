@@ -18,7 +18,7 @@ public class AdminDashboardMenuFormController implements Initializable {
     private AnchorPane adminDashboardMenu;
 
     @FXML
-    private Button btnBuys;
+    private AnchorPane adminPane;
 
     @FXML
     private Button btnCars;
@@ -54,9 +54,6 @@ public class AdminDashboardMenuFormController implements Initializable {
     private Button btnReservations;
 
     @FXML
-    private Button btnSales;
-
-    @FXML
     private AnchorPane adminDashboardRightPane;
 
     public void navigateTo(String fxmlPath) {
@@ -70,69 +67,101 @@ public class AdminDashboardMenuFormController implements Initializable {
         }
     }
 
-    @FXML
-    void btnBuysOnAction(ActionEvent event) {
-        navigateTo("/view/BuysForm.fxml");
+    private void resetButtonStyles() {
+        btnCars.setStyle("-fx-background-color:  white;");
+        btnCashiers.setStyle("-fx-background-color:  white;");
+        btnCredits.setStyle("-fx-background-color:  white;");
+        btnCustomers.setStyle("-fx-background-color:  white;");
+        btnDashboard.setStyle("-fx-background-color:  white;");
+        btnDrivers.setStyle("-fx-background-color:  white;");
+        btnPayments.setStyle("-fx-background-color:  white;");
+        btnRepairs.setStyle("-fx-background-color:  white;");
+        btnReports.setStyle("-fx-background-color:  white;");
+        btnReservations.setStyle("-fx-background-color:  white;");
     }
+
 
     @FXML
     void btnCarsOnAction(ActionEvent event) {
+        resetButtonStyles();
         navigateTo("/view/CarsForm.fxml");
+        btnCars.setStyle("-fx-background-color:  f2e9e4;");
     }
 
     @FXML
     void btnCashiersOnAction(ActionEvent event) {
+        resetButtonStyles();
         navigateTo("/view/CashierSignUpForm.fxml");
+        btnCashiers.setStyle("-fx-background-color: f2e9e4;");
     }
 
     @FXML
     void btnCreditsOnAction(ActionEvent event) {
+        resetButtonStyles();
         navigateTo("/view/CreditsForm.fxml");
+        btnCredits.setStyle("-fx-background-color: f2e9e4;");
     }
 
     @FXML
     void btnCustomersOnAction(ActionEvent event) {
+        resetButtonStyles();
         navigateTo("/view/CustomerForm.fxml");
+        btnCustomers.setStyle("-fx-background-color: f2e9e4;");
     }
 
     @FXML
     void btnDashboardOnAction(ActionEvent event) {
+        resetButtonStyles();
         navigateTo("/view/AdminDashboardForm.fxml");
+        btnDashboard.setStyle("-fx-background-color: f2e9e4;");
     }
 
     @FXML
     void btnDriversOnAction(ActionEvent event) {
+        resetButtonStyles();
         navigateTo("/view/DriverForm.fxml");
+        btnDrivers.setStyle("-fx-background-color: f2e9e4;");
     }
 
     @FXML
     void btnLogoutOnAction(ActionEvent event) {
-
+        resetButtonStyles();
+        try {
+            adminPane.getChildren().clear();
+            AnchorPane load = FXMLLoader.load(getClass().getResource("/view/WelcomeForm.fxml"));
+            adminPane.getChildren().add(load);
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Fail to load page...!").show();
+        }
+        btnLogout.setStyle("-fx-background-color: f2e9e4;");
     }
 
     @FXML
     void btnPaymentsOnAction(ActionEvent event) {
+        resetButtonStyles();
         navigateTo("/view/PaymentsForm.fxml");
+        btnPayments.setStyle("-fx-background-color: f2e9e4;");
     }
 
     @FXML
     void btnRepairsOnAction(ActionEvent event) {
+        resetButtonStyles();
         navigateTo("/view/RepairsForm.fxml");
+        btnRepairs.setStyle("-fx-background-color: f2e9e4;");
     }
 
     @FXML
     void btnReportsOnAction(ActionEvent event) {
+        resetButtonStyles();
         navigateTo("/view/ReportsForm.fxml");
+        btnReports.setStyle("-fx-background-color: f2e9e4;");
     }
 
     @FXML
     void btnReservationsOnAction(ActionEvent event) {
+        resetButtonStyles();
         navigateTo("/view/ReservationsForm.fxml");
-    }
-
-    @FXML
-    void btnSalesOnAction(ActionEvent event) {
-        navigateTo("/view/AdminSalesForm.fxml");
+        btnReservations.setStyle("-fx-background-color: f2e9e4;");
     }
 
     @Override
@@ -140,7 +169,9 @@ public class AdminDashboardMenuFormController implements Initializable {
         adminDashboardRightPane.getChildren().clear();
         AnchorPane load = null;
         try {
+            resetButtonStyles();
             load = FXMLLoader.load(getClass().getResource("/view/AdminDashboardForm.fxml"));
+            btnDashboard.setStyle("-fx-background-color:  f2e9e4;");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

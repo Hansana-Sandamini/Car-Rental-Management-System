@@ -4,7 +4,7 @@ module com.example.rdfcarrentals {
     requires java.sql;
     requires static lombok;
     requires java.management;
-
+    requires net.sf.jasperreports.core;
 
     opens com.example.rdfcarrentals.controller to javafx.fxml;
     opens com.example.rdfcarrentals.tm to javafx.base;
