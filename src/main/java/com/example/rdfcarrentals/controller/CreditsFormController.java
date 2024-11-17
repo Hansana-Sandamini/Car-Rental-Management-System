@@ -7,6 +7,7 @@ import com.example.rdfcarrentals.model.CreditModel;
 import com.example.rdfcarrentals.model.CustomerModel;
 import com.example.rdfcarrentals.model.ReservationModel;
 import com.example.rdfcarrentals.tm.CreditTM;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -84,6 +85,9 @@ public class CreditsFormController implements Initializable {
 
     @FXML
     private TextField txtFldTotalAmount;
+
+    @FXML
+    private FontAwesomeIcon searchIcon;
 
     private final CreditModel creditModel = new CreditModel();
     private final CustomerModel customerModel = new CustomerModel();
@@ -178,8 +182,29 @@ public class CreditsFormController implements Initializable {
     }
 
     @FXML
-    void txtFldSearchHereOnAction(KeyEvent event) {
+    void txtFldSearchHereOnAction(KeyEvent event) throws SQLException {
+        String searchText = txtFldSearchHere.getText().toLowerCase();
+        ArrayList<CreditDTO> creditDTOS = creditModel.getAllCredits();
+        ObservableList<CreditTM> filteredCredits = FXCollections.observableArrayList();
 
+        for (CreditDTO creditDTO : creditDTOS) {
+            if (creditDTO.getCreditId().toLowerCase().contains(searchText)) {
+                filteredCredits.add(new CreditTM(
+                        creditDTO.getCreditId(),
+                        creditDTO.getTotalAmount(),
+                        creditDTO.getAmountPaid(),
+                        creditDTO.getAmountToPay(),
+                        creditDTO.getDueDate()
+                ));
+            }
+        }
+        tblCredits.setItems(filteredCredits);
+
+        if (searchText.isEmpty()) {
+            searchIcon.setVisible(true);
+        } else {
+            searchIcon.setVisible(false);
+        }
     }
 
     @FXML

@@ -7,6 +7,7 @@ import com.example.rdfcarrentals.model.PaymentModel;
 import com.example.rdfcarrentals.model.ReservationModel;
 import com.example.rdfcarrentals.tm.PaymentTM;
 import com.example.rdfcarrentals.util.CrudUtil;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -89,6 +90,9 @@ public class PaymentsFormController implements Initializable {
     @FXML
     private TextField txtTime;
 
+    @FXML
+    private FontAwesomeIcon searchIcon;
+
     private final PaymentModel paymentModel = new PaymentModel();
     private final ObservableList<PaymentTM> paymentTMS = FXCollections.observableArrayList();
     private final ReservationModel reservationModel = new ReservationModel();
@@ -139,8 +143,33 @@ public class PaymentsFormController implements Initializable {
     }
 
     @FXML
-    void txtFldSearchHereOnAction(KeyEvent event) {
+    void txtFldSearchHereOnAction(KeyEvent event) throws SQLException {
+        String searchText = txtFldSearchHere.getText().toLowerCase();
+        ArrayList<PaymentDTO> paymentDTOS = paymentModel.getAllPayments();
+        ObservableList<PaymentTM> filteredPayments = FXCollections.observableArrayList();
 
+        for (PaymentDTO paymentDTO : paymentDTOS) {
+            if (paymentDTO.getPaymentMethod().toLowerCase().contains(searchText) ||
+                paymentDTO.getReservationId().toLowerCase().contains(searchText) ||
+                paymentDTO.getBillId().toLowerCase().contains(searchText)) {
+                filteredPayments.add(new PaymentTM(
+                        paymentDTO.getPaymentId(),
+                        paymentDTO.getReservationId(),
+                        paymentDTO.getBillId(),
+                        paymentDTO.getPaymentMethod(),
+                        paymentDTO.getAmount(),
+                        paymentDTO.getDate(),
+                        paymentDTO.getTime()
+                ));
+            }
+        }
+        tblPayments.setItems(filteredPayments);
+
+        if (searchText.isEmpty()) {
+            searchIcon.setVisible(true);
+        } else {
+            searchIcon.setVisible(false);
+        }
     }
 
     @FXML

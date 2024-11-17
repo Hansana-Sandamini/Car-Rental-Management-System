@@ -5,6 +5,7 @@ import com.example.rdfcarrentals.dto.FuelTypeDTO;
 import com.example.rdfcarrentals.model.CarModel;
 import com.example.rdfcarrentals.model.FuelTypeModel;
 import com.example.rdfcarrentals.tm.CarTM;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -89,6 +90,9 @@ public class CarsFormController implements Initializable {
 
     @FXML
     private TextField txtFldTypeName;
+
+    @FXML
+    private FontAwesomeIcon searchIcon;
 
     private final FuelTypeModel fuelTypeModel = new FuelTypeModel();
     private final CarModel carModel = new CarModel();
@@ -194,8 +198,32 @@ public class CarsFormController implements Initializable {
     }
 
     @FXML
-    void txtFldSearchHereOnAction(KeyEvent event) {
+    void txtFldSearchHereOnAction(KeyEvent event) throws SQLException {
+        String searchText = txtFldSearchHere.getText().toLowerCase();
+        ArrayList<CarDTO> carDTOS = carModel.getAllCars();
+        ObservableList<CarTM> filteredCars = FXCollections.observableArrayList();
 
+        for (CarDTO carDTO : carDTOS) {
+            if (carDTO.getLicensePlateNo().toLowerCase().contains(searchText) ||
+                    carDTO.getModel().toLowerCase().contains(searchText)) {
+                    filteredCars.add(new CarTM(
+                            carDTO.getLicensePlateNo(),
+                            carDTO.getTypeId(),
+                            carDTO.getModel(),
+                            carDTO.getColour(),
+                            carDTO.getDailyRate(),
+                            carDTO.getMonthlyRate(),
+                            carDTO.getAvailabilityStatus()
+                    ));
+            }
+        }
+        tblCars.setItems(filteredCars);
+
+        if (searchText.isEmpty()) {
+            searchIcon.setVisible(true);
+        } else {
+            searchIcon.setVisible(false);
+        }
     }
 
     @Override

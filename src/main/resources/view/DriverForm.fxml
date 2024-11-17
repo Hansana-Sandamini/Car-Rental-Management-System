@@ -126,7 +126,7 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <FontAwesomeIcon fill="#c3bfbf" iconName="SEARCH" layoutX="266.0" layoutY="428.0" />
+      <FontAwesomeIcon fx:id="searchIcon" fill="#c3bfbf" iconName="SEARCH" layoutX="266.0" layoutY="428.0" />
       <Label layoutX="472.0" layoutY="274.0" prefHeight="43.0" prefWidth="145.0" text="License Plate No">
          <font>
             <Font size="14.0" />

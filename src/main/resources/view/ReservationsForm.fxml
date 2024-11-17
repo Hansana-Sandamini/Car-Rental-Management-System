@@ -127,6 +127,6 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <FontAwesomeIcon fill="#c3bfbf" iconName="SEARCH" layoutX="275.0" layoutY="430.0" />
+      <FontAwesomeIcon fx:id="searchIcon" fill="#c3bfbf" iconName="SEARCH" layoutX="275.0" layoutY="430.0" />
    </children>
 </AnchorPane>

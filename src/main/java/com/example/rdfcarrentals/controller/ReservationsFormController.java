@@ -7,6 +7,7 @@ import com.example.rdfcarrentals.model.CustomerModel;
 import com.example.rdfcarrentals.model.ReservationModel;
 import com.example.rdfcarrentals.tm.ReservationTM;
 import com.example.rdfcarrentals.util.CrudUtil;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -120,6 +121,9 @@ public class ReservationsFormController implements Initializable {
     @FXML
     private AnchorPane reservationFormPane;
 
+    @FXML
+    private FontAwesomeIcon searchIcon;
+
     ReservationModel reservationModel = new ReservationModel();
     private final ObservableList<ReservationTM> reservationTMS = FXCollections.observableArrayList();
     private final CustomerModel customerModel = new CustomerModel();
@@ -218,8 +222,35 @@ public class ReservationsFormController implements Initializable {
     }
 
     @FXML
-    void txtFldSearchHereOnAction(KeyEvent event) {
+    void txtFldSearchHereOnAction(KeyEvent event) throws SQLException {
+        String searchText = txtFldSearchHere.getText().toLowerCase();
+        ArrayList<ReservationDTO> reservationDTOS = reservationModel.getAllReservations();
+        ObservableList<ReservationTM> filteredReservations = FXCollections.observableArrayList();
 
+        for (ReservationDTO reservationDTO : reservationDTOS) {
+            if (reservationDTO.getReservationId().toLowerCase().contains(searchText) ||
+                    reservationDTO.getCustomerNic().toLowerCase().contains(searchText) ||
+                    reservationDTO.getCashierUsername().toLowerCase().contains(searchText)) {
+                    filteredReservations.add(new ReservationTM(
+                            reservationDTO.getReservationId(),
+                            reservationDTO.getCustomerNic(),
+                            reservationDTO.getCashierUsername(),
+                            reservationDTO.getCreditId(),
+                            reservationDTO.getPickUpDate(),
+                            reservationDTO.getPickUpTime(),
+                            reservationDTO.getReturnDate(),
+                            reservationDTO.getReturnTime(),
+                            reservationDTO.getIsDriverWant()
+                    ));
+            }
+        }
+        tblReservations.setItems(filteredReservations);
+
+        if (searchText.isEmpty()) {
+            searchIcon.setVisible(true);
+        } else {
+            searchIcon.setVisible(false);
+        }
     }
 
     @FXML

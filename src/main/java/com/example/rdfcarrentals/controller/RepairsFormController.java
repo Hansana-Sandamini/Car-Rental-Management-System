@@ -6,6 +6,7 @@ import com.example.rdfcarrentals.model.CarModel;
 import com.example.rdfcarrentals.model.RepairModel;
 import com.example.rdfcarrentals.tm.RepairTM;
 import com.example.rdfcarrentals.util.CrudUtil;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -77,6 +78,9 @@ public class RepairsFormController implements Initializable {
     @FXML
     private TextField txtFldSearchHere;
 
+    @FXML
+    private FontAwesomeIcon searchIcon;
+
     private final RepairModel repairModel = new RepairModel();
     private final ObservableList<RepairTM> repairTMS = FXCollections.observableArrayList();
     private final CarModel carModel = new CarModel();
@@ -124,8 +128,31 @@ public class RepairsFormController implements Initializable {
     }
 
     @FXML
-    void txtFldSearchHereOnAction(KeyEvent event) {
+    void txtFldSearchHereOnAction(KeyEvent event) throws SQLException {
+        String searchText = txtFldSearchHere.getText().toLowerCase();
+        ArrayList<RepairDTO> repairDTOS = repairModel.getAllRepairs();
+        ObservableList<RepairTM> filteredRepairs = FXCollections.observableArrayList();
 
+        for (RepairDTO repairDTO : repairDTOS) {
+            if (repairDTO.getRepairId().toLowerCase().contains(searchText) ||
+                repairDTO.getLicensePlateNo().toLowerCase().contains(searchText) ||
+                repairDTO.getDescription().toLowerCase().contains(searchText)) {
+                filteredRepairs.add(new RepairTM(
+                        repairDTO.getRepairId(),
+                        repairDTO.getLicensePlateNo(),
+                        repairDTO.getDescription(),
+                        repairDTO.getDate(),
+                        repairDTO.getCost()
+                ));
+            }
+        }
+        tblRepairs.setItems(filteredRepairs);
+
+        if (searchText.isEmpty()) {
+            searchIcon.setVisible(true);
+        } else {
+            searchIcon.setVisible(false);
+        }
     }
 
     @FXML

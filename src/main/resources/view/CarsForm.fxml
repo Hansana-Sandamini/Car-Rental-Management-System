@@ -126,7 +126,7 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <FontAwesomeIcon fill="#c3bfbf" iconName="SEARCH" layoutX="256.0" layoutY="417.0" />
+      <FontAwesomeIcon fx:id="searchIcon" fill="#c3bfbf" iconName="SEARCH" layoutX="256.0" layoutY="417.0" />
       <TableView fx:id="tblCars" layoutX="28.0" layoutY="449.0" onMouseClicked="#tblCarsOnClicked" prefHeight="331.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
          <columns>
             <TableColumn fx:id="colLicensePlateNo" prefWidth="131.0" text="License Plate No" />

@@ -4,6 +4,7 @@ import com.example.rdfcarrentals.dto.CustomerDTO;
 import com.example.rdfcarrentals.model.CustomerModel;
 import com.example.rdfcarrentals.tm.CustomerTM;
 import com.example.rdfcarrentals.util.ValidationUtil;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -73,6 +74,9 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     private TextField txtFldSearchHere;
+
+    @FXML
+    private FontAwesomeIcon searchIcon;
 
     private final CustomerModel customerModel = new CustomerModel();
 
@@ -170,8 +174,30 @@ public class CustomerFormController implements Initializable {
     }
 
     @FXML
-    void txtFldSearchHereOnAction(KeyEvent event) {
+    void txtFldSearchHereOnAction(KeyEvent event) throws SQLException {
+        String searchText = txtFldSearchHere.getText().toLowerCase();
+        ArrayList<CustomerDTO> customerDTOS = customerModel.getAllCustomers();
+        ObservableList<CustomerTM> filteredCustomers = FXCollections.observableArrayList();
 
+        for (CustomerDTO customerDTO : customerDTOS) {
+            if (customerDTO.getNic().toLowerCase().contains(searchText) ||
+                    customerDTO.getName().toLowerCase().contains(searchText)) {
+                    filteredCustomers.add(new CustomerTM(
+                            customerDTO.getNic(),
+                            customerDTO.getName(),
+                            customerDTO.getAddress(),
+                            customerDTO.getEmail(),
+                            customerDTO.getContactNumber()
+                    ));
+            }
+        }
+        tblCustomers.setItems(filteredCustomers);
+
+        if (searchText.isEmpty()) {
+            searchIcon.setVisible(true);
+        } else {
+            searchIcon.setVisible(false);
+        }
     }
 
     @Override

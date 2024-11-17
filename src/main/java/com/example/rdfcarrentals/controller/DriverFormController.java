@@ -8,6 +8,7 @@ import com.example.rdfcarrentals.model.DriverModel;
 import com.example.rdfcarrentals.tm.DriverTM;
 import com.example.rdfcarrentals.util.CrudUtil;
 import com.example.rdfcarrentals.util.ValidationUtil;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -101,6 +102,9 @@ public class DriverFormController implements Initializable {
 
     @FXML
     private TextField txtPricePerKm;
+
+    @FXML
+    private FontAwesomeIcon searchIcon;
 
     private final DriverModel driverModel = new DriverModel();
     private final ObservableList<DriverTM> driverTMS = FXCollections.observableArrayList();
@@ -215,8 +219,31 @@ public class DriverFormController implements Initializable {
     }
 
     @FXML
-    void txtFldSearchHereOnAction(KeyEvent event) {
+    void txtFldSearchHereOnAction(KeyEvent event) throws SQLException {
+        String searchText = txtFldSearchHere.getText().toLowerCase();
+        ArrayList<DriverDTO> driverDTOS = driverModel.getAllDrivers();
+        ObservableList<DriverTM> filteredDrivers = FXCollections.observableArrayList();
 
+        for (DriverDTO driverDTO : driverDTOS) {
+            if (driverDTO.getNic().toLowerCase().contains(searchText) ||
+                    driverDTO.getName().toLowerCase().contains(searchText)) {
+                    filteredDrivers.add(new DriverTM(
+                            driverDTO.getNic(),
+                            driverDTO.getName(),
+                            driverDTO.getEmail(),
+                            driverDTO.getAvailabilityStatus(),
+                            driverDTO.getContactNumber(),
+                            driverDTO.getPricePerKm()
+                    ));
+            }
+        }
+        tblDrivers.setItems(filteredDrivers);
+
+        if (searchText.isEmpty()) {
+            searchIcon.setVisible(true);
+        } else {
+            searchIcon.setVisible(false);
+        }
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.example.rdfcarrentals.model.CashierModel;
 import com.example.rdfcarrentals.tm.CashierTM;
 import com.example.rdfcarrentals.tm.CustomerTM;
 import com.example.rdfcarrentals.util.ValidationUtil;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -77,6 +78,9 @@ public class CashierSignUpFormController implements Initializable {
     @FXML
     private TextField txtFldUserName;
 
+    @FXML
+    private FontAwesomeIcon searchIcon;
+
     private final CashierModel cashierModel = new CashierModel();
 
     @FXML
@@ -136,8 +140,30 @@ public class CashierSignUpFormController implements Initializable {
     }
 
     @FXML
-    void txtFldSearchHereOnAction(KeyEvent event) {
+    void txtFldSearchHereOnAction(KeyEvent event) throws SQLException {
+        String searchText = txtFldSearchHere.getText().toLowerCase();
+        ArrayList<CashierDTO> cashierDTOS = cashierModel.getAllCashiers();
+        ObservableList<CashierTM> filteredCashiers = FXCollections.observableArrayList();
 
+        for (CashierDTO cashierDTO : cashierDTOS) {
+            if (cashierDTO.getUserName().toLowerCase().contains(searchText) ||
+                    cashierDTO.getName().toLowerCase().contains(searchText)) {
+                    filteredCashiers.add(new CashierTM(
+                            cashierDTO.getUserName(),
+                            cashierDTO.getPassword(),
+                            cashierDTO.getName(),
+                            cashierDTO.getEmail(),
+                            cashierDTO.getContactNumber()
+                    ));
+            }
+        }
+        tblCashiers.setItems(filteredCashiers);
+
+        if (searchText.isEmpty()) {
+            searchIcon.setVisible(true);
+        } else {
+            searchIcon.setVisible(false);
+        }
     }
 
     CashierDTO getTextFieldsValues() {
