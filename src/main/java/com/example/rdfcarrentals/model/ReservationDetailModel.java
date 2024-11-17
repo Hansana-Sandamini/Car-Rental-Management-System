@@ -47,4 +47,6 @@ public class ReservationDetailModel {
         }
         return reservationDetailDTOS;
     }
+
+
 }

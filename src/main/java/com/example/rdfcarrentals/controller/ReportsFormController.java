@@ -35,15 +35,6 @@ public class ReportsFormController {
     private Button btnYearReportGenerate;
 
     @FXML
-    private ComboBox<String> cmbSelectMonth;
-
-    @FXML
-    private ComboBox<String> cmbSelectRange;
-
-    @FXML
-    private ComboBox<String> cmbSelectYear;
-
-    @FXML
     private AnchorPane reportsContent;
 
     @FXML

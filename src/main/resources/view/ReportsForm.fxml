@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,18 +19,13 @@
       </AnchorPane>
       <AnchorPane layoutX="28.0" layoutY="141.0" prefHeight="300.0" prefWidth="283.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <DatePicker fx:id="txtTo" layoutX="39.0" layoutY="159.0" prefHeight="40.0" prefWidth="213.0" promptText="To" style="-fx-background-color: #ffc42a;" />
-            <DatePicker fx:id="txtFrom" layoutX="39.0" layoutY="98.0" prefHeight="40.0" prefWidth="213.0" promptText="From" style="-fx-background-color: #ffc42a;" />
+            <DatePicker fx:id="txtTo" layoutX="39.0" layoutY="139.0" prefHeight="40.0" prefWidth="213.0" promptText="To" style="-fx-background-color: #ffc42a;" />
+            <DatePicker fx:id="txtFrom" layoutX="39.0" layoutY="78.0" prefHeight="40.0" prefWidth="213.0" promptText="From" style="-fx-background-color: #ffc42a;" />
             <Button fx:id="btnDurationReportGenerate" layoutX="39.0" layoutY="232.0" mnemonicParsing="false" onAction="#btnDurationReportGenerateOnAction" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #ffc42a; -fx-background-radius: 10;" text="GENERATE" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <ComboBox fx:id="cmbSelectRange" layoutX="39.0" layoutY="32.0" opacity="0.54" prefHeight="40.0" prefWidth="213.0" promptText="Select" style="-fx-background-color: white;">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ComboBox>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="372.0" layoutY="141.0" prefHeight="300.0" prefWidth="283.0" style="-fx-background-color: white; -fx-background-radius: 20;">
@@ -42,16 +35,11 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" layoutX="28.0" layoutY="118.0" prefHeight="50.0" prefWidth="229.0" text="This Year Report" textFill="#636e72">
+            <Label alignment="CENTER" layoutX="28.0" layoutY="106.0" prefHeight="50.0" prefWidth="229.0" text="This Year Report" textFill="#636e72">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbSelectYear" layoutX="38.0" layoutY="34.0" opacity="0.54" prefHeight="40.0" prefWidth="213.0" promptText="Select" style="-fx-background-color: white;">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ComboBox>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="714.0" layoutY="141.0" prefHeight="300.0" prefWidth="283.0" style="-fx-background-color: white; -fx-background-radius: 20;">
@@ -61,16 +49,11 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" layoutX="31.0" layoutY="123.0" prefHeight="50.0" prefWidth="229.0" text="This Month Report" textFill="#636e72">
+            <Label alignment="CENTER" layoutX="31.0" layoutY="106.0" prefHeight="50.0" prefWidth="229.0" text="This Month Report" textFill="#636e72">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbSelectMonth" layoutX="37.0" layoutY="33.0" opacity="0.54" prefHeight="40.0" prefWidth="213.0" promptText="Select" style="-fx-background-color: white;">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ComboBox>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="28.0" layoutY="460.0" prefHeight="300.0" prefWidth="283.0" style="-fx-background-color: white; -fx-background-radius: 20;">
@@ -94,7 +77,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" layoutX="29.0" layoutY="118.0" prefHeight="50.0" prefWidth="229.0" text="This Month Overview" textFill="#636e72">
+            <Label alignment="CENTER" layoutX="29.0" layoutY="111.0" prefHeight="50.0" prefWidth="229.0" text="This Month Overview" textFill="#636e72">
                <font>
                   <Font size="18.0" />
                </font>

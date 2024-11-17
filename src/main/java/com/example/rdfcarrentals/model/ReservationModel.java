@@ -3,6 +3,8 @@ package com.example.rdfcarrentals.model;
 import com.example.rdfcarrentals.db.DBConnection;
 import com.example.rdfcarrentals.dto.ReservationDTO;
 import com.example.rdfcarrentals.util.CrudUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -112,4 +114,15 @@ public class ReservationModel {
         }
         return null;
     }
+
+    public int getMonthlySales() throws SQLException {
+        ResultSet rst = CrudUtil.execute("SELECT COUNT(reservation_id) AS sales_count FROM reservation WHERE MONTH(pick_up_date) = MONTH(CURRENT_DATE()) AND YEAR(pick_up_date) = YEAR(CURRENT_DATE())"
+        );
+
+        if (rst.next()) {
+            return rst.getInt(1);
+        }
+        return 0;
+    }
+
 }

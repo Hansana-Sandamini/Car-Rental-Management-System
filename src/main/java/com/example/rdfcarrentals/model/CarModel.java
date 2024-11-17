@@ -3,6 +3,7 @@ package com.example.rdfcarrentals.model;
 import com.example.rdfcarrentals.dto.CarDTO;
 import com.example.rdfcarrentals.util.CrudUtil;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -85,4 +86,16 @@ public class CarModel {
         }
         return licensePlateNos;
     }
+
+    public CarDTO findByLicensePlateNoTopProducts(String licensePlateNo) throws SQLException {
+        ResultSet resultSet = CrudUtil.execute("SELECT * FROM car WHERE license_plate_no = ?", licensePlateNo);
+
+        if (resultSet.next()) {
+            return new CarDTO(resultSet.getString("license_plate_no"),
+                    resultSet.getString("model")
+            );
+        }
+        return null;
+    }
+
 }

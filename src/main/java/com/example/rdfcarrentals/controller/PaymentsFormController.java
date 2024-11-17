@@ -91,6 +91,9 @@ public class PaymentsFormController implements Initializable {
     private TextField txtTime;
 
     @FXML
+    private Button btnViewBill;
+
+    @FXML
     private FontAwesomeIcon searchIcon;
 
     private final PaymentModel paymentModel = new PaymentModel();
@@ -187,6 +190,11 @@ public class PaymentsFormController implements Initializable {
 
             btnAddPayment.setDisable(true);
         }
+    }
+
+    @FXML
+    void btnViewBillOnAction(ActionEvent event) {
+
     }
 
     @Override

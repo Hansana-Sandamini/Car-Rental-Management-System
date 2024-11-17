@@ -16,4 +16,8 @@ public class CarDTO {
     private String availabilityStatus;
     private String typeId;
 
+    public CarDTO(String licensePlateNo, String model) {
+        this.licensePlateNo = licensePlateNo;
+        this.model = model;
+    }
 }

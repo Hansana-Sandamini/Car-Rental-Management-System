@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Date;
@@ -365,6 +366,26 @@ public class ReservationsFormController implements Initializable {
             reservationTMS.add(reservationTM);
         }
         tblReservations.setItems(reservationTMS);
+    }
+
+    public static int getYearTotalSaleAmount() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = CrudUtil.execute("SELECT SUM(p.amount) FROM payment p LEFT JOIN reservation r ON p.reservation_id = r.reservation_id WHERE YEAR(r.pick_up_date) = YEAR(CURRENT_DATE())");
+        if (resultSet.next()) {
+            return resultSet.getInt(1);
+        }
+        return 0;
+    }
+
+    public static ObservableList<Double> getIncomeMonthly() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = CrudUtil.execute("SELECT MONTH(r.pick_up_date), COALESCE(SUM(p.amount), 0) FROM payment p RIGHT JOIN reservation r ON p.reservation_id = r.reservation_id GROUP BY MONTH(r.pick_up_date) ORDER BY MONTH(r.pick_up_date)");
+        ObservableList<Double> observableList = FXCollections.observableArrayList();
+        while (resultSet.next()) {
+            observableList.add(resultSet.getDouble(1));
+        }
+        while (observableList.size() < 12) {
+            observableList.add(0.0);
+        }
+        return observableList;
     }
 
 }

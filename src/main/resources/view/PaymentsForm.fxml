@@ -110,6 +110,12 @@
                   <Font size="14.0" />
                </font>
             </TextField>
+            <Button fx:id="btnViewBill" layoutX="769.0" layoutY="21.0" mnemonicParsing="false" onAction="#btnViewBillOnAction" prefHeight="40.0" prefWidth="176.0" style="-fx-background-color: #dfe6e9; -fx-border-radius: 10; -fx-border-color: #00b894;" text="      VIEW BILL" textFill="#00b894">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <FontAwesomeIcon fill="#00b894" iconName="EYE" layoutX="789.0" layoutY="49.0" size="2em" />
          </children>
       </AnchorPane>
       <TextField fx:id="txtFldSearchHere" layoutX="262.0" layoutY="407.0" onKeyReleased="#txtFldSearchHereOnAction" prefHeight="35.0" prefWidth="500.0" promptText="       Search Here">

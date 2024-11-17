@@ -34,19 +34,55 @@
       </AnchorPane>
       <AnchorPane layoutX="30.0" layoutY="612.0" prefHeight="155.0" prefWidth="690.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <Label layoutX="26.0" layoutY="9.0" prefHeight="26.0" prefWidth="158.0" text="Top Renting Cars" textFill="#636e72">
+            <Label layoutX="26.0" layoutY="4.0" prefHeight="29.0" prefWidth="205.0" text="Top Renting Cars" textFill="#636e72">
                <font>
-                  <Font size="18.0" />
+                  <Font size="20.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="22.0" layoutY="39.0" prefHeight="102.0" prefWidth="180.0" style="-fx-background-color: #FFF8E5; -fx-background-radius: 20;" />
-            <AnchorPane layoutX="255.0" layoutY="39.0" prefHeight="102.0" prefWidth="180.0" style="-fx-background-color: #FFF8E5; -fx-background-radius: 20;" />
-            <AnchorPane layoutX="483.0" layoutY="39.0" prefHeight="102.0" prefWidth="180.0" style="-fx-background-color: #FFF8E5; -fx-background-radius: 20;" />
+            <AnchorPane layoutX="22.0" layoutY="39.0" prefHeight="102.0" prefWidth="180.0" style="-fx-background-color: #FFF8E5; -fx-background-radius: 20;">
+               <children>
+                  <Label fx:id="top1" alignment="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="41.0" prefWidth="150.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="top11" alignment="CENTER" layoutX="13.0" layoutY="55.0" prefHeight="32.0" prefWidth="150.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+            <AnchorPane layoutX="255.0" layoutY="39.0" prefHeight="102.0" prefWidth="180.0" style="-fx-background-color: #FFF8E5; -fx-background-radius: 20;">
+               <children>
+                  <Label fx:id="top2" alignment="CENTER" layoutX="14.0" layoutY="15.0" prefHeight="41.0" prefWidth="150.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="top22" alignment="CENTER" layoutX="15.0" layoutY="56.0" prefHeight="32.0" prefWidth="150.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+            <AnchorPane layoutX="483.0" layoutY="39.0" prefHeight="102.0" prefWidth="180.0" style="-fx-background-color: #FFF8E5; -fx-background-radius: 20;">
+               <children>
+                  <Label fx:id="top3" alignment="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="41.0" prefWidth="150.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="top33" alignment="CENTER" layoutX="15.0" layoutY="55.0" prefHeight="32.0" prefWidth="150.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="30.0" layoutY="132.0" prefHeight="440.0" prefWidth="690.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <BarChart layoutX="22.0" layoutY="46.0" prefHeight="374.0" prefWidth="647.0">
+            <BarChart fx:id="barChart" layoutX="22.0" layoutY="71.0" prefHeight="349.0" prefWidth="647.0">
                <xAxis>
                   <CategoryAxis side="BOTTOM" />
                </xAxis>
@@ -54,6 +90,16 @@
                   <NumberAxis side="LEFT" />
                </yAxis>
             </BarChart>
+            <Label layoutX="30.0" layoutY="3.0" prefHeight="32.0" prefWidth="212.0" text="Total Revenue" textFill="#636e72">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblRev" layoutX="30.0" layoutY="28.0" prefHeight="41.0" prefWidth="212.0" textFill="#636e72">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="736.0" layoutY="392.0" prefHeight="180.0" prefWidth="274.0" style="-fx-background-color: white; -fx-background-radius: 20;">
@@ -63,7 +109,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="67.0" layoutY="125.0" prefHeight="41.0" prefWidth="158.0" text="View Details" textFill="#ffc029">
+            <Label fx:id="creditNotPaidViewDetails" alignment="CENTER" layoutX="67.0" layoutY="125.0" onMouseClicked="#creditNotPaidViewDetailsOnAction" prefHeight="41.0" prefWidth="158.0" text="View Details" textFill="#ffc029">
                <font>
                   <Font size="17.0" />
                </font>
@@ -82,7 +128,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="65.0" layoutY="127.0" prefHeight="41.0" prefWidth="158.0" text="View Details" textFill="#ffc029">
+            <Label fx:id="totalSalesViewDetails" alignment="CENTER" layoutX="65.0" layoutY="127.0" onMouseClicked="#totalSalesViewDetailsOnAction" prefHeight="41.0" prefWidth="158.0" text="View Details" textFill="#ffc029">
                <font>
                   <Font size="17.0" />
                </font>
