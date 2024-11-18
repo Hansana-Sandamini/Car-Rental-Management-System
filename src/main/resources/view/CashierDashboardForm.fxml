@@ -64,6 +64,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
+            <FontAwesomeIcon fill="#636e72" iconName="CAR" layoutX="34.0" layoutY="100.0" size="5em" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="739.0" layoutY="606.0" prefHeight="155.0" prefWidth="274.0" style="-fx-background-color: white; -fx-background-radius: 20;">

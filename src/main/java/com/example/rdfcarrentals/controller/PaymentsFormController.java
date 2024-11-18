@@ -43,9 +43,6 @@ public class PaymentsFormController implements Initializable {
     private TableColumn<PaymentTM, Double> colAmount;
 
     @FXML
-    private TableColumn<PaymentTM, String> colBillID;
-
-    @FXML
     private TableColumn<PaymentTM, Date> colDate;
 
     @FXML
@@ -182,7 +179,6 @@ public class PaymentsFormController implements Initializable {
         if (selectedItem != null) {
             lblPaymentID.setText(selectedItem.getPaymentId());
             cmbReservationID.setValue(selectedItem.getReservationId());
-            lblBillID.setText(selectedItem.getBillId());
             txtFldPaymentMethod.setText(selectedItem.getPaymentMethod());
             txtFldAmount.setText(String.valueOf(selectedItem.getAmount()));
             txtDate.setValue(selectedItem.getDate().toLocalDate());
@@ -201,13 +197,12 @@ public class PaymentsFormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         colPaymentID.setCellValueFactory(new PropertyValueFactory<>("paymentId"));
         colReservationID.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
-        colBillID.setCellValueFactory(new PropertyValueFactory<>("billId"));
         colPaymentMethod.setCellValueFactory(new PropertyValueFactory<>("paymentMethod"));
         colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
 
-        tblPayments.getColumns().get(7).setCellValueFactory(param -> {
+        tblPayments.getColumns().get(6).setCellValueFactory(param -> {
             Button btnRemove = new Button("Remove");
 
             btnRemove.setOnMouseClicked(event -> {
@@ -269,7 +264,6 @@ public class PaymentsFormController implements Initializable {
             PaymentTM paymentTM = new PaymentTM(
                     paymentDTO.getPaymentId(),
                     paymentDTO.getReservationId(),
-                    paymentDTO.getBillId(),
                     paymentDTO.getPaymentMethod(),
                     paymentDTO.getAmount(),
                     paymentDTO.getDate(),

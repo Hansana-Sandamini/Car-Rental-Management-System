@@ -16,4 +16,13 @@ public class PaymentDTO {
     private Double amount;
     private Date date;
     private String time;
+
+    public PaymentDTO(String paymentId, String reservationId, String paymentMethod, double amount, Date date, String time) {
+        this.paymentId = paymentId;
+        this.reservationId = reservationId;
+        this.paymentMethod = paymentMethod;
+        this.amount = amount;
+        this.date = date;
+        this.time = time;
+    }
 }

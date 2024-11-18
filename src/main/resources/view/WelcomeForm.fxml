@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="welcomePane" prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #b2bec3;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rdfcarrentals.controller.WelcomeFormController">
+<AnchorPane fx:id="welcomePane" prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: 457b9d;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rdfcarrentals.controller.WelcomeFormController">
    <children>
       <ImageView fitHeight="800.0" fitWidth="885.0" layoutX="-1.0">
          <image>
@@ -20,19 +20,19 @@
             <Font name="System Bold" size="46.0" />
          </font>
       </Label>
-      <Pane fx:id="selectRoleSidePane" layoutX="880.0" prefHeight="800.0" prefWidth="420.0" style="-fx-background-color: #b2bec3;">
+      <Pane fx:id="selectRoleSidePane" layoutX="880.0" prefHeight="800.0" prefWidth="420.0" style="-fx-background-color: #84817a;">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="636.0" prefHeight="122.0" prefWidth="334.0" text="We sponsor your&#10;perfect road trip in our &#10;country.">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="636.0" prefHeight="122.0" prefWidth="334.0" text="We sponsor your&#10;perfect road trip in our &#10;country." textFill="WHITE">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="28.0" prefHeight="174.0" prefWidth="402.0" text="   HIGH-QUALITY ALL &#10;TERRAIN VEHICLES WITH&#10;   AN EMPHASIS ON&#10;    PERFORMANCE" textFill="#273c75">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="28.0" prefHeight="174.0" prefWidth="402.0" text="   HIGH-QUALITY ALL &#10;TERRAIN VEHICLES WITH&#10;   AN EMPHASIS ON&#10;    PERFORMANCE" textFill="WHITE">
                <font>
                   <Font name="Liberation Mono Bold" size="24.0" />
                </font>
             </Label>
-            <AnchorPane fx:id="selectRolePane" layoutY="207.0" prefHeight="407.0" prefWidth="420.0" style="-fx-background-color: #dfe4ea;">
+            <AnchorPane fx:id="selectRolePane" layoutY="207.0" prefHeight="374.0" prefWidth="420.0" style="-fx-background-color: #dfe4ea; -fx-background-radius: 50;">
                <children>
                   <Label layoutX="72.0" layoutY="36.0" prefHeight="60.0" prefWidth="300.0" text="Select Your Role" textFill="#636e72">
                      <font>

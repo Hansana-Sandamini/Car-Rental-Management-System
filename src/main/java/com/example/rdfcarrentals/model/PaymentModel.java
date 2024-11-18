@@ -24,10 +24,9 @@ public class PaymentModel {
 
     public boolean addPayment(PaymentDTO paymentDTO) throws SQLException {
         return CrudUtil.execute(
-                "INSERT INTO payment VALUES (?,?,?,?,?,?,?)",
+                "INSERT INTO payment VALUES (?,?,?,?,?,?)",
                 paymentDTO.getPaymentId(),
                 paymentDTO.getReservationId(),
-                paymentDTO.getBillId(),
                 paymentDTO.getPaymentMethod(),
                 paymentDTO.getAmount(),
                 paymentDTO.getDate(),
@@ -45,10 +44,9 @@ public class PaymentModel {
                     rst.getString(1),
                     rst.getString(2),
                     rst.getString(3),
-                    rst.getString(4),
-                    rst.getDouble(5),
-                    rst.getDate(6),
-                    rst.getString(7)
+                    rst.getDouble(4),
+                    rst.getDate(5),
+                    rst.getString(6)
             );
             paymentDTOS.add(paymentDTO);
         }

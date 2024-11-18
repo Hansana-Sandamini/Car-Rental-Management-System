@@ -6,10 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CashierDashboardMenuFormController implements Initializable {
@@ -98,13 +100,23 @@ public class CashierDashboardMenuFormController implements Initializable {
     @FXML
     void btnLogoutOnAction(ActionEvent event) {
         resetButtonStyles();
-        try {
-            cashierPane.getChildren().clear();
-            AnchorPane load = FXMLLoader.load(getClass().getResource("/view/WelcomeForm.fxml"));
-            cashierPane.getChildren().add(load);
-        } catch (IOException e) {
-            new Alert(Alert.AlertType.ERROR, "Fail to load page...!").show();
-        }        btnLogout.setStyle("-fx-background-color:  f2e9e4;");
+        btnLogout.setStyle("-fx-background-color: f2e9e4;");
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to Logout?", ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> buttonType = alert.showAndWait();
+
+        if (buttonType.isPresent() && buttonType.get().equals(ButtonType.YES)) {
+            try {
+                cashierPane.getChildren().clear();
+                AnchorPane load = FXMLLoader.load(getClass().getResource("/view/WelcomeForm.fxml"));
+                cashierPane.getChildren().add(load);
+                new Alert(Alert.AlertType.INFORMATION, "Logged Out Successfully...!").show();
+            } catch (IOException e) {
+                new Alert(Alert.AlertType.ERROR, "Fail to load page...!").show();
+            }
+        } else {
+            btnLogout.setStyle("-fx-background-color: white;");
+        }
     }
 
     @FXML

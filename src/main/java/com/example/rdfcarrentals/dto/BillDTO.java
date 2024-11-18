@@ -10,6 +10,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class BillDTO {
     private String billId;
+    private String paymentId;
     private String description;
     private Date issueDate;
 }
