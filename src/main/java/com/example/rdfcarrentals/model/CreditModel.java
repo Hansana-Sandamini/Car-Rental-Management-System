@@ -61,10 +61,6 @@ public class CreditModel {
         );
     }
 
-    public boolean deleteCredit(String creditId) throws SQLException {
-        return CrudUtil.execute("DELETE FROM credit WHERE credit_id = ?", creditId);
-    }
-
     public int getCreditNotPaidCount() throws SQLException {
         ResultSet rst = CrudUtil.execute("SELECT COUNT(credit_id) FROM credit WHERE due_date<now() AND amount_to_pay > 0");
 

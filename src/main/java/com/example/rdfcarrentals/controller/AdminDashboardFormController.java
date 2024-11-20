@@ -1,6 +1,5 @@
 package com.example.rdfcarrentals.controller;
 
-import com.example.rdfcarrentals.dto.CarDTO;
 import com.example.rdfcarrentals.model.CarModel;
 import com.example.rdfcarrentals.model.CreditModel;
 import com.example.rdfcarrentals.model.ReservationModel;
@@ -28,6 +27,9 @@ public class AdminDashboardFormController implements Initializable {
 
     @FXML
     private AnchorPane adminDashboardHeadingPane;
+
+    @FXML
+    private Label lblHeadingUserName;
 
     @FXML
     private Label lblCreditNotPaid;
@@ -116,43 +118,9 @@ public class AdminDashboardFormController implements Initializable {
     private void setTopProducts() throws SQLException, ClassNotFoundException {
         ArrayList<String> products = ReservationDetailFormController.getTopProducts();
 
-        /*top1.setText(products.get(0));
-        top11.setText(carModel.findByLicensePlateNo(products.get(0)).getLicensePlateNo());
+        top1.setText(products.get(0));
         top2.setText(products.get(1));
-        top22.setText(carModel.findByLicensePlateNo(products.get(1)).getLicensePlateNo());
         top3.setText(products.get(2));
-        top33.setText(carModel.findByLicensePlateNo(products.get(3)).getLicensePlateNo());*/
-
-        String product1 = products.get(0);
-        if (product1 != null) {
-            top1.setText(product1);
-            String licensePlate1 = getLicensePlateForProduct(product1);
-            top11.setText(licensePlate1);
-        }
-
-        String product2 = products.get(1);
-        if (product2 != null) {
-            top2.setText(product2);
-            String licensePlate2 = getLicensePlateForProduct(product2);
-            top22.setText(licensePlate2);
-        }
-
-        String product3 = products.get(2);
-        if (product3 != null) {
-            top3.setText(product3);
-            String licensePlate3 = getLicensePlateForProduct(product3);
-            top33.setText(licensePlate3);
-        }
-    }
-
-    private String getLicensePlateForProduct(String licensePlate) {
-        try {
-            CarDTO carDTO = carModel.findByLicensePlateNoTopProducts(licensePlate);
-            return carDTO != null ? carDTO.getLicensePlateNo() : "Unknown License Plate";
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return "Error Retrieving License Plate";
-        }
     }
 
     private void loadChart() {

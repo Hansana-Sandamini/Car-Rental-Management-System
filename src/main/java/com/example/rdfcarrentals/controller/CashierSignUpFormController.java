@@ -1,12 +1,13 @@
 package com.example.rdfcarrentals.controller;
 
 import com.example.rdfcarrentals.dto.CashierDTO;
-import com.example.rdfcarrentals.dto.CustomerDTO;
 import com.example.rdfcarrentals.model.CashierModel;
 import com.example.rdfcarrentals.tm.CashierTM;
-import com.example.rdfcarrentals.tm.CustomerTM;
+import com.example.rdfcarrentals.util.CrudUtil;
+import com.example.rdfcarrentals.util.OptionButtonsUtil;
 import com.example.rdfcarrentals.util.ValidationUtil;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,9 +15,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -27,16 +30,13 @@ import java.util.ResourceBundle;
 public class CashierSignUpFormController implements Initializable {
 
     @FXML
-    private Button btnDelete;
+    private Label lblHeadingUserName;
 
     @FXML
     private Button btnRefresh;
 
     @FXML
     private Button btnSave;
-
-    @FXML
-    private Button btnUpdate;
 
     @FXML
     private AnchorPane cashierSignUpPane;
@@ -59,6 +59,8 @@ public class CashierSignUpFormController implements Initializable {
     @FXML
     private TableView<CashierTM> tblCashiers;
 
+    @FXML
+    private TableColumn<?, ?> colOption;
 
     @FXML
     private TextField txtFldContactNumber;
@@ -84,25 +86,6 @@ public class CashierSignUpFormController implements Initializable {
     private final CashierModel cashierModel = new CashierModel();
 
     @FXML
-    void btnDeleteOnAction(ActionEvent event) throws SQLException {
-        String cashierUserName = txtFldUserName.getText();
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to Delete this Cashier?", ButtonType.YES, ButtonType.NO);
-        Optional<ButtonType> buttonType = alert.showAndWait();
-        if (buttonType.get() == ButtonType.YES) {
-
-            boolean isDeleted = cashierModel.deleteCashier(cashierUserName);
-
-            if (isDeleted) {
-                new Alert(Alert.AlertType.INFORMATION, "Cashier Deleted...!").show();
-                refreshPage();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to Delete Cashier...!").show();
-            }
-        }
-    }
-
-    @FXML
     void btnRefreshOnAction(ActionEvent event) throws SQLException {
         refreshPage();
     }
@@ -119,22 +102,6 @@ public class CashierSignUpFormController implements Initializable {
                 refreshPage();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Fail to Save Cashier...!").show();
-            }
-        }
-    }
-
-    @FXML
-    void btnUpdateOnAction(ActionEvent event) throws SQLException {
-        if (validateTextFields()) {
-            CashierDTO cashierDTO = getTextFieldsValues();
-
-            boolean isUpdate = cashierModel.updateCashier(cashierDTO);
-
-            if (isUpdate) {
-                new Alert(Alert.AlertType.INFORMATION, "Cashier Updated...!").show();
-                refreshPage();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to Update Cashier...!").show();
             }
         }
     }
@@ -193,11 +160,6 @@ public class CashierSignUpFormController implements Initializable {
             txtFldName.setText(selectedItem.getName());
             txtFldEmail.setText(selectedItem.getEmail());
             txtFldContactNumber.setText(selectedItem.getContactNumber());
-
-            btnSave.setDisable(true);
-
-            btnDelete.setDisable(false);
-            btnUpdate.setDisable(false);
         }
     }
 
@@ -209,10 +171,84 @@ public class CashierSignUpFormController implements Initializable {
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colContactNumber.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
 
+        tblCashiers.getColumns().get(5).setCellValueFactory(param -> {
+            ImageView btnRemove = OptionButtonsUtil.setRemoveButton();
+            ImageView btnUpdate = OptionButtonsUtil.setUpdateButton();
+
+            btnRemove.setOnMouseClicked(event -> {
+                CashierTM selectedCashier = param.getValue();
+                tblCashiers.getSelectionModel().select(selectedCashier);
+                setBtnRemove(event);
+            });
+
+            btnUpdate.setOnMouseClicked(event -> {
+                CashierTM selectedCashier = param.getValue();
+                tblCashiers.getSelectionModel().select(selectedCashier);
+                try {
+                    setBtnUpdate(event);
+                } catch (SQLException e) {
+                    new Alert(Alert.AlertType.ERROR, "Error: " + e.getMessage()).show();
+                }
+            });
+
+            return new ReadOnlyObjectWrapper(new HBox(24, btnUpdate, btnRemove));
+        });
+
         try {
             refreshPage();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void setBtnRemove(MouseEvent event) {
+        CashierTM selectedCashier = tblCashiers.getSelectionModel().getSelectedItem();
+
+        if (selectedCashier != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to remove this Cashier?", ButtonType.YES, ButtonType.NO);
+
+            Optional<ButtonType> buttonType = alert.showAndWait();
+
+            if (buttonType.isPresent() && buttonType.get().equals(ButtonType.YES)) {
+                try {
+                    CrudUtil.execute("DELETE FROM cashier WHERE username = ?", selectedCashier.getUserName());
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION, "Cashier Successfully Deleted...!");
+                    successAlert.showAndWait();
+                    refreshTable();
+                } catch (SQLException e) {
+                    new Alert(Alert.AlertType.ERROR, "Error: " + e.getMessage()).show();
+                }
+            }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "No Cashier selected to Remove...!").show();
+        }
+    }
+
+    private void setBtnUpdate(MouseEvent event) throws SQLException {
+        CashierTM selectedCashier = tblCashiers.getSelectionModel().getSelectedItem();
+
+        if (selectedCashier != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to update this Cashier?", ButtonType.YES, ButtonType.NO);
+
+            Optional<ButtonType> buttonType = alert.showAndWait();
+
+            if (buttonType.isPresent() && buttonType.get().equals(ButtonType.YES)) {
+
+                if (validateTextFields()) {
+                    CashierDTO cashierDTO = getTextFieldsValues();
+
+                    boolean isUpdate = cashierModel.updateCashier(cashierDTO);
+
+                    if (isUpdate) {
+                        new Alert(Alert.AlertType.INFORMATION, "Cashier Updated...!").show();
+                        refreshPage();
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Fail to Update Cashier...!").show();
+                    }
+                }
+            } else {
+                refreshPage();
+            }
         }
     }
 
@@ -224,11 +260,6 @@ public class CashierSignUpFormController implements Initializable {
         txtFldName.setText("");
         txtFldEmail.setText("");
         txtFldContactNumber.setText("");
-
-        btnSave.setDisable(false);
-
-        btnUpdate.setDisable(true);
-        btnDelete.setDisable(true);
     }
 
     private void refreshTable() throws SQLException {

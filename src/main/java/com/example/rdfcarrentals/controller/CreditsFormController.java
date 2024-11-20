@@ -7,7 +7,11 @@ import com.example.rdfcarrentals.model.CreditModel;
 import com.example.rdfcarrentals.model.CustomerModel;
 import com.example.rdfcarrentals.model.ReservationModel;
 import com.example.rdfcarrentals.tm.CreditTM;
+import com.example.rdfcarrentals.util.CrudUtil;
+import com.example.rdfcarrentals.util.OptionButtonsUtil;
+import com.example.rdfcarrentals.util.ValidationUtil;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,9 +19,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.sql.Date;
@@ -30,16 +36,13 @@ import java.util.ResourceBundle;
 public class CreditsFormController implements Initializable {
 
     @FXML
-    private Button btnDelete;
+    private Label lblHeadingUserName;
 
     @FXML
     private Button btnRefresh;
 
     @FXML
     private Button btnSave;
-
-    @FXML
-    private Button btnUpdate;
 
     @FXML
     private ComboBox<String > cmbCustomerNIC;
@@ -61,6 +64,9 @@ public class CreditsFormController implements Initializable {
 
     @FXML
     private TableColumn<CreditTM, Double> colTotalAmount;
+
+    @FXML
+    private TableColumn<?, ?> colOption;
 
     @FXML
     private AnchorPane creditsContent;
@@ -94,40 +100,23 @@ public class CreditsFormController implements Initializable {
     private final ReservationModel reservationModel = new ReservationModel();
 
     @FXML
-    void btnDeleteOnAction(ActionEvent event) throws SQLException {
-        String creditID = lblCreditID.getText();
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to Delete this Credit?", ButtonType.YES, ButtonType.NO);
-        Optional<ButtonType> buttonType = alert.showAndWait();
-        if (buttonType.get() == ButtonType.YES) {
-
-            boolean isDeleted = creditModel.deleteCredit(creditID);
-
-            if (isDeleted) {
-                new Alert(Alert.AlertType.INFORMATION, "Credit Deleted...!").show();
-                refreshPage();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to Delete Credit...!").show();
-            }
-        }
-    }
-
-    @FXML
     void btnRefreshOnAction(ActionEvent event) throws SQLException {
         refreshPage();
     }
 
     @FXML
     void btnSaveOnAction(ActionEvent event) throws SQLException {
-        CreditDTO creditDTO = getTextFieldsValues();
+        if (validateTextFields()) {
+            CreditDTO creditDTO = getTextFieldsValues();
 
-        boolean isSaved = creditModel.saveCredit(creditDTO);
+            boolean isSaved = creditModel.saveCredit(creditDTO);
 
-        if (isSaved) {
-            new Alert(Alert.AlertType.INFORMATION, "Credit Saved...!").show();
-            refreshPage();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Fail to Save Credit...!").show();
+            if (isSaved) {
+                new Alert(Alert.AlertType.INFORMATION, "Credit Saved...!").show();
+                refreshPage();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Fail to Save Credit...!").show();
+            }
         }
     }
 
@@ -141,18 +130,12 @@ public class CreditsFormController implements Initializable {
         return new CreditDTO(creditID, totalAmount, amountPaid, amountToPay, dueDate);
     }
 
-    @FXML
-    void btnUpdateOnAction(ActionEvent event) throws SQLException {
-        CreditDTO creditDTO = getTextFieldsValues();
+    boolean validateTextFields() {
+        boolean isValidTotalAmount = ValidationUtil.isValidPrice(txtFldTotalAmount);
+        boolean isValidAmountPaid = ValidationUtil.isValidPrice(txtFldAmountPaid);
+        boolean isValidAmountToPay = ValidationUtil.isValidPrice(txtFldAmountToPay);
 
-        boolean isUpdate = creditModel.updateCredit(creditDTO);
-
-        if (isUpdate) {
-            new Alert(Alert.AlertType.INFORMATION, "Credit Updated...!").show();
-            refreshPage();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Fail to Update Credit...!").show();
-        }
+        return isValidTotalAmount && isValidAmountPaid && isValidAmountToPay;
     }
 
     @FXML
@@ -217,11 +200,6 @@ public class CreditsFormController implements Initializable {
             txtFldAmountPaid.setText(Double.toString(selectedItem.getAmountPaid()));
             txtFldAmountToPay.setText(Double.toString(selectedItem.getAmountToPay()));
             txtDueDate.setValue(LocalDate.parse(LocalDate.now().toString()));
-
-            btnSave.setDisable(true);
-
-            btnDelete.setDisable(false);
-            btnUpdate.setDisable(false);
         }
     }
 
@@ -233,10 +211,84 @@ public class CreditsFormController implements Initializable {
         colAmountToPay.setCellValueFactory(new PropertyValueFactory<>("amountToPay"));
         colDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
 
+        tblCredits.getColumns().get(5).setCellValueFactory(param -> {
+            ImageView btnRemove = OptionButtonsUtil.setRemoveButton();
+            ImageView btnUpdate = OptionButtonsUtil.setUpdateButton();
+
+            btnRemove.setOnMouseClicked(event -> {
+                CreditTM selectedCredit = param.getValue();
+                tblCredits.getSelectionModel().select(selectedCredit);
+                setBtnRemove(event);
+            });
+
+            btnUpdate.setOnMouseClicked(event -> {
+                CreditTM selectedCredit = param.getValue();
+                tblCredits.getSelectionModel().select(selectedCredit);
+                try {
+                    setBtnUpdate(event);
+                } catch (SQLException e) {
+                    new Alert(Alert.AlertType.ERROR, "Error: " + e.getMessage()).show();
+                }
+            });
+
+            return new ReadOnlyObjectWrapper(new HBox(24, btnUpdate, btnRemove));
+        });
+
         try {
             refreshPage();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void setBtnRemove(MouseEvent event) {
+        CreditTM selectedCredit = tblCredits.getSelectionModel().getSelectedItem();
+
+        if (selectedCredit != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to remove this Credit?", ButtonType.YES, ButtonType.NO);
+
+            Optional<ButtonType> buttonType = alert.showAndWait();
+
+            if (buttonType.isPresent() && buttonType.get().equals(ButtonType.YES)) {
+                try {
+                    CrudUtil.execute("DELETE FROM credit WHERE credit_id = ?", selectedCredit.getCreditId());
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION, "Credit Successfully Deleted...!");
+                    successAlert.showAndWait();
+                    refreshTable();
+                } catch (SQLException e) {
+                    new Alert(Alert.AlertType.ERROR, "Error: " + e.getMessage()).show();
+                }
+            }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "No Credit selected to Remove...!").show();
+        }
+    }
+
+    private void setBtnUpdate(MouseEvent event) throws SQLException {
+        CreditTM selectedCredit = tblCredits.getSelectionModel().getSelectedItem();
+
+        if (selectedCredit != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to update this Credit?", ButtonType.YES, ButtonType.NO);
+
+            Optional<ButtonType> buttonType = alert.showAndWait();
+
+            if (buttonType.isPresent() && buttonType.get().equals(ButtonType.YES)) {
+
+                if (validateTextFields()) {
+                    CreditDTO creditDTO = getTextFieldsValues();
+
+                    boolean isUpdate = creditModel.updateCredit(creditDTO);
+
+                    if (isUpdate) {
+                        new Alert(Alert.AlertType.INFORMATION, "Credit Updated...!").show();
+                        refreshPage();
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Fail to Update Credit...!").show();
+                    }
+                }
+            } else {
+                refreshPage();
+            }
         }
     }
 
@@ -252,11 +304,6 @@ public class CreditsFormController implements Initializable {
         txtFldAmountPaid.setText("");
         txtFldAmountToPay.setText("");
         txtDueDate.setValue(null);
-
-        btnSave.setDisable(false);
-
-        btnUpdate.setDisable(true);
-        btnDelete.setDisable(true);
     }
 
     private void refreshTable() throws SQLException {

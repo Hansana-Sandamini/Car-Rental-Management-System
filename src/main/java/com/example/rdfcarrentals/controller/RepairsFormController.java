@@ -33,6 +33,9 @@ import java.util.ResourceBundle;
 public class RepairsFormController implements Initializable {
 
     @FXML
+    private Label lblHeadingUserName;
+
+    @FXML
     private Button btnAddRepair;
 
     @FXML

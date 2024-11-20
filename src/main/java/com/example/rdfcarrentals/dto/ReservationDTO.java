@@ -20,6 +20,7 @@ public class ReservationDTO {
     private Date returnDate;
     private String returnTime;
     private String isDriverWant;
+    private String driverNic;
 
     private ArrayList<ReservationDetailDTO> reservationDetailDTOS;
 
@@ -33,5 +34,18 @@ public class ReservationDTO {
         this.returnDate = returnDate;
         this.returnTime = returnTime;
         this.isDriverWant = isDriverWant;
+    }
+
+    public ReservationDTO(String reservationId, String customerNic, String cashierUsername, String creditId, Date pickUpDate, String pickUpTime, Date returnDate, String returnTime, String isDriverWant, ArrayList<ReservationDetailDTO> reservationDetailDTOS) {
+        this.reservationId = reservationId;
+        this.customerNic = customerNic;
+        this.cashierUsername = cashierUsername;
+        this.creditId = creditId;
+        this.pickUpDate = pickUpDate;
+        this.pickUpTime = pickUpTime;
+        this.returnDate = returnDate;
+        this.returnTime = returnTime;
+        this.isDriverWant = isDriverWant;
+        this.reservationDetailDTOS = reservationDetailDTOS;
     }
 }

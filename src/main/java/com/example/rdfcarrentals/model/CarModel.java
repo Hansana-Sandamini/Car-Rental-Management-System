@@ -55,10 +55,6 @@ public class CarModel {
         );
     }
 
-    public boolean deleteCar(String LicensePlateNo) throws SQLException {
-        return CrudUtil.execute("DELETE FROM car WHERE license_plate_no = ?", LicensePlateNo);
-    }
-
     public CarDTO findByLicensePlateNo(String selectedLicensePlateNo) throws SQLException {
         ResultSet rst = CrudUtil.execute("SELECT * FROM car WHERE license_plate_no = ?", selectedLicensePlateNo);
 

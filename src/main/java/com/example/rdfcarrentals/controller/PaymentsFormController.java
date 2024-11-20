@@ -8,6 +8,7 @@ import com.example.rdfcarrentals.model.ReservationModel;
 import com.example.rdfcarrentals.tm.PaymentTM;
 import com.example.rdfcarrentals.util.CrudUtil;
 import com.example.rdfcarrentals.util.OptionButtonsUtil;
+import com.example.rdfcarrentals.util.ValidationUtil;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -31,6 +32,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class PaymentsFormController implements Initializable {
+
+    @FXML
+    private Label lblHeadingUserName;
 
     @FXML
     private Button btnAddPayment;
@@ -102,15 +106,17 @@ public class PaymentsFormController implements Initializable {
 
     @FXML
     void btnAddPaymentOnAction(ActionEvent event) throws SQLException {
-        PaymentDTO paymentDTO = getTextFieldsValues();
+        if (validateTextFields()) {
+            PaymentDTO paymentDTO = getTextFieldsValues();
 
-        boolean isAdded = paymentModel.addPayment(paymentDTO);
+            boolean isAdded = paymentModel.addPayment(paymentDTO);
 
-        if (isAdded) {
-            new Alert(Alert.AlertType.INFORMATION, "Payment Added...!").show();
-            refreshPage();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Fail to Add Payment...!").show();
+            if (isAdded) {
+                new Alert(Alert.AlertType.INFORMATION, "Payment Added...!").show();
+                refreshPage();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Fail to Add Payment...!").show();
+            }
         }
     }
 
@@ -124,6 +130,13 @@ public class PaymentsFormController implements Initializable {
         String time = txtTime.getText();
 
         return new PaymentDTO(paymentID, reservationID, billID, paymentMethod, amount, date, time);
+    }
+
+    boolean validateTextFields() {
+        boolean isValidAmount = ValidationUtil.isValidPrice(txtFldAmount);
+        boolean isValidTime = ValidationUtil.isValidTime(txtTime);
+
+        return isValidAmount && isValidTime;
     }
 
     @FXML

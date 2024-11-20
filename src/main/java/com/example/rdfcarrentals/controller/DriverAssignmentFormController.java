@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class DriverAssignmentFormController implements Initializable {
@@ -28,6 +29,12 @@ public class DriverAssignmentFormController implements Initializable {
 
     @FXML
     private TableColumn<DriverAssignmentTM, Double> colPricePerKm;
+
+    @FXML
+    private TableColumn<DriverAssignmentTM, String> colTime;
+
+    @FXML
+    private TableColumn<DriverAssignmentTM, Date> colDate;
 
     @FXML
     private AnchorPane driverAssignmentPane;
@@ -43,6 +50,8 @@ public class DriverAssignmentFormController implements Initializable {
         colLicensePlateNo.setCellValueFactory(new PropertyValueFactory<>("licensePlateNo"));
         colDriverNic.setCellValueFactory(new PropertyValueFactory<>("driverNic"));
         colPricePerKm.setCellValueFactory(new PropertyValueFactory<>("pricePerKm"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
 
         loadDriverAssignments();
     }
@@ -55,7 +64,9 @@ public class DriverAssignmentFormController implements Initializable {
                 driverAssignmentTMS.add(new DriverAssignmentTM(
                         driverAssignmentDTO.getLicensePlateNo(),
                         driverAssignmentDTO.getDriverNic(),
-                        driverAssignmentDTO.getPricePerKm()
+                        driverAssignmentDTO.getPricePerKm(),
+                        driverAssignmentDTO.getDate(),
+                        driverAssignmentDTO.getTime()
                 ));
             }
             tblDriverAssignment.setItems(driverAssignmentTMS);

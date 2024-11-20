@@ -12,19 +12,19 @@ public class DriverModel {
     private final DriverAssignmentModel driverAssignmentModel = new DriverAssignmentModel();
 
     public boolean saveDriver(DriverDTO driverDTO) throws SQLException {
-            boolean isDriverSaved = CrudUtil.execute(
-                    "INSERT INTO driver VALUES (?,?,?,?,?,?)",
-                    driverDTO.getNic(),
-                    driverDTO.getName(),
-                    driverDTO.getEmail(),
-                    driverDTO.getAvailabilityStatus(),
-                    driverDTO.getContactNumber(),
-                    driverDTO.getPricePerKm()
-            );
-            if (isDriverSaved) {
-                return driverAssignmentModel.saveDriverAssignmentList(driverDTO.getDriverAssignmentDTOS());
-            }
-            return false;
+        boolean isDriverSaved = CrudUtil.execute(
+                "INSERT INTO driver VALUES (?,?,?,?,?,?)",
+                driverDTO.getNic(),
+                driverDTO.getName(),
+                driverDTO.getEmail(),
+                driverDTO.getAvailabilityStatus(),
+                driverDTO.getContactNumber(),
+                driverDTO.getPricePerKm()
+        );
+        if (isDriverSaved) {
+            return driverAssignmentModel.saveDriverAssignmentList(driverDTO.getDriverAssignmentDTOS());
+        }
+        return false;
     }
 
     public ArrayList<DriverDTO> getAllDrivers() throws SQLException {

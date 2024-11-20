@@ -11,4 +11,12 @@ public class OptionButtonsUtil {
         btnRemove.setStyle("-fx-cursor: hand; -fx-alignment: center-right");
         return btnRemove;
     }
+
+    public static ImageView setUpdateButton() {
+        ImageView btnUpdate = new ImageView(String.valueOf(OptionButtonsUtil.class.getResource("/asserts/UpdateButton.png")));
+        btnUpdate.setFitHeight(24);
+        btnUpdate.setFitWidth(24);
+        btnUpdate.setStyle("-fx-cursor: hand; -fx-alignment: center-right");
+        return btnUpdate;
+    }
 }

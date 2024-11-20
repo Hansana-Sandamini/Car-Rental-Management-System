@@ -21,10 +21,12 @@ public class DriverAssignmentModel {
 
     public boolean saveDriverAssignment(DriverAssignmentDTO driverAssignmentDTO) throws SQLException {
         return CrudUtil.execute(
-                "INSERT INTO driver_assignment VALUES (?,?,?)",
+                "INSERT INTO driver_assignment VALUES (?,?,?,?,?)",
                 driverAssignmentDTO.getLicensePlateNo(),
                 driverAssignmentDTO.getDriverNic(),
-                driverAssignmentDTO.getPricePerKm()
+                driverAssignmentDTO.getPricePerKm(),
+                driverAssignmentDTO.getDate(),
+                driverAssignmentDTO.getTime()
         );
     }
 
@@ -39,7 +41,9 @@ public class DriverAssignmentModel {
             DriverAssignmentDTO driverAssignmentDTO = new DriverAssignmentDTO(
                     resultSet.getString("license_plate_no"),
                     resultSet.getString("driver_nic"),
-                    resultSet.getDouble("price_per_km")
+                    resultSet.getDouble("price_per_km"),
+                    resultSet.getDate("date"),
+                    resultSet.getString("time")
             );
             driverAssignmentDTOS.add(driverAssignmentDTO);
         }

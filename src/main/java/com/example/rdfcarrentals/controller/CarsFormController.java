@@ -5,7 +5,11 @@ import com.example.rdfcarrentals.dto.FuelTypeDTO;
 import com.example.rdfcarrentals.model.CarModel;
 import com.example.rdfcarrentals.model.FuelTypeModel;
 import com.example.rdfcarrentals.tm.CarTM;
+import com.example.rdfcarrentals.util.CrudUtil;
+import com.example.rdfcarrentals.util.OptionButtonsUtil;
+import com.example.rdfcarrentals.util.ValidationUtil;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,9 +17,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -26,16 +32,13 @@ import java.util.ResourceBundle;
 public class CarsFormController implements Initializable {
 
     @FXML
-    private Button btnDelete;
+    private Label lblHeadingUserName;
 
     @FXML
     private Button btnRefresh;
 
     @FXML
     private Button btnSave;
-
-    @FXML
-    private Button btnUpdate;
 
     @FXML
     private AnchorPane carsContent;
@@ -68,6 +71,9 @@ public class CarsFormController implements Initializable {
     private TableColumn<CarTM, String> colTypeID;
 
     @FXML
+    private TableColumn<?, ?> colOption;
+
+    @FXML
     private TableView<CarTM> tblCars;
 
     @FXML
@@ -96,25 +102,6 @@ public class CarsFormController implements Initializable {
 
     private final FuelTypeModel fuelTypeModel = new FuelTypeModel();
     private final CarModel carModel = new CarModel();
-
-    @FXML
-    void btnDeleteOnAction(ActionEvent event) throws SQLException {
-        String licensePlateNo = txtFldLicensePlateNo.getText();
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to Delete this Car?", ButtonType.YES, ButtonType.NO);
-        Optional<ButtonType> buttonType = alert.showAndWait();
-        if (buttonType.get() == ButtonType.YES) {
-
-            boolean isDeleted = carModel.deleteCar(licensePlateNo);
-
-            if (isDeleted) {
-                new Alert(Alert.AlertType.INFORMATION, "Car Deleted...!").show();
-                refreshPage();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to Delete Car...!").show();
-            }
-        }
-    }
 
     @FXML
     void btnRefreshOnAction(ActionEvent event) throws SQLException {
@@ -147,18 +134,11 @@ public class CarsFormController implements Initializable {
         return new CarDTO(licensePlateNo, model, colour, dailyRate, monthlyRate, availabilityStatus, typeId);
     }
 
-    @FXML
-    void btnUpdateOnAction(ActionEvent event) throws SQLException {
-        CarDTO carDTO = getTextFieldsValues();
+    boolean validateTextFields() {
+        boolean isValidDailtyRate = ValidationUtil.isValidPrice(txtFldDailyRate);
+        boolean isValidMonthlyRate = ValidationUtil.isValidPrice(txtFldMonthlyRate);
 
-        boolean isUpdate = carModel.updateCar(carDTO);
-
-        if (isUpdate) {
-            new Alert(Alert.AlertType.INFORMATION, "Car Updated...!").show();
-            refreshPage();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Fail to Update Car...!").show();
-        }
+        return isValidDailtyRate && isValidMonthlyRate;
     }
 
     @FXML
@@ -189,11 +169,6 @@ public class CarsFormController implements Initializable {
             txtFldDailyRate.setText(String.valueOf(selectedItem.getDailyRate()));
             txtFldMonthlyRate.setText(String.valueOf(selectedItem.getMonthlyRate()));
             cmbAvailabilityStatus.setValue(selectedItem.getAvailabilityStatus());
-
-            btnSave.setDisable(true);
-
-            btnDelete.setDisable(false);
-            btnUpdate.setDisable(false);
         }
     }
 
@@ -238,10 +213,84 @@ public class CarsFormController implements Initializable {
         colAvailabilityStatus.setCellValueFactory(new PropertyValueFactory<>("availabilityStatus"));
         colTypeID.setCellValueFactory(new PropertyValueFactory<>("typeId"));
 
+        tblCars.getColumns().get(7).setCellValueFactory(param -> {
+            ImageView btnRemove = OptionButtonsUtil.setRemoveButton();
+            ImageView btnUpdate = OptionButtonsUtil.setUpdateButton();
+
+            btnRemove.setOnMouseClicked(event -> {
+                CarTM selectedCar= param.getValue();
+                tblCars.getSelectionModel().select(selectedCar);
+                setBtnRemove(event);
+            });
+
+            btnUpdate.setOnMouseClicked(event -> {
+                CarTM selectedCar = param.getValue();
+                tblCars.getSelectionModel().select(selectedCar);
+                try {
+                    setBtnUpdate(event);
+                } catch (SQLException e) {
+                    new Alert(Alert.AlertType.ERROR, "Error: " + e.getMessage()).show();
+                }
+            });
+
+            return new ReadOnlyObjectWrapper(new HBox(24, btnUpdate, btnRemove));
+        });
+
         try {
             refreshPage();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void setBtnRemove(MouseEvent event) {
+        CarTM selectedCar = tblCars.getSelectionModel().getSelectedItem();
+
+        if (selectedCar != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to remove this Car?", ButtonType.YES, ButtonType.NO);
+
+            Optional<ButtonType> buttonType = alert.showAndWait();
+
+            if (buttonType.isPresent() && buttonType.get().equals(ButtonType.YES)) {
+                try {
+                    CrudUtil.execute("DELETE FROM car WHERE license_plate_no = ?", selectedCar.getLicensePlateNo());
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION, "Car Successfully Deleted...!");
+                    successAlert.showAndWait();
+                    refreshTable();
+                } catch (SQLException e) {
+                    new Alert(Alert.AlertType.ERROR, "Error: " + e.getMessage()).show();
+                }
+            }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "No Car selected to Remove...!").show();
+        }
+    }
+
+    private void setBtnUpdate(MouseEvent event) throws SQLException {
+        CarTM selectedCar = tblCars.getSelectionModel().getSelectedItem();
+
+        if (selectedCar != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to update this Car?", ButtonType.YES, ButtonType.NO);
+
+            Optional<ButtonType> buttonType = alert.showAndWait();
+
+            if (buttonType.isPresent() && buttonType.get().equals(ButtonType.YES)) {
+
+                if (validateTextFields()) {
+                    CarDTO carDTO = getTextFieldsValues();
+
+                    boolean isUpdate = carModel.updateCar(carDTO);
+
+                    if (isUpdate) {
+                        new Alert(Alert.AlertType.INFORMATION, "Car Updated...!").show();
+                        refreshPage();
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Fail to Update Car...!").show();
+                    }
+                }
+            } else {
+                refreshPage();
+            }
         }
     }
 
@@ -257,11 +306,6 @@ public class CarsFormController implements Initializable {
         txtFldDailyRate.setText("");
         txtFldMonthlyRate.setText("");
         cmbAvailabilityStatus.setValue("");
-
-        btnSave.setDisable(false);
-
-        btnUpdate.setDisable(true);
-        btnDelete.setDisable(true);
     }
 
     private void refreshTable() throws SQLException {

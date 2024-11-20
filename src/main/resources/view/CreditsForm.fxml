@@ -24,11 +24,12 @@
       </AnchorPane>
       <TableView fx:id="tblCredits" layoutX="26.0" layoutY="454.0" onMouseClicked="#tblCreditsOnClicked" prefHeight="324.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
          <columns>
-            <TableColumn fx:id="colCreditID" prefWidth="160.0" text="Credit ID" />
-            <TableColumn fx:id="colTotalAmount" prefWidth="207.0" text="Total Amount" />
-            <TableColumn fx:id="colAmountPaid" prefWidth="211.0" text="Amount Paid" />
-            <TableColumn fx:id="colAmountToPay" minWidth="1.0" prefWidth="202.0" text="Amount To Pay" />
-            <TableColumn fx:id="colDueDate" prefWidth="197.0" text="Due Date" />
+            <TableColumn fx:id="colCreditID" prefWidth="130.0" text="Credit ID" />
+            <TableColumn fx:id="colTotalAmount" prefWidth="169.0" text="Total Amount" />
+            <TableColumn fx:id="colAmountPaid" prefWidth="187.0" text="Amount Paid" />
+            <TableColumn fx:id="colAmountToPay" minWidth="1.0" prefWidth="177.0" text="Amount To Pay" />
+            <TableColumn fx:id="colDueDate" prefWidth="193.0" text="Due Date" />
+            <TableColumn fx:id="colOption" prefWidth="120.0" text="Options" />
          </columns>
       </TableView>
       <TextField fx:id="txtFldSearchHere" layoutX="272.0" layoutY="407.0" onKeyReleased="#txtFldSearchHereOnAction" prefHeight="35.0" prefWidth="500.0" promptText="       Search Here">
@@ -109,19 +110,13 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnUpdate" layoutX="613.0" layoutY="274.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #dff9fb; -fx-border-color: #ffc029; -fx-border-radius: 10;" text="    UPDATE" textFill="#ffc029">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
       <FontAwesomeIcon fill="#273c75" iconName="SAVE" layoutX="834.0" layoutY="366.0" size="2em" />
       <FontAwesomeIcon fill="#ffc029" iconName="REFRESH" layoutX="834.0" layoutY="304.0" size="2em" />
-      <FontAwesomeIcon fill="#ffc029" iconName="WRENCH" layoutX="633.0" layoutY="300.0" size="2em" />
-      <Button fx:id="btnDelete" layoutX="613.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #dff9fb; -fx-border-color: #ffc029; -fx-border-radius: 10;" text="   DELETE" textFill="#ffc029">
+      <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="756.0" layoutY="31.0" size="2em" />
+      <Label fx:id="lblHeadingUserName" layoutX="780.0" layoutY="4.0" prefHeight="35.0" prefWidth="241.0" textFill="#636e72">
          <font>
-            <Font size="18.0" />
+            <Font size="15.0" />
          </font>
-      </Button>
-      <FontAwesomeIcon fill="#ffc029" iconName="TRASH" layoutX="635.0" layoutY="363.0" size="2em" />
+      </Label>
    </children>
 </AnchorPane>

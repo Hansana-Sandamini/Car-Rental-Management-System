@@ -31,7 +31,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Optional;
@@ -40,10 +43,10 @@ import java.util.ResourceBundle;
 public class DriverFormController implements Initializable {
 
     @FXML
-    private Button btnSave;
+    private Label lblHeadingUserName;
 
     @FXML
-    private Button btnUpdate;
+    private Button btnSave;
 
     @FXML
     private Button btnRefresh;
@@ -136,9 +139,11 @@ public class DriverFormController implements Initializable {
         String contactNumber = txtFldContactNumber.getText();
         double pricePerKm = Double.parseDouble(txtPricePerKm.getText());
         String licensePlateNo = cmbLicensePlateNo.getValue();
+        Date date = Date.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy - MM - dd")));
+        String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
         DriverAssignmentDTO driverAssignmentDTO = new DriverAssignmentDTO(
-                licensePlateNo, nic, pricePerKm
+                licensePlateNo, nic, pricePerKm, date, time
         );
         ArrayList<DriverAssignmentDTO> driverAssignmentDTOS = new ArrayList<>(Collections.singletonList(driverAssignmentDTO));
 
@@ -153,22 +158,6 @@ public class DriverFormController implements Initializable {
         boolean isValidPrice = ValidationUtil.isValidPrice(txtPricePerKm);
 
         return isValidNic && isValidName && isValidEmail && isValidContactNumber && isValidPrice;
-    }
-
-    @FXML
-    void btnUpdateOnAction(ActionEvent event) throws SQLException {
-        if (validateTextFields()) {
-            DriverDTO driverDTO = getTextFieldsValues();
-
-            boolean isUpdate = driverModel.updateDriver(driverDTO);
-
-            if (isUpdate) {
-                new Alert(Alert.AlertType.INFORMATION, "Driver Updated...!").show();
-                refreshPage();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to Update Driver...!").show();
-            }
-        }
     }
 
     @FXML
@@ -215,9 +204,6 @@ public class DriverFormController implements Initializable {
             cmbAvailabilityStatus.setValue(selectedItem.getAvailabilityStatus());
             txtFldContactNumber.setText(selectedItem.getContactNumber());
             txtPricePerKm.setText(String.valueOf(selectedItem.getPricePerKm()));
-
-            btnSave.setDisable(true);
-            btnUpdate.setDisable(false);
         }
     }
 
@@ -262,13 +248,25 @@ public class DriverFormController implements Initializable {
 
         tblDrivers.getColumns().get(6).setCellValueFactory(param -> {
             ImageView btnRemove = OptionButtonsUtil.setRemoveButton();
+            ImageView btnUpdate = OptionButtonsUtil.setUpdateButton();
 
             btnRemove.setOnMouseClicked(event -> {
                 DriverTM selectedDriver = param.getValue();
                 tblDrivers.getSelectionModel().select(selectedDriver);
                 setBtnRemove(event);
             });
-            return new ReadOnlyObjectWrapper(new HBox(24, btnRemove));
+
+            btnUpdate.setOnMouseClicked(event -> {
+                DriverTM selectedDriver = param.getValue();
+                tblDrivers.getSelectionModel().select(selectedDriver);
+                try {
+                    setBtnUpdate(event);
+                } catch (SQLException e) {
+                    new Alert(Alert.AlertType.ERROR, "Error: " + e.getMessage()).show();
+                }
+            });
+
+            return new ReadOnlyObjectWrapper(new HBox(24, btnUpdate, btnRemove));
         });
 
         try {
@@ -289,9 +287,6 @@ public class DriverFormController implements Initializable {
         txtFldContactNumber.setText("");
         txtPricePerKm.setText("");
         cmbLicensePlateNo.setValue("");
-
-        btnSave.setDisable(false);
-        btnUpdate.setDisable(true);
     }
 
     private void refreshTable() throws SQLException {
@@ -332,6 +327,34 @@ public class DriverFormController implements Initializable {
             }
         } else {
             new Alert(Alert.AlertType.WARNING, "No driver selected to remove...!").show();
+        }
+    }
+
+    private void setBtnUpdate(MouseEvent event) throws SQLException {
+        DriverTM selectedDriver = tblDrivers.getSelectionModel().getSelectedItem();
+
+        if (selectedDriver != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to update this Driver?", ButtonType.YES, ButtonType.NO);
+
+            Optional<ButtonType> buttonType = alert.showAndWait();
+
+            if (buttonType.isPresent() && buttonType.get().equals(ButtonType.YES)) {
+
+                if (validateTextFields()) {
+                    DriverDTO driverDTO = getTextFieldsValues();
+
+                    boolean isUpdate = driverModel.updateDriver(driverDTO);
+
+                    if (isUpdate) {
+                        new Alert(Alert.AlertType.INFORMATION, "Driver Updated...!").show();
+                        refreshPage();
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Fail to Update Driver...!").show();
+                    }
+                }
+            } else {
+                refreshPage();
+            }
         }
     }
 

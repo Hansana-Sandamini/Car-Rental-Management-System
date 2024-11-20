@@ -128,5 +128,11 @@
          </font>
       </TextField>
       <FontAwesomeIcon fx:id="searchIcon" fill="#c3bfbf" iconName="SEARCH" layoutX="275.0" layoutY="430.0" />
+      <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="758.0" layoutY="32.0" size="2em" />
+      <Label fx:id="lblHeadingUserName" layoutX="782.0" layoutY="5.0" prefHeight="35.0" prefWidth="241.0" textFill="#636e72">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

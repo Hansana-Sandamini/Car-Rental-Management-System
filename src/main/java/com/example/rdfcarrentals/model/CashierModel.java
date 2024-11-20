@@ -48,10 +48,6 @@ public class CashierModel {
         );
     }
 
-    public boolean deleteCashier(String cashierUserName) throws SQLException {
-        return CrudUtil.execute("DELETE FROM cashier WHERE username = ?", cashierUserName);
-    }
-
     public ArrayList<String> getAllCashierUsernames() throws SQLException {
         ResultSet rst = CrudUtil.execute("SELECT username FROM cashier");
 

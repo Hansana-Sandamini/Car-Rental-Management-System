@@ -8,6 +8,7 @@ import com.example.rdfcarrentals.model.ReservationModel;
 import com.example.rdfcarrentals.tm.ReservationTM;
 import com.example.rdfcarrentals.util.CrudUtil;
 import com.example.rdfcarrentals.util.OptionButtonsUtil;
+import com.example.rdfcarrentals.util.ValidationUtil;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -42,6 +43,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ReservationsFormController implements Initializable {
+
+    @FXML
+    private Label lblHeadingUserName;
 
     @FXML
     private Button btnAddReservation;
@@ -135,15 +139,17 @@ public class ReservationsFormController implements Initializable {
 
     @FXML
     void btnAddReservationOnAction(ActionEvent event) throws SQLException {
-        ReservationDTO reservationDTO = getTextFieldsValues();
+        if (validateTextFields()) {
+            ReservationDTO reservationDTO = getTextFieldsValues();
 
-        boolean isAdded = reservationModel.addReservation(reservationDTO);
+            boolean isAdded = reservationModel.addReservation(reservationDTO);
 
-        if (isAdded) {
-            new Alert(Alert.AlertType.INFORMATION, "Reservation Added...!").show();
-            refreshPage();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Fail to Add Reservation...!").show();
+            if (isAdded) {
+                new Alert(Alert.AlertType.INFORMATION, "Reservation Added...!").show();
+                refreshPage();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Fail to Add Reservation...!").show();
+            }
         }
     }
 
@@ -167,6 +173,15 @@ public class ReservationsFormController implements Initializable {
         ArrayList<ReservationDetailDTO> reservationDetailDTOS = new ArrayList<>(Collections.singletonList(reservationDetailDTO));
 
         return new ReservationDTO(reservationId, customerNic, cashierUsername, creditId, pickUpDate, pickUpTime, returnDate, returnTime, isDriverWant, reservationDetailDTOS);
+    }
+
+    boolean validateTextFields() {
+        boolean isValidDriverCost = ValidationUtil.isValidPrice(txtDriverCost);
+        boolean isValidTotalAmount = ValidationUtil.isValidPrice(txtTotalAmount);
+        boolean isValidPickUpTime = ValidationUtil.isValidTime(txtPickUpTime);
+        boolean isValidReturnTime = ValidationUtil.isValidTime(txtReturnTime);
+
+        return isValidDriverCost && isValidTotalAmount && isValidPickUpTime && isValidReturnTime;
     }
 
     @FXML

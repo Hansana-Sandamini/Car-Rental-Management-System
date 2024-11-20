@@ -34,41 +34,69 @@ public class ReservationModel {
 
         try {
             connection.setAutoCommit(false);
+
             boolean isReservationSaved = CrudUtil.execute(
-                "INSERT INTO reservation VALUES (?,?,?,?,?,?,?,?,?)",
-                reservationDTO.getReservationId(),
-                reservationDTO.getCustomerNic(),
-                reservationDTO.getCashierUsername(),
-                reservationDTO.getCreditId(),
-                reservationDTO.getPickUpDate(),
-                reservationDTO.getPickUpTime(),
-                reservationDTO.getReturnDate(),
-                reservationDTO.getReturnTime(),
-                reservationDTO.getIsDriverWant()
+                    "INSERT INTO reservation VALUES (?,?,?,?,?,?,?,?,?)",
+                    reservationDTO.getReservationId(),
+                    reservationDTO.getCustomerNic(),
+                    reservationDTO.getCashierUsername(),
+                    reservationDTO.getCreditId(),
+                    reservationDTO.getPickUpDate(),
+                    reservationDTO.getPickUpTime(),
+                    reservationDTO.getReturnDate(),
+                    reservationDTO.getReturnTime(),
+                    reservationDTO.getIsDriverWant()
             );
 
-            if (isReservationSaved) {
-                boolean isReservationDetailListSaved = reservationDetailModel.saveReservationDetailList(reservationDTO.getReservationDetailDTOS());
+            if (!isReservationSaved) {
+                connection.rollback();
+                return false;
+            }
 
-                if (isReservationDetailListSaved) {
-                    for (ReservationDetailDTO reservationDetailDTO : reservationDetailModel.getReservationDetails()) {
-                        boolean isCarUpdated = CrudUtil.execute(
-                                "UPDATE car SET availability_status = 'No' WHERE license_plate_no = ?",
-                                reservationDetailDTO.getLicensePlateNo()
+            boolean isReservationDetailListSaved = reservationDetailModel.saveReservationDetailList(reservationDTO.getReservationDetailDTOS());
+            if (!isReservationDetailListSaved) {
+                connection.rollback();
+                return false;
+            }
+
+            for (ReservationDetailDTO reservationDetailDto : reservationDTO.getReservationDetailDTOS()) {
+                boolean isCarUpdated = CrudUtil.execute(
+                        "UPDATE car SET availability_status = 'No' WHERE license_plate_no = ?",
+                        reservationDetailDto.getLicensePlateNo()
+                );
+
+                if (!isCarUpdated) {
+                    connection.rollback();
+                    return false;
+                }
+
+                if ("Yes".equalsIgnoreCase(reservationDTO.getIsDriverWant())) {
+                        ResultSet rst = CrudUtil.execute(
+                                "SELECT driver_nic FROM driver_assignment WHERE license_plate_no = ?",
+                                reservationDetailDto.getLicensePlateNo()
                         );
 
-                        if (!isCarUpdated) {
+                        if(rst.next()) {
+                            boolean isDriverUpdated = CrudUtil.execute(
+                                    "UPDATE driver SET availability_status = 'No' WHERE nic = ?",
+                                    rst.getString(1)
+                            );
+
+                            if (!isDriverUpdated) {
+                                connection.rollback();
+                                return false;
+                            }
+                        }
+                         else {
                             connection.rollback();
-                            return false;
+                            throw new SQLException("Driver not linked to the car being reserved.");
                         }
                     }
-                    connection.commit();
-                    return true;
-                }
             }
-            connection.rollback();
-            return false;
+            connection.commit();
+            return true;
         } catch (SQLException e) {
+            e.printStackTrace();
             connection.rollback();
             return false;
         } finally {
