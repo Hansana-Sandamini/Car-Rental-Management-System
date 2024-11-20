@@ -47,7 +47,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="makeReservationPane" layoutX="739.0" layoutY="143.0" onMouseClicked="#makeReservationPaneOnClicked" prefHeight="155.0" prefWidth="274.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <AnchorPane fx:id="makeReservationPane" layoutX="732.0" layoutY="143.0" onMouseClicked="#makeReservationPaneOnClicked" prefHeight="155.0" prefWidth="274.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <FontAwesomeIcon fill="#636e72" iconName="CART_PLUS" layoutX="33.0" layoutY="109.0" size="5em" />
             <Label layoutX="116.0" layoutY="61.0" prefHeight="50.0" prefWidth="148.0" text="Make Reservation" textFill="#636e72">
@@ -57,7 +57,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="carListPane" layoutX="739.0" layoutY="343.0" onMouseClicked="#carListPaneOnClicked" prefHeight="155.0" prefWidth="274.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <AnchorPane fx:id="carListPane" layoutX="732.0" layoutY="343.0" onMouseClicked="#carListPaneOnClicked" prefHeight="155.0" prefWidth="274.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <Label layoutX="122.0" layoutY="64.0" prefHeight="50.0" prefWidth="129.0" text="Car List" textFill="#636e72">
                <font>
@@ -67,7 +67,7 @@
             <FontAwesomeIcon fill="#636e72" iconName="CAR" layoutX="34.0" layoutY="100.0" size="5em" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="739.0" layoutY="606.0" prefHeight="155.0" prefWidth="274.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <AnchorPane layoutX="732.0" layoutY="606.0" prefHeight="155.0" prefWidth="274.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <Label fx:id="lblTime" alignment="CENTER" layoutX="14.0" layoutY="26.0" prefHeight="53.0" prefWidth="248.0" textFill="#ffc029">
                <font>

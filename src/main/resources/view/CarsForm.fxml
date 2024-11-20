@@ -63,7 +63,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button fx:id="btnSave" layoutX="773.0" layoutY="17.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #dff9fb; -fx-border-color: #ffc029; -fx-border-radius: 10;" text="SAVE" textFill="#ffc029">
+            <Button fx:id="btnSave" layoutX="773.0" layoutY="17.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #dff9fb; -fx-border-color: #273c75; -fx-border-radius: 10;" text="SAVE" textFill="#273c75">
                <font>
                   <Font size="18.0" />
                </font>
@@ -83,7 +83,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <FontAwesomeIcon fill="#ffc029" iconName="SAVE" layoutX="794.0" layoutY="46.0" size="2em" />
+            <FontAwesomeIcon fill="#273c75" iconName="SAVE" layoutX="794.0" layoutY="46.0" size="2em" />
             <FontAwesomeIcon fill="#ffc029" iconName="REFRESH" layoutX="794.0" layoutY="104.0" size="2em" />
             <FontAwesomeIcon fill="#ffc029" iconName="TRASH" layoutX="795.0" layoutY="223.0" size="2em" />
             <FontAwesomeIcon fill="#ffc029" iconName="WRENCH" layoutX="793.0" layoutY="160.0" size="2em" />

@@ -2,6 +2,7 @@ package com.example.rdfcarrentals.model;
 
 import com.example.rdfcarrentals.db.DBConnection;
 import com.example.rdfcarrentals.dto.ReservationDTO;
+import com.example.rdfcarrentals.dto.ReservationDetailDTO;
 import com.example.rdfcarrentals.util.CrudUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -48,7 +49,19 @@ public class ReservationModel {
 
             if (isReservationSaved) {
                 boolean isReservationDetailListSaved = reservationDetailModel.saveReservationDetailList(reservationDTO.getReservationDetailDTOS());
+
                 if (isReservationDetailListSaved) {
+                    for (ReservationDetailDTO reservationDetailDTO : reservationDetailModel.getReservationDetails()) {
+                        boolean isCarUpdated = CrudUtil.execute(
+                                "UPDATE car SET availability_status = 'No' WHERE license_plate_no = ?",
+                                reservationDetailDTO.getLicensePlateNo()
+                        );
+
+                        if (!isCarUpdated) {
+                            connection.rollback();
+                            return false;
+                        }
+                    }
                     connection.commit();
                     return true;
                 }

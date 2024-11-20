@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="driverContent" prefHeight="800.0" prefWidth="1026.0" style="-fx-background-color: #dfe4ea;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rdfcarrentals.controller.DriverFormController">
    <children>
-      <AnchorPane layoutX="36.0" prefHeight="102.0" prefWidth="998.0" style="-fx-background-color: white;">
+      <AnchorPane layoutX="28.0" prefHeight="102.0" prefWidth="998.0" style="-fx-background-color: white;">
          <children>
             <Label alignment="CENTER" layoutX="368.0" layoutY="30.0" prefHeight="43.0" prefWidth="115.0" text="Drivers" textFill="#ffc029">
                <font>
@@ -21,7 +21,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="tblDrivers" layoutX="35.0" layoutY="454.0" onMouseClicked="#tblDriversOnClicked" prefHeight="324.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
+      <TableView fx:id="tblDrivers" layoutX="31.0" layoutY="454.0" onMouseClicked="#tblDriversOnClicked" prefHeight="324.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
          <columns>
             <TableColumn fx:id="colNic" prefWidth="163.0" text="NIC" />
             <TableColumn fx:id="colName" prefWidth="159.0" text="Name" />
@@ -32,7 +32,7 @@
             <TableColumn fx:id="colOption" prefWidth="122.0" text="Option" />
          </columns>
       </TableView>
-      <AnchorPane fx:id="driverFormPane" layoutX="33.0" layoutY="129.0" prefHeight="255.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+      <AnchorPane fx:id="driverFormPane" layoutX="30.0" layoutY="129.0" prefHeight="255.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 10;">
          <children>
             <Label layoutX="14.0" layoutY="4.0" prefHeight="43.0" prefWidth="145.0" text="Driver NIC">
                <font>
@@ -74,7 +74,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button fx:id="btnSave" layoutX="753.0" layoutY="197.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #dff9fb; -fx-border-color: #ffc029; -fx-border-radius: 10;" text="   SAVE" textFill="#ffc029">
+            <Button fx:id="btnSave" layoutX="753.0" layoutY="197.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #dff9fb; -fx-border-color: #273c75; -fx-border-radius: 10;" text="   SAVE" textFill="#273c75">
                <font>
                   <Font size="18.0" />
                </font>
@@ -84,7 +84,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <FontAwesomeIcon fill="#ffc029" iconName="SAVE" layoutX="784.0" layoutY="226.0" size="2em" />
+            <FontAwesomeIcon fill="#273c75" iconName="SAVE" layoutX="784.0" layoutY="226.0" size="2em" />
             <FontAwesomeIcon fill="#ffc029" iconName="WRENCH" layoutX="779.0" layoutY="167.0" size="2em" />
             <Label layoutX="14.0" layoutY="149.0" prefHeight="43.0" prefWidth="145.0" text="Availability Status">
                <font>

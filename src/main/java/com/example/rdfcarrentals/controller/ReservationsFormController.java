@@ -7,6 +7,7 @@ import com.example.rdfcarrentals.model.CustomerModel;
 import com.example.rdfcarrentals.model.ReservationModel;
 import com.example.rdfcarrentals.tm.ReservationTM;
 import com.example.rdfcarrentals.util.CrudUtil;
+import com.example.rdfcarrentals.util.OptionButtonsUtil;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -19,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -288,14 +290,14 @@ public class ReservationsFormController implements Initializable {
         colIsDriverWant.setCellValueFactory(new PropertyValueFactory<>("isDriverWant"));
 
         tblReservations.getColumns().get(9).setCellValueFactory(param -> {
-            Button btnRemove = new Button("Remove");
+            ImageView btnRemove = OptionButtonsUtil.setRemoveButton();
 
             btnRemove.setOnMouseClicked(event -> {
                 ReservationTM selectedReservation = param.getValue();
                 tblReservations.getSelectionModel().select(selectedReservation);
                 setBtnRemove(event);
             });
-            return new ReadOnlyObjectWrapper(new HBox(100, btnRemove));
+            return new ReadOnlyObjectWrapper(new HBox(24, btnRemove));
         });
 
         try {

@@ -7,6 +7,7 @@ import com.example.rdfcarrentals.model.PaymentModel;
 import com.example.rdfcarrentals.model.ReservationModel;
 import com.example.rdfcarrentals.tm.PaymentTM;
 import com.example.rdfcarrentals.util.CrudUtil;
+import com.example.rdfcarrentals.util.OptionButtonsUtil;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -16,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -149,13 +151,12 @@ public class PaymentsFormController implements Initializable {
         ObservableList<PaymentTM> filteredPayments = FXCollections.observableArrayList();
 
         for (PaymentDTO paymentDTO : paymentDTOS) {
-            if (paymentDTO.getPaymentMethod().toLowerCase().contains(searchText) ||
-                paymentDTO.getReservationId().toLowerCase().contains(searchText) ||
-                paymentDTO.getBillId().toLowerCase().contains(searchText)) {
-                filteredPayments.add(new PaymentTM(
+            if (paymentDTO.getPaymentId().toLowerCase().contains(searchText) ||
+                    paymentDTO.getPaymentMethod().toLowerCase().contains(searchText) ||
+                    paymentDTO.getReservationId().toLowerCase().contains(searchText)) {
+                    filteredPayments.add(new PaymentTM(
                         paymentDTO.getPaymentId(),
                         paymentDTO.getReservationId(),
-                        paymentDTO.getBillId(),
                         paymentDTO.getPaymentMethod(),
                         paymentDTO.getAmount(),
                         paymentDTO.getDate(),
@@ -203,14 +204,14 @@ public class PaymentsFormController implements Initializable {
         colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
 
         tblPayments.getColumns().get(6).setCellValueFactory(param -> {
-            Button btnRemove = new Button("Remove");
+            ImageView btnRemove = OptionButtonsUtil.setRemoveButton();
 
             btnRemove.setOnMouseClicked(event -> {
                 PaymentTM selectedPayment = param.getValue();
                 tblPayments.getSelectionModel().select(selectedPayment);
                 setBtnRemove(event);
             });
-            return new ReadOnlyObjectWrapper(new HBox(100, btnRemove));
+            return new ReadOnlyObjectWrapper(new HBox(24, btnRemove));
         });
 
         try {

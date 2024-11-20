@@ -6,6 +6,7 @@ import com.example.rdfcarrentals.model.CarModel;
 import com.example.rdfcarrentals.model.RepairModel;
 import com.example.rdfcarrentals.tm.RepairTM;
 import com.example.rdfcarrentals.util.CrudUtil;
+import com.example.rdfcarrentals.util.OptionButtonsUtil;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -15,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -178,14 +180,14 @@ public class RepairsFormController implements Initializable {
         colCost.setCellValueFactory(new PropertyValueFactory<>("cost"));
 
         tblRepairs.getColumns().get(5).setCellValueFactory(param -> {
-            Button btnRemove = new Button("Remove");
+            ImageView btnRemove = OptionButtonsUtil.setRemoveButton();
 
             btnRemove.setOnMouseClicked(event -> {
                 RepairTM selectedRepair = param.getValue();
                 tblRepairs.getSelectionModel().select(selectedRepair);
                 setBtnRemove(event);
             });
-            return new ReadOnlyObjectWrapper(new HBox(100, btnRemove));
+            return new ReadOnlyObjectWrapper(new HBox(24, btnRemove));
         });
 
         try {

@@ -7,6 +7,7 @@ import com.example.rdfcarrentals.model.CarModel;
 import com.example.rdfcarrentals.model.DriverModel;
 import com.example.rdfcarrentals.tm.DriverTM;
 import com.example.rdfcarrentals.util.CrudUtil;
+import com.example.rdfcarrentals.util.OptionButtonsUtil;
 import com.example.rdfcarrentals.util.ValidationUtil;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -20,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -148,8 +150,9 @@ public class DriverFormController implements Initializable {
         boolean isValidName = ValidationUtil.isValidName(txtFldName);
         boolean isValidEmail = ValidationUtil.isValidEmail(txtFldEmail);
         boolean isValidContactNumber = ValidationUtil.isValidContactNumber(txtFldContactNumber);
+        boolean isValidPrice = ValidationUtil.isValidPrice(txtPricePerKm);
 
-        return isValidNic && isValidName && isValidEmail && isValidContactNumber;
+        return isValidNic && isValidName && isValidEmail && isValidContactNumber && isValidPrice;
     }
 
     @FXML
@@ -258,14 +261,14 @@ public class DriverFormController implements Initializable {
         colPricePerKm.setCellValueFactory(new PropertyValueFactory<>("pricePerKm"));
 
         tblDrivers.getColumns().get(6).setCellValueFactory(param -> {
-            Button btnRemove = new Button("Remove");
+            ImageView btnRemove = OptionButtonsUtil.setRemoveButton();
 
             btnRemove.setOnMouseClicked(event -> {
                 DriverTM selectedDriver = param.getValue();
                 tblDrivers.getSelectionModel().select(selectedDriver);
                 setBtnRemove(event);
             });
-            return new ReadOnlyObjectWrapper(new HBox(100, btnRemove));
+            return new ReadOnlyObjectWrapper(new HBox(24, btnRemove));
         });
 
         try {

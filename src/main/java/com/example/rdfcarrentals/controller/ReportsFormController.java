@@ -45,7 +45,27 @@ public class ReportsFormController {
 
     @FXML
     void btnDurationReportGenerateOnAction(ActionEvent event) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("p_Date", LocalDate.now().toString());
 
+            JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/DurationReport.jrxml"));
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    jasperReport,
+                    parameters,
+                    connection
+            );
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException e) {
+            new Alert(Alert.AlertType.ERROR, "Fail to load Report..!").show();
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Data Empty..!").show();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Fail to load Report..!").show();
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -73,10 +93,10 @@ public class ReportsFormController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Data Empty..!").show();
         } catch (Exception e) {
-        new Alert(Alert.AlertType.ERROR, "Fail to load Report..!").show();
-        e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Fail to load Report..!").show();
+            e.printStackTrace();
+        }
     }
-}
 
     @FXML
     void btnYearOverviewGenerateOnAction(ActionEvent event) {
