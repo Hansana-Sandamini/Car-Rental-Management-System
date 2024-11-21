@@ -119,5 +119,16 @@
          </font>
       </TextField>
       <FontAwesomeIcon fx:id="searchIcon" fill="#c3bfbf" iconName="SEARCH" layoutX="275.0" layoutY="430.0" />
+      <Label alignment="CENTER" layoutX="386.0" layoutY="32.0" prefHeight="54.0" prefWidth="176.0" text="Reservations" textFill="#273c75">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="795.0" layoutY="35.0" size="2em" />
+      <Label fx:id="lblHeadingUserName" layoutX="826.0" layoutY="9.0" prefHeight="35.0" prefWidth="198.0" text="Hansana Sandamini" textFill="#636e72">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

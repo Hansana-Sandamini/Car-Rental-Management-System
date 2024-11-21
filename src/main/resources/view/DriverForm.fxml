@@ -126,8 +126,8 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="756.0" layoutY="31.0" size="2em" />
-      <Label fx:id="lblHeadingUserName" layoutX="780.0" layoutY="4.0" prefHeight="35.0" prefWidth="241.0" textFill="#636e72">
+      <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="787.0" layoutY="31.0" size="2em" />
+      <Label fx:id="lblHeadingUserName" layoutX="819.0" layoutY="8.0" prefHeight="35.0" prefWidth="198.0" text="Hansana Sandamini" textFill="#636e72">
          <font>
             <Font size="15.0" />
          </font>

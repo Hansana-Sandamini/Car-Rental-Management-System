@@ -20,12 +20,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="726.0" layoutY="31.0" size="2em" />
-            <Label fx:id="lblHeadingUserName" layoutX="750.0" layoutY="4.0" prefHeight="35.0" prefWidth="241.0" textFill="#636e72">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
+            <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="761.0" layoutY="32.0" size="2em" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="28.0" layoutY="126.0" prefHeight="255.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 20;">
@@ -115,5 +110,10 @@
             <TableColumn fx:id="colOptions" prefWidth="96.0" text="Options" />
         </columns>
       </TableView>
+      <Label fx:id="lblHeadingUserName" layoutX="820.0" layoutY="10.0" prefHeight="35.0" prefWidth="198.0" text="Hansana Sandamini" textFill="#636e72">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

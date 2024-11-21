@@ -44,9 +44,6 @@ import java.util.ResourceBundle;
 public class DriverFormController implements Initializable {
 
     @FXML
-    private Label lblHeadingUserName;
-
-    @FXML
     private Button btnSave;
 
     @FXML

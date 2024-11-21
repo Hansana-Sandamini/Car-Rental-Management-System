@@ -3,6 +3,7 @@ package com.example.rdfcarrentals.controller;
 import com.example.rdfcarrentals.db.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -11,16 +12,15 @@ import javafx.scene.layout.AnchorPane;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
-public class ReportsFormController {
-
-    @FXML
-    private Label lblHeadingUserName;
+public class ReportsFormController implements Initializable {
 
     @FXML
     private Button btnDurationReportGenerate;
@@ -185,4 +185,7 @@ public class ReportsFormController {
         }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+    }
 }

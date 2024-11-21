@@ -127,8 +127,8 @@
             <TableColumn fx:id="colOption" prefWidth="88.0" text="Options" />
          </columns>
       </TableView>
-      <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="752.0" layoutY="31.0" size="2em" />
-      <Label fx:id="lblHeadingUserName" layoutX="776.0" layoutY="4.0" prefHeight="35.0" prefWidth="241.0" textFill="#636e72">
+      <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="790.0" layoutY="31.0" size="2em" />
+      <Label fx:id="lblHeadingUserName" layoutX="821.0" layoutY="8.0" prefHeight="35.0" prefWidth="198.0" text="Hansana Sandamini" textFill="#636e72">
          <font>
             <Font size="15.0" />
          </font>

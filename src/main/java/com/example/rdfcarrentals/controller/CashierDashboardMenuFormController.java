@@ -50,18 +50,11 @@ public class CashierDashboardMenuFormController implements Initializable {
     @FXML
     private AnchorPane cashierDashboardMenu;
 
-    @Setter
-    private HeadingFormController headingFormController;
-
-    public void navigateTo(String fxmlPath, String formName) {
+    public void navigateTo(String fxmlPath) {
         try {
             cashierDashboardRightPane.getChildren().clear();
             AnchorPane load = FXMLLoader.load(getClass().getResource(fxmlPath));
             cashierDashboardRightPane.getChildren().add(load);
-
-            if (headingFormController != null) {
-                headingFormController.setFormName(formName);
-            }
         } catch (IOException e) {
             new Alert(Alert.AlertType.ERROR, "Fail to load page...!").show();
         }
@@ -80,28 +73,28 @@ public class CashierDashboardMenuFormController implements Initializable {
     @FXML
     void btnCarsOnAction(ActionEvent event) {
         resetButtonStyles();
-        navigateTo("/view/CarsForm.fxml", "Cars");
+        navigateTo("/view/CarsForm.fxml");
         btnCars.setStyle("-fx-background-color:  f2e9e4;");
     }
 
     @FXML
     void btnCreditsOnAction(ActionEvent event) {
         resetButtonStyles();
-        navigateTo("/view/CreditsForm.fxml", "Credits");
+        navigateTo("/view/CreditsForm.fxml");
         btnCredits.setStyle("-fx-background-color:  f2e9e4;");
     }
 
     @FXML
     void btnCustomersOnAction(ActionEvent event) {
         resetButtonStyles();
-        navigateTo("/view/CustomerForm.fxml", "Customers");
+        navigateTo("/view/CustomerForm.fxml");
         btnCustomers.setStyle("-fx-background-color:  f2e9e4;");
     }
 
     @FXML
     void btnDashboardOnAction(ActionEvent event) {
         resetButtonStyles();
-        navigateTo("/view/CashierDashboardForm.fxml", "Dashboard");
+        navigateTo("/view/CashierDashboardForm.fxml");
         btnDashboard.setStyle("-fx-background-color:  f2e9e4;");
     }
 
@@ -130,21 +123,21 @@ public class CashierDashboardMenuFormController implements Initializable {
     @FXML
     void btnPaymentsOnAction(ActionEvent event) {
         resetButtonStyles();
-        navigateTo("/view/PaymentsForm.fxml", "Payments");
+        navigateTo("/view/PaymentsForm.fxml");
         btnPayments.setStyle("-fx-background-color:  f2e9e4;");
     }
 
     @FXML
     void btnRepairsOnAction(ActionEvent event) {
         resetButtonStyles();
-        navigateTo("/view/RepairsForm.fxml", "Repairs");
+        navigateTo("/view/RepairsForm.fxml");
         btnRepairs.setStyle("-fx-background-color:  f2e9e4;");
     }
 
     @FXML
     void btnReservationsOnAction(ActionEvent event) {
         resetButtonStyles();
-        navigateTo("/view/ReservationsForm.fxml", "Reservations");
+        navigateTo("/view/ReservationsForm.fxml");
         btnReservations.setStyle("-fx-background-color:  f2e9e4;");
     }
 

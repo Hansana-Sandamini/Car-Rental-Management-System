@@ -30,9 +30,6 @@ import java.util.ResourceBundle;
 public class CustomerFormController implements Initializable {
 
     @FXML
-    private Label lblHeadingUserName;
-
-    @FXML
     private Button btnRefresh;
 
     @FXML

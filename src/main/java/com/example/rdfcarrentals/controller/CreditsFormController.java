@@ -1,5 +1,6 @@
 package com.example.rdfcarrentals.controller;
 
+import com.example.rdfcarrentals.db.DBConnection;
 import com.example.rdfcarrentals.dto.CreditDTO;
 import com.example.rdfcarrentals.dto.CustomerDTO;
 import com.example.rdfcarrentals.dto.ReservationDTO;
@@ -24,19 +25,17 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class CreditsFormController implements Initializable {
-
-    @FXML
-    private Label lblHeadingUserName;
 
     @FXML
     private Button btnRefresh;
@@ -97,6 +96,9 @@ public class CreditsFormController implements Initializable {
 
     @FXML
     private FontAwesomeIcon searchIcon;
+
+    @FXML
+    private Button btnViewBill;
 
     private final CreditModel creditModel = new CreditModel();
     private final CustomerModel customerModel = new CustomerModel();
@@ -166,6 +168,34 @@ public class CreditsFormController implements Initializable {
         ObservableList<String> observableList = FXCollections.observableArrayList();
         observableList.addAll(reservationIDs);
         cmbReservationID.setItems(observableList);
+    }
+
+
+    @FXML
+    void btnViewBillOnAction(ActionEvent event) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("p_Date", LocalDate.now().toString());
+            parameters.put("p_credit_id", lblCreditID.getText());
+
+            JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/BillCredits.jrxml"));
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    jasperReport,
+                    parameters,
+                    connection
+            );
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException e) {
+            new Alert(Alert.AlertType.ERROR, "Fail to load Report..!").show();
+            e.printStackTrace();
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Data Empty..!").show();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Fail to load Report..!").show();
+            e.printStackTrace();
+        }
     }
 
     @FXML

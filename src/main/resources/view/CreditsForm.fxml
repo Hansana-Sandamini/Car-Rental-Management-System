@@ -113,8 +113,14 @@
       </Button>
       <FontAwesomeIcon fill="#273c75" iconName="SAVE" layoutX="834.0" layoutY="366.0" size="2em" />
       <FontAwesomeIcon fill="#e84118" iconName="REFRESH" layoutX="834.0" layoutY="304.0" size="2em" />
-      <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="756.0" layoutY="31.0" size="2em" />
-      <Label fx:id="lblHeadingUserName" layoutX="780.0" layoutY="4.0" prefHeight="35.0" prefWidth="241.0" textFill="#636e72">
+      <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="795.0" layoutY="31.0" size="2em" />
+      <Button fx:id="btnViewBill" layoutX="604.0" layoutY="332.0" mnemonicParsing="false" onAction="#btnViewBillOnAction" prefHeight="40.0" prefWidth="176.0" style="-fx-background-color: #dfe6e9; -fx-border-radius: 10; -fx-border-color: #00b894;" text="      VIEW BILL" textFill="#00b894">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <FontAwesomeIcon fill="#00b894" iconName="EYE" layoutX="624.0" layoutY="360.0" size="2em" />
+      <Label fx:id="lblHeadingUserName" layoutX="826.0" layoutY="9.0" prefHeight="35.0" prefWidth="198.0" text="Hansana Sandamini" textFill="#636e72">
          <font>
             <Font size="15.0" />
          </font>

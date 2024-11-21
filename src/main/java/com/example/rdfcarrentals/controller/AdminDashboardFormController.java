@@ -28,9 +28,6 @@ public class AdminDashboardFormController implements Initializable {
     private AnchorPane adminDashboardHeadingPane;
 
     @FXML
-    private Label lblHeadingUserName;
-
-    @FXML
     private Label lblCreditNotPaid;
 
     @FXML
@@ -80,7 +77,6 @@ public class AdminDashboardFormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ClockUtil.startClock(lblDate, lblTime);
         loadChart();
-        //lblHeadingUserName.setText();
 
         try {
             lblTotalSales.setText(reservationModel.getMonthlySales() + " Sales");

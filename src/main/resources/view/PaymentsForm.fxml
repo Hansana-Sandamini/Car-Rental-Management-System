@@ -123,8 +123,8 @@
          </font>
       </TextField>
       <FontAwesomeIcon fx:id="searchIcon" fill="#c3bfbf" iconName="SEARCH" layoutX="275.0" layoutY="430.0" />
-      <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="752.0" layoutY="32.0" size="2em" />
-      <Label fx:id="lblHeadingUserName" layoutX="776.0" layoutY="5.0" prefHeight="35.0" prefWidth="241.0" textFill="#636e72">
+      <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="790.0" layoutY="32.0" size="2em" />
+      <Label fx:id="lblHeadingUserName" layoutX="820.0" layoutY="6.0" prefHeight="35.0" prefWidth="198.0" text="Hansana Sandamini" textFill="#636e72">
          <font>
             <Font size="15.0" />
          </font>

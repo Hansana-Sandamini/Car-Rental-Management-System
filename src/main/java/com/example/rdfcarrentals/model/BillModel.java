@@ -1,5 +1,6 @@
 package com.example.rdfcarrentals.model;
 
+import com.example.rdfcarrentals.dto.BillDTO;
 import com.example.rdfcarrentals.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -18,5 +19,15 @@ public class BillModel {
             return String.format("B%03d", newIdIndex);
         }
         return "B001";
+    }
+
+    public boolean saveBill(BillDTO billDTO) throws SQLException {
+        return CrudUtil.execute(
+                "INSERT INTO bill VALUES (?,?,?,?)",
+                billDTO.getBillId(),
+                billDTO.getPaymentId(),
+                billDTO.getDescription(),
+                billDTO.getIssueDate()
+        );
     }
 }

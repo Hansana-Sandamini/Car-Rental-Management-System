@@ -36,7 +36,7 @@ public class AdminLoginFormController implements Initializable {
     private ImageView adminLoginBackIcon;
 
     public static String userName;
-    public static String name;
+    public static String name1;
 
     @FXML
     void btnAdminLoginOnAction(ActionEvent event) throws IOException {
@@ -51,7 +51,7 @@ public class AdminLoginFormController implements Initializable {
                 if (resultSet.getString(2).equals(txtFldAdminPassword.getText())){
                     txtFldAdminPassword.setStyle(";-fx-border-color: #7367F0;");
                     userName = resultSet.getString(1);
-                    name = resultSet.getString(3);
+                    name1 = resultSet.getString(3);
                     adminLoginPane.getChildren().clear();
                     AnchorPane load = FXMLLoader.load(getClass().getResource("/view/AdminDashboardMenuForm.fxml"));
                     adminLoginPane.getChildren().add(load);

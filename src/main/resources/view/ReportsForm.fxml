@@ -85,8 +85,8 @@
             </Label>
          </children>
       </AnchorPane>
-      <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="753.0" layoutY="31.0" size="2em" />
-      <Label fx:id="lblHeadingUserName" layoutX="777.0" layoutY="4.0" prefHeight="35.0" prefWidth="241.0" textFill="#636e72">
+      <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="784.0" layoutY="31.0" size="2em" />
+      <Label fx:id="lblHeadingUserName" layoutX="816.0" layoutY="5.0" prefHeight="35.0" prefWidth="198.0" text="Hansana Sandamini" textFill="#636e72">
          <font>
             <Font size="15.0" />
          </font>
