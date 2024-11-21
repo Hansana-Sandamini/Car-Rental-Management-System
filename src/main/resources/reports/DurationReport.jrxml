@@ -3,19 +3,31 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="RdfCarRentalsDurationDBConnection"/>
 	<parameter name="p_Date" class="java.lang.String"/>
-	<query language="SQL"><![CDATA[SELECT cu.name AS customer_name,
-       cs.name AS cashier_name,
-       rd.license_plate_no,
-       r.reservation_id,
-       r.pick_up_date,
-       r.return_date,
-       p.amount
-FROM customer cu
-         LEFT JOIN reservation r ON cu.nic = r.customer_nic
-         LEFT JOIN reservation_detail rd ON r.reservation_id = rd.reservation_id
-         LEFT JOIN payment p ON r.reservation_id = p.reservation_id
-         LEFT JOIN cashier cs ON r.cashier_username = cs.username
-WHERE MONTH(pick_up_date) = MONTH(CURRENT_DATE()) AND YEAR(pick_up_date) = YEAR(CURRENT_DATE());]]></query>
+	<parameter name="txtFrom" class="java.lang.String"/>
+	<parameter name="txtTo" class="java.lang.String"/>
+	<query language="SQL"><![CDATA[SELECT 
+    cu.name AS customer_name,
+    cs.name AS cashier_name,
+    rd.license_plate_no,
+    r.reservation_id,
+    r.pick_up_date,
+    r.return_date,
+    p.amount
+FROM 
+    customer cu
+LEFT JOIN 
+    reservation r ON cu.nic = r.customer_nic
+LEFT JOIN 
+    reservation_detail rd ON r.reservation_id = rd.reservation_id
+LEFT JOIN 
+    payment p ON r.reservation_id = p.reservation_id
+LEFT JOIN 
+    cashier cs ON r.cashier_username = cs.username
+WHERE 
+    r.pick_up_date BETWEEN $P(txtFrom) AND $P(txtTo)
+ORDER BY 
+    r.pick_up_date
+]]></query>
 	<field name="customer_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="name"/>
 		<property name="com.jaspersoft.studio.field.label" value="customer_name"/>

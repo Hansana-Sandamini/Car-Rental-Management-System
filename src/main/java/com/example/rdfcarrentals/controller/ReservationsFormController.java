@@ -42,7 +42,7 @@ import java.util.*;
 public class ReservationsFormController implements Initializable {
 
     @FXML
-    private Label lblHeadingUserName;
+    private AnchorPane reservationHeadingPane;
 
     @FXML
     private Button btnAddReservation;
@@ -279,8 +279,20 @@ public class ReservationsFormController implements Initializable {
         }
     }
 
+    public void loadHeadingPane() {
+        try {
+            reservationHeadingPane.getChildren().clear();
+            AnchorPane load = FXMLLoader.load(getClass().getResource("/view/HeadingForm.fxml"));
+            reservationHeadingPane.getChildren().add(load);
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Fail to load Heading...!").show();
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadHeadingPane();
         cmbIsDriverWant.getItems().addAll("Yes", "No");
 
         colReservationID.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
@@ -373,11 +385,36 @@ public class ReservationsFormController implements Initializable {
     }
 
     public static int getYearTotalSaleAmount() throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtil.execute("SELECT SUM(p.amount) FROM payment p LEFT JOIN reservation r ON p.reservation_id = r.reservation_id WHERE YEAR(r.pick_up_date) = YEAR(CURRENT_DATE())");
-        if (resultSet.next()) {
-            return resultSet.getInt(1);
+//        ResultSet resultSet = CrudUtil.execute(
+//                "SELECT MONTH(r.pick_up_date) " +
+//                        "COALESCE(SUM(p.amount), 0) + COALESCE(SUM(CASE WHEN c.amount_to_pay = 0 THEN c.total_amount ELSE 0 END), 0) " +
+//                        "FROM reservation r " +
+//                        "LEFT JOIN payment p ON r.reservation_id = p.reservation_id " +
+//                        "LEFT JOIN credit c ON r.reservation_id = c.reservation_id " +
+//                        "GROUP BY YEAR(r.pick_up_date) " +
+//                        "ORDER BY YEAR(r.pick_up_date)"
+//        );
+//        if (resultSet.next()) {
+//            return resultSet.getInt(1);
+//        }
+//        return 0;
+
+        ResultSet resultSet = CrudUtil.execute(
+                "SELECT " +
+                        "MONTH(r.pick_up_date) AS month, " +
+                        "COALESCE(SUM(p.amount), 0) + COALESCE(SUM(CASE WHEN c.amount_to_pay = 0 THEN c.total_amount ELSE 0 END), 0) AS monthly_income " +
+                        "FROM reservation r " +
+                        "LEFT JOIN payment p ON r.reservation_id = p.reservation_id " +
+                        "LEFT JOIN credit c ON r.reservation_id = c.reservation_id " +
+                        "GROUP BY MONTH(r.pick_up_date) " +
+                        "ORDER BY MONTH(r.pick_up_date)"
+        );
+
+        int totalIncome = 0;
+        while (resultSet.next()) {
+            totalIncome += resultSet.getInt("monthly_income");
         }
-        return 0;
+        return totalIncome;
     }
 
     public static ObservableList<Double> getIncomeMonthly() throws SQLException, ClassNotFoundException {

@@ -28,7 +28,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="28.0" layoutY="119.0" prefHeight="255.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <AnchorPane layoutX="28.0" layoutY="126.0" prefHeight="255.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <Label layoutX="14.0" layoutY="4.0" prefHeight="43.0" prefWidth="115.0" text="Customer NIC" textFill="#636e72">
                <font>
@@ -99,12 +99,12 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <TextField fx:id="txtFldSearchHere" layoutX="242.0" layoutY="395.0" onKeyReleased="#txtFldSearchHereOnAction" prefHeight="35.0" prefWidth="500.0" promptText="       Search Here">
+      <TextField fx:id="txtFldSearchHere" layoutX="242.0" layoutY="397.0" onKeyReleased="#txtFldSearchHereOnAction" prefHeight="35.0" prefWidth="500.0" promptText="       Search Here">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <FontAwesomeIcon fx:id="searchIcon" fill="#c3bfbf" iconName="SEARCH" layoutX="256.0" layoutY="417.0" />
+      <FontAwesomeIcon fx:id="searchIcon" fill="#c3bfbf" iconName="SEARCH" layoutX="256.0" layoutY="419.0" />
       <TableView fx:id="tblCustomers" layoutX="28.0" layoutY="449.0" onMouseClicked="#tblCustomersOnClicked" prefHeight="331.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
         <columns>
           <TableColumn fx:id="colNic" prefWidth="161.0" text="NIC" />

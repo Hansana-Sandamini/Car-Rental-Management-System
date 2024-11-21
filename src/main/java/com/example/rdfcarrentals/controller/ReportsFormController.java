@@ -49,15 +49,27 @@ public class ReportsFormController {
     @FXML
     void btnDurationReportGenerateOnAction(ActionEvent event) {
         try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            Map<String, Object> parameters = new HashMap<>();
-            parameters.put("p_Date", LocalDate.now().toString());
+            LocalDate fromDate = txtFrom.getValue();
+            LocalDate toDate = txtTo.getValue();
 
+            if (fromDate != null && toDate != null) {
+                new Alert(Alert.AlertType.ERROR, "Please select both 'From' and 'To' dates.").show();
+                return;
+            }
+
+            java.sql.Date sqlFromDate = java.sql.Date.valueOf(fromDate);
+            java.sql.Date sqlToDate = java.sql.Date.valueOf(toDate);
+
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("txtFrom", sqlFromDate);
+            parameters.put("txtTo", sqlToDate);
+
+            Connection connection = DBConnection.getInstance().getConnection();
             JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/DurationReport.jrxml"));
             JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    jasperReport,
-                    parameters,
-                    connection
+                        jasperReport,
+                        parameters,
+                        connection
             );
             JasperViewer.viewReport(jasperPrint, false);
 
@@ -73,7 +85,28 @@ public class ReportsFormController {
 
     @FXML
     void btnMonthOverviewGenerateOnAction(ActionEvent event) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("p_Date", LocalDate.now().toString());
 
+            JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/MonthOverview.jrxml"));
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    jasperReport,
+                    parameters,
+                    connection
+            );
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException e) {
+            new Alert(Alert.AlertType.ERROR, "Fail to load Monthly Overview Report..!").show();
+            e.printStackTrace();
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Data Empty..!").show();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Fail to load Report..!").show();
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -103,7 +136,28 @@ public class ReportsFormController {
 
     @FXML
     void btnYearOverviewGenerateOnAction(ActionEvent event) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("p_Date", LocalDate.now().toString());
 
+            JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/YearOverview.jrxml"));
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    jasperReport,
+                    parameters,
+                    connection
+            );
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to generate Yearly Overview Report.").show();
+            e.printStackTrace();
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Data Empty..!").show();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Fail to load Report..!").show();
+            e.printStackTrace();
+        }
     }
 
     @FXML

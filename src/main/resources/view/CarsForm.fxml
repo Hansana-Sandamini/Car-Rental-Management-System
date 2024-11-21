@@ -21,7 +21,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="28.0" layoutY="119.0" prefHeight="255.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <AnchorPane layoutX="28.0" layoutY="128.0" prefHeight="255.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <Label layoutX="14.0" layoutY="4.0" prefHeight="43.0" prefWidth="131.0" text="License Plate No" textFill="#636e72">
                <font>
@@ -109,13 +109,13 @@
             </TextField>
          </children>
       </AnchorPane>
-      <TextField fx:id="txtFldSearchHere" layoutX="242.0" layoutY="395.0" onKeyReleased="#txtFldSearchHereOnAction" prefHeight="35.0" prefWidth="500.0" promptText="       Search Here">
+      <TextField fx:id="txtFldSearchHere" layoutX="242.0" layoutY="405.0" onKeyReleased="#txtFldSearchHereOnAction" prefHeight="35.0" prefWidth="500.0" promptText="       Search Here">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <FontAwesomeIcon fx:id="searchIcon" fill="#c3bfbf" iconName="SEARCH" layoutX="256.0" layoutY="417.0" />
-      <TableView fx:id="tblCars" layoutX="28.0" layoutY="449.0" onMouseClicked="#tblCarsOnClicked" prefHeight="331.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
+      <FontAwesomeIcon fx:id="searchIcon" fill="#c3bfbf" iconName="SEARCH" layoutX="256.0" layoutY="427.0" />
+      <TableView fx:id="tblCars" layoutX="28.0" layoutY="454.0" onMouseClicked="#tblCarsOnClicked" prefHeight="326.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
          <columns>
             <TableColumn fx:id="colLicensePlateNo" prefWidth="117.0" text=" License &#10;Plate No" />
             <TableColumn fx:id="colTypeID" prefWidth="104.0" text="Type ID" />

@@ -1,6 +1,5 @@
 package com.example.rdfcarrentals.controller;
 
-import com.example.rdfcarrentals.model.CarModel;
 import com.example.rdfcarrentals.model.CreditModel;
 import com.example.rdfcarrentals.model.ReservationModel;
 import com.example.rdfcarrentals.util.ClockUtil;
@@ -56,26 +55,16 @@ public class AdminDashboardFormController implements Initializable {
     private Label top1;
 
     @FXML
-    private Label top11;
-
-    @FXML
     private Label top2;
 
     @FXML
-    private Label top22;
-
-    @FXML
     private Label top3;
-
-    @FXML
-    private Label top33;
 
     @FXML
     private BarChart<String, Number> barChart;
 
     private final ReservationModel reservationModel = new ReservationModel();
     private final CreditModel creditModel = new CreditModel();
-    private final CarModel carModel = new CarModel();
 
     @FXML
     void creditNotPaidViewDetailsOnAction(MouseEvent event) {
@@ -141,6 +130,6 @@ public class AdminDashboardFormController implements Initializable {
             e.printStackTrace();
         }
         barChart.getData().setAll(series);
-        //barChart.getXAxis().setTickLabelRotation(90);
+        barChart.getXAxis().setTickLabelRotation(360);
     }
 }

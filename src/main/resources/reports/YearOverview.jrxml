@@ -1,0 +1,195 @@
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="YearOverview" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4592d2af-d51a-47ee-a642-74a2fc73e384">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="YearOverVireRDF"/>
+	<parameter name="p_Date" class="java.lang.String"/>
+	<query language="SQL"><![CDATA[SELECT
+    YEAR(r.pick_up_date) AS Year,
+    COUNT(r.reservation_id) AS TotalReservations,
+    SUM(rd.driver_cost) AS TotalDriverCost,
+    COUNT(cr.credit_id) AS TotalCreditPayments,
+    SUM(p.amount) AS TotalPaymentIncome,
+    COUNT(repair.repair_id) AS TotalRepairs,
+    COALESCE(SUM(repair.cost), 0) AS TotalRepairCost,
+    (COALESCE(SUM(p.amount), 0) - (COALESCE(SUM(rd.driver_cost), 0) + COALESCE(SUM(repair.cost), 0))) AS NetIncome
+FROM
+    reservation r
+        LEFT JOIN
+    reservation_detail rd ON r.reservation_id = rd.reservation_id
+        LEFT JOIN
+    credit cr ON r.reservation_id = cr.reservation_id
+        LEFT JOIN
+    payment p ON r.reservation_id = p.reservation_id
+        LEFT JOIN
+    repair ON rd.license_plate_no = repair.license_plate_no
+WHERE
+    YEAR(r.pick_up_date) = YEAR(CURRENT_DATE)
+GROUP BY
+    YEAR(r.pick_up_date)
+ORDER BY
+    YEAR(r.pick_up_date)]]></query>
+	<field name="Year" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="Year"/>
+		<property name="com.jaspersoft.studio.field.label" value="Year"/>
+	</field>
+	<field name="TotalReservations" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="TotalReservations"/>
+		<property name="com.jaspersoft.studio.field.label" value="TotalReservations"/>
+	</field>
+	<field name="TotalDriverCost" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TotalDriverCost"/>
+		<property name="com.jaspersoft.studio.field.label" value="TotalDriverCost"/>
+	</field>
+	<field name="TotalCreditPayments" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="TotalCreditPayments"/>
+		<property name="com.jaspersoft.studio.field.label" value="TotalCreditPayments"/>
+	</field>
+	<field name="TotalPaymentIncome" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TotalPaymentIncome"/>
+		<property name="com.jaspersoft.studio.field.label" value="TotalPaymentIncome"/>
+	</field>
+	<field name="TotalRepairs" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="TotalRepairs"/>
+		<property name="com.jaspersoft.studio.field.label" value="TotalRepairs"/>
+	</field>
+	<field name="TotalRepairCost" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TotalRepairCost"/>
+		<property name="com.jaspersoft.studio.field.label" value="TotalRepairCost"/>
+	</field>
+	<field name="NetIncome" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="NetIncome"/>
+		<property name="com.jaspersoft.studio.field.label" value="NetIncome"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="79" splitType="Stretch">
+		<element kind="staticText" uuid="d92988f9-db13-49a5-9df7-35e39db5e8d5" x="100" y="13" width="360" height="47" fontSize="18.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[RDF Car Rentals]]></text>
+		</element>
+	</title>
+	<pageHeader height="43" splitType="Stretch">
+		<element kind="textField" uuid="60e437e0-ea0f-41ee-a2f6-1843bfdedc20" x="455" y="0" width="100" height="30" fontSize="11.0" hTextAlign="Right">
+			<expression><![CDATA[$P{p_Date}]]></expression>
+		</element>
+	</pageHeader>
+	<columnHeader height="46" splitType="Stretch">
+		<element kind="staticText" uuid="beeef6f2-b4ef-4f18-9d2a-b9c0ccc95e6a" x="0" y="16" width="72" height="30" fontSize="11.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Year]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="706a2616-0e12-4e34-87db-637e4df9a306"/>
+			<box>
+				<pen lineWidth="1.0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="4960b821-7b56-4718-965c-5893b862c0d2" x="72" y="16" width="69" height="30" fontSize="11.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[TotalReservations]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a7d4a1e1-9c5c-427e-915c-e734f071be83"/>
+			<box>
+				<pen lineWidth="1.0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="9e7b65f3-27ec-49c5-8f2e-1be588f8f76b" x="141" y="16" width="69" height="30" fontSize="11.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[TotalDriverCost]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="731a72f2-d12b-4893-b194-da6a57c23340"/>
+			<box>
+				<pen lineWidth="1.0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="cf4638d4-22eb-4140-8651-3e2acdb83e41" x="210" y="16" width="69" height="30" fontSize="11.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[TotalCreditPayments]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3a72a32d-289e-4903-b78c-ef3569edda89"/>
+			<box>
+				<pen lineWidth="1.0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="b83a313f-bdab-48db-9cf5-7640c6775cba" x="279" y="16" width="69" height="30" fontSize="11.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[TotalPaymentIncome]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3c2b257a-82e4-48ad-a6b5-62665b3cd01d"/>
+			<box>
+				<pen lineWidth="1.0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="2095423c-df3a-4a88-93a4-b2fcd96c75a2" x="348" y="16" width="69" height="30" fontSize="11.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[TotalRepairs]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="29657d2f-26ca-4d5b-a563-b2263e683de6"/>
+			<box>
+				<pen lineWidth="1.0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="64f09513-3da1-4368-97b6-e03a60efdc06" x="417" y="16" width="69" height="30" fontSize="11.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[TotalRepairCost]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c49dee9c-3c51-4962-a99b-bf2ef485a7c0"/>
+			<box>
+				<pen lineWidth="1.0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="c3520cf3-a62b-4782-a8d2-d7266b312e40" x="486" y="16" width="69" height="30" fontSize="11.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[NetIncome]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ed4b3c91-06cd-4940-b57d-ae7fdbfbe4bc"/>
+			<box>
+				<pen lineWidth="1.0"/>
+			</box>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<element kind="textField" uuid="6237a277-b812-427e-8afc-568902593f20" x="0" y="0" width="72" height="30" fontSize="11.0" hTextAlign="Center">
+				<expression><![CDATA[$F{Year}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="706a2616-0e12-4e34-87db-637e4df9a306"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="da3d8e2a-b981-490d-94f8-2b05f2f584a4" x="72" y="0" width="69" height="30" fontSize="11.0" hTextAlign="Center">
+				<expression><![CDATA[$F{TotalReservations}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a7d4a1e1-9c5c-427e-915c-e734f071be83"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="b4cb0955-ef4a-464a-a1df-339a33f3baaa" x="141" y="0" width="69" height="30" fontSize="11.0" hTextAlign="Center">
+				<expression><![CDATA[$F{TotalDriverCost}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="731a72f2-d12b-4893-b194-da6a57c23340"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="7c1d2cda-5492-45db-ad15-598159697b42" x="210" y="0" width="69" height="30" fontSize="11.0" hTextAlign="Center">
+				<expression><![CDATA[$F{TotalCreditPayments}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3a72a32d-289e-4903-b78c-ef3569edda89"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="76cda8f9-7983-4efa-9abb-0b81908d88ae" x="279" y="0" width="69" height="30" fontSize="11.0" hTextAlign="Center">
+				<expression><![CDATA[$F{TotalPaymentIncome}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3c2b257a-82e4-48ad-a6b5-62665b3cd01d"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="4daf110d-7106-420d-af6f-66261122115c" x="348" y="0" width="69" height="30" fontSize="11.0" hTextAlign="Center">
+				<expression><![CDATA[$F{TotalRepairs}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="29657d2f-26ca-4d5b-a563-b2263e683de6"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="6876e5e7-177f-4362-9fb1-8a99911f7ef9" x="417" y="0" width="69" height="30" fontSize="11.0" hTextAlign="Center">
+				<expression><![CDATA[$F{TotalRepairCost}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c49dee9c-3c51-4962-a99b-bf2ef485a7c0"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="19450982-1743-4d5b-a1c7-1cf75de238c8" x="486" y="0" width="69" height="30" fontSize="11.0" hTextAlign="Center">
+				<expression><![CDATA[$F{NetIncome}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ed4b3c91-06cd-4940-b57d-ae7fdbfbe4bc"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+			</element>
+		</band>
+	</detail>
+	<columnFooter splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch"/>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>

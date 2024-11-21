@@ -44,16 +44,20 @@ public class CashierLoginFormController {
         try {
             ResultSet resultSet = CrudUtil.execute("SELECT * FROM cashier WHERE username=?",txtFldCashierUserName.getText());
             if (resultSet.next()){
+                txtFldCashierUserName.setStyle(";-fx-border-color: #7367F0;");
                 if (resultSet.getString(2).equals(txtFldCashierPassword.getText())){
+                    txtFldCashierPassword.setStyle(";-fx-border-color: #7367F0;");
                     userName = resultSet.getString(1);
                     name = resultSet.getString(3);
                     cashierLoginPane.getChildren().clear();
                     AnchorPane load = FXMLLoader.load(getClass().getResource("/view/CashierDashboardMenuForm.fxml"));
                     cashierLoginPane.getChildren().add(load);
                 }else {
+                    txtFldCashierPassword.setStyle(";-fx-border-color: red;");
                     new Alert(Alert.AlertType.ERROR, "Wrong Password. Please Try Again...!").show();
                 }
             }else {
+                txtFldCashierUserName.setStyle(";-fx-border-color: red;");
                 new Alert(Alert.AlertType.ERROR, "Wrong Username. Please Try Again...!").show();
             }
         } catch (SQLException | IOException e) {

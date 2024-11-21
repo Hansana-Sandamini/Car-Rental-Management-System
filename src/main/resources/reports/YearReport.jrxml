@@ -15,8 +15,7 @@ FROM customer cu
          LEFT JOIN reservation_detail rd ON r.reservation_id = rd.reservation_id
          LEFT JOIN payment p ON r.reservation_id = p.reservation_id
          LEFT JOIN cashier cs ON r.cashier_username = cs.username
-WHERE YEAR(pick_up_date) = YEAR(CURRENT_DATE());
-]]></query>
+WHERE YEAR(pick_up_date) = YEAR(CURRENT_DATE())]]></query>
 	<field name="customer_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="name"/>
 		<property name="com.jaspersoft.studio.field.label" value="customer_name"/>

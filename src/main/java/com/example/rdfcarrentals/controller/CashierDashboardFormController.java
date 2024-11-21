@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 public class CashierDashboardFormController implements Initializable {
 
     @FXML
-    private Label lblHeadingUserName;
+    private static Label lblHeadingUserName;
 
     @FXML
     private AnchorPane addCustomerPane;
