@@ -90,6 +90,8 @@ public class AdminDashboardFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ClockUtil.startClock(lblDate, lblTime);
+        loadChart();
+        //lblHeadingUserName.setText();
 
         try {
             lblTotalSales.setText(reservationModel.getMonthlySales() + " Sales");
@@ -112,7 +114,6 @@ public class AdminDashboardFormController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Fail to load page...!").show();
             e.printStackTrace();
         }
-        loadChart();
     }
 
     private void setTopProducts() throws SQLException, ClassNotFoundException {
@@ -140,5 +141,6 @@ public class AdminDashboardFormController implements Initializable {
             e.printStackTrace();
         }
         barChart.getData().setAll(series);
+        //barChart.getXAxis().setTickLabelRotation(90);
     }
 }

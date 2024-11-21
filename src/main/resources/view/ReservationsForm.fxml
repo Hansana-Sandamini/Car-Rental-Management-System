@@ -15,9 +15,9 @@
    <children>
       <AnchorPane layoutX="32.0" layoutY="1.0" prefHeight="102.0" prefWidth="998.0" style="-fx-background-color: white;">
          <children>
-            <Label alignment="CENTER" layoutX="313.0" layoutY="24.0" prefHeight="54.0" prefWidth="176.0" text="Reservations" textFill="#ffc029">
+            <Label alignment="CENTER" layoutX="352.0" layoutY="24.0" prefHeight="54.0" prefWidth="176.0" text="Reservations" textFill="#273c75">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
          </children>
@@ -25,32 +25,31 @@
       <TableView fx:id="tblReservations" layoutX="29.0" layoutY="458.0" onMouseClicked="#tblReservationsOnClicked" prefHeight="324.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
          <columns>
             <TableColumn fx:id="colReservationID" prefWidth="97.0" text="Reservation&#10;        ID" />
-            <TableColumn fx:id="colCreditID" prefWidth="56.0" text="Credit &#10;    ID" />
             <TableColumn fx:id="colCustomerNIC" prefWidth="130.0" text="Customer NIC" />
             <TableColumn fx:id="colCashierUserName" minWidth="1.0" prefWidth="129.0" text="  Cashier &#10;UserName" />
-            <TableColumn fx:id="colPickUpDate" prefWidth="104.0" text="Pick Up &#10;  Date" />
-            <TableColumn fx:id="colPickUpTime" prefWidth="94.0" text="Pick Up &#10; Time" />
-            <TableColumn fx:id="colReturnDate" prefWidth="105.0" text="Return &#10;  Date" />
-            <TableColumn fx:id="colReturnTime" prefWidth="95.0" text="Return &#10;  Time" />
+            <TableColumn fx:id="colPickUpDate" prefWidth="115.0" text="Pick Up &#10;  Date" />
+            <TableColumn fx:id="colPickUpTime" prefWidth="112.0" text="Pick Up &#10; Time" />
+            <TableColumn fx:id="colReturnDate" prefWidth="120.0" text="Return &#10;  Date" />
+            <TableColumn fx:id="colReturnTime" prefWidth="108.0" text="Return &#10;  Time" />
             <TableColumn fx:id="colIsDriverWant" prefWidth="88.0" text="Is Driver&#10; Want" />
-            <TableColumn fx:id="colOption" prefWidth="79.0" text="Option" />
+            <TableColumn fx:id="colOption" prefWidth="77.0" text="Option" />
          </columns>
       </TableView>
       <AnchorPane fx:id="reservationFormPane" layoutX="29.0" layoutY="129.0" prefHeight="261.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 10;">
          <children>
-            <Label layoutX="14.0" layoutY="4.0" prefHeight="43.0" prefWidth="145.0" text="Reservation ID">
+            <Label layoutX="14.0" layoutY="4.0" prefHeight="43.0" prefWidth="145.0" text="Reservation ID" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="100.0" prefHeight="43.0" prefWidth="145.0" text="Pick Up Date">
+            <Label layoutX="14.0" layoutY="100.0" prefHeight="43.0" prefWidth="145.0" text="Pick Up Date" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="378.0" layoutY="145.0" prefHeight="43.0" prefWidth="111.0" text="Return Time">
+            <Label layoutX="378.0" layoutY="145.0" prefHeight="43.0" prefWidth="111.0" text="Return Time" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
             <Button fx:id="btnAddReservation" layoutX="737.0" layoutY="207.0" mnemonicParsing="false" onAction="#btnAddReservationOnAction" prefHeight="40.0" prefWidth="228.0" style="-fx-background-color: #dff9fb; -fx-border-color: #273c75; -fx-border-radius: 10;" text="     ADD RESERVATION" textFill="#273c75">
@@ -64,16 +63,16 @@
                </font>
             </Button>
             <FontAwesomeIcon fill="#273c75" iconName="CART_PLUS" layoutX="752.0" layoutY="236.0" size="2em" />
-            <Label layoutX="14.0" layoutY="148.0" prefHeight="43.0" prefWidth="145.0" text="Return Date">
+            <Label layoutX="14.0" layoutY="148.0" prefHeight="43.0" prefWidth="145.0" text="Return Date" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
             <ComboBox fx:id="cmbCashierUserName" layoutX="525.0" layoutY="18.0" onAction="#cmbCashierUserNameOnAction" prefHeight="35.0" prefWidth="125.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
             <ComboBox fx:id="cmbCustomerNIC" layoutX="162.0" layoutY="58.0" onAction="#cmbCustomerNICOnAction" prefHeight="35.0" prefWidth="145.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
-            <Label layoutX="14.0" layoutY="54.0" prefHeight="43.0" prefWidth="145.0" text="Customer NIC">
+            <Label layoutX="14.0" layoutY="54.0" prefHeight="43.0" prefWidth="145.0" text="Customer NIC" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
             <Label fx:id="lblReservationID" layoutX="162.0" layoutY="4.0" prefHeight="43.0" prefWidth="145.0" text="1">
@@ -81,19 +80,19 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="373.0" layoutY="14.0" prefHeight="43.0" prefWidth="145.0" text="Cashier UserName">
+            <Label layoutX="373.0" layoutY="14.0" prefHeight="43.0" prefWidth="145.0" text="Cashier UserName" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="376.0" layoutY="100.0" prefHeight="43.0" prefWidth="145.0" text="Pick Up Time">
+            <Label layoutX="376.0" layoutY="100.0" prefHeight="43.0" prefWidth="145.0" text="Pick Up Time" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="373.0" layoutY="57.0" prefHeight="43.0" prefWidth="145.0" text="Is Driver Want">
+            <Label layoutX="373.0" layoutY="57.0" prefHeight="43.0" prefWidth="145.0" text="Is Driver Want" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
             <ComboBox fx:id="cmbIsDriverWant" layoutX="524.0" layoutY="61.0" prefHeight="35.0" prefWidth="125.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
@@ -102,20 +101,20 @@
             <FontAwesomeIcon fill="#00b894" iconName="EYE" layoutX="432.0" layoutY="235.0" size="2em" />
             <TextField fx:id="txtPickUpTime" layoutX="524.0" layoutY="107.0" prefHeight="35.0" prefWidth="125.0" />
             <TextField fx:id="txtReturnTime" layoutX="524.0" layoutY="149.0" prefHeight="35.0" prefWidth="125.0" />
-            <Label layoutX="692.0" layoutY="14.0" prefHeight="43.0" prefWidth="145.0" text="License Plate No">
+            <Label layoutX="692.0" layoutY="14.0" prefHeight="43.0" prefWidth="145.0" text="License Plate No" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
             <ComboBox fx:id="cmbLicensePlateNo" layoutX="823.0" layoutY="16.0" onAction="#cmbLicensePlateNoOnAction" prefHeight="35.0" prefWidth="125.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
-            <Label layoutX="692.0" layoutY="61.0" prefHeight="43.0" prefWidth="145.0" text="Driver Cost">
+            <Label layoutX="692.0" layoutY="61.0" prefHeight="43.0" prefWidth="145.0" text="Driver Cost" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="692.0" layoutY="106.0" prefHeight="43.0" prefWidth="145.0" text="Total Amount">
+            <Label layoutX="692.0" layoutY="106.0" prefHeight="43.0" prefWidth="145.0" text="Total Amount" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
             <TextField fx:id="txtDriverCost" layoutX="823.0" layoutY="64.0" prefHeight="35.0" prefWidth="125.0" />

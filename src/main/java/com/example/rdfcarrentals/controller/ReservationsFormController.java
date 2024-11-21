@@ -37,10 +37,7 @@ import java.sql.Time;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ReservationsFormController implements Initializable {
 
@@ -67,9 +64,6 @@ public class ReservationsFormController implements Initializable {
 
     @FXML
     private TableColumn<ReservationTM, String> colCashierUserName;
-
-    @FXML
-    private TableColumn<ReservationTM, String> colCreditID;
 
     @FXML
     private TableColumn<ReservationTM, String> colCustomerNIC;
@@ -158,7 +152,6 @@ public class ReservationsFormController implements Initializable {
         String customerNic = cmbCustomerNIC.getValue();
         String cashierUsername = cmbCashierUserName.getValue();
         String licensePlateNo = cmbLicensePlateNo.getValue();
-        String creditId = null;
         Date pickUpDate = Date.valueOf(txtPickUpDate.getValue());
         String pickUpTime = txtPickUpTime.getText();
         Date returnDate = Date.valueOf(txtReturnDate.getValue());
@@ -172,7 +165,7 @@ public class ReservationsFormController implements Initializable {
         );
         ArrayList<ReservationDetailDTO> reservationDetailDTOS = new ArrayList<>(Collections.singletonList(reservationDetailDTO));
 
-        return new ReservationDTO(reservationId, customerNic, cashierUsername, creditId, pickUpDate, pickUpTime, returnDate, returnTime, isDriverWant, reservationDetailDTOS);
+        return new ReservationDTO(reservationId, customerNic, cashierUsername, pickUpDate, pickUpTime, returnDate, returnTime, isDriverWant, reservationDetailDTOS);
     }
 
     boolean validateTextFields() {
@@ -253,7 +246,6 @@ public class ReservationsFormController implements Initializable {
                             reservationDTO.getReservationId(),
                             reservationDTO.getCustomerNic(),
                             reservationDTO.getCashierUsername(),
-                            reservationDTO.getCreditId(),
                             reservationDTO.getPickUpDate(),
                             reservationDTO.getPickUpTime(),
                             reservationDTO.getReturnDate(),
@@ -284,8 +276,6 @@ public class ReservationsFormController implements Initializable {
             txtReturnDate.setValue(LocalDate.parse(LocalDate.now().toString()));
             txtReturnTime.setText(selectedItem.getReturnTime().toString());
             cmbIsDriverWant.setValue(selectedItem.getIsDriverWant());
-
-            btnAddReservation.setDisable(true);
         }
     }
 
@@ -296,15 +286,13 @@ public class ReservationsFormController implements Initializable {
         colReservationID.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
         colCustomerNIC.setCellValueFactory(new PropertyValueFactory<>("customerNic"));
         colCashierUserName.setCellValueFactory(new PropertyValueFactory<>("cashierUsername"));
-        colCreditID.setCellValueFactory(new PropertyValueFactory<>("creditId"));
         colPickUpDate.setCellValueFactory(new PropertyValueFactory<>("pickUpDate"));
         colPickUpTime.setCellValueFactory(new PropertyValueFactory<>("pickUpTime"));
         colReturnDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         colReturnTime.setCellValueFactory(new PropertyValueFactory<>("returnTime"));
-        colReturnDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         colIsDriverWant.setCellValueFactory(new PropertyValueFactory<>("isDriverWant"));
 
-        tblReservations.getColumns().get(9).setCellValueFactory(param -> {
+        tblReservations.getColumns().get(8).setCellValueFactory(param -> {
             ImageView btnRemove = OptionButtonsUtil.setRemoveButton();
 
             btnRemove.setOnMouseClicked(event -> {
@@ -373,7 +361,6 @@ public class ReservationsFormController implements Initializable {
                     reservationDTO.getReservationId(),
                     reservationDTO.getCustomerNic(),
                     reservationDTO.getCashierUsername(),
-                    reservationDTO.getCreditId(),
                     reservationDTO.getPickUpDate(),
                     reservationDTO.getPickUpTime(),
                     reservationDTO.getReturnDate(),
@@ -394,15 +381,25 @@ public class ReservationsFormController implements Initializable {
     }
 
     public static ObservableList<Double> getIncomeMonthly() throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtil.execute("SELECT MONTH(r.pick_up_date), COALESCE(SUM(p.amount), 0) FROM payment p RIGHT JOIN reservation r ON p.reservation_id = r.reservation_id GROUP BY MONTH(r.pick_up_date) ORDER BY MONTH(r.pick_up_date)");
-        ObservableList<Double> observableList = FXCollections.observableArrayList();
+        ResultSet resultSet = CrudUtil.execute(
+                "SELECT MONTH(r.pick_up_date) AS MONTH, " +
+                        "COALESCE(SUM(p.amount), 0) + COALESCE(SUM(CASE WHEN c.amount_to_pay = 0 THEN c.total_amount ELSE 0 END), 0) AS monthly_income " +
+                        "FROM reservation r " +
+                        "LEFT JOIN payment p ON r.reservation_id = p.reservation_id " +
+                        "LEFT JOIN credit c ON r.reservation_id = c.reservation_id " +
+                        "GROUP BY MONTH(r.pick_up_date) " +
+                        "ORDER BY MONTH(r.pick_up_date)"
+        );
+
+        Double[] incomeByMonth = new Double[12];
+        Arrays.fill(incomeByMonth, 0.0);
+
         while (resultSet.next()) {
-            observableList.add(resultSet.getDouble(1));
+            int month = resultSet.getInt("MONTH");
+            double income = resultSet.getDouble("monthly_income");
+            incomeByMonth[month - 1] = income;
         }
-        while (observableList.size() < 12) {
-            observableList.add(0.0);
-        }
-        return observableList;
+        return FXCollections.observableArrayList(Arrays.asList(incomeByMonth));
     }
 
 }

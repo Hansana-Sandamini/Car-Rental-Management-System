@@ -32,39 +32,34 @@ public class CashierLoginFormController {
     @FXML
     private ImageView cashierLoginBackIcon;
 
+    public static String userName;
+    public static String name;
+
     @FXML
     void btnCashierLoginOnAction(ActionEvent event) throws IOException {
-        String userName = txtFldCashierUserName.getText();
-        String password = txtFldCashierPassword.getText();
-
-        if(userName.equals("cashier") && password.equals("1234")) {
-            cashierLoginPane.getChildren().clear();
-            AnchorPane load = FXMLLoader.load(getClass().getResource("/view/CashierDashboardMenuForm.fxml"));
-            cashierLoginPane.getChildren().add(load);
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Invalid username or password...").show();
-        }
+        login();
     }
 
-//    @FXML
-//    void btnCashierLoginOnAction(ActionEvent event) throws IOException, SQLException {
-//        String userName = txtFldCashierUserName.getText();
-//        String password = txtFldCashierPassword.getText();
-//
-//        ResultSet resultSet = CrudUtil.execute(
-//                "SELECT name FROM cashier WHERE username = ? AND password = ?",
-//                userName, password
-//        );
-//
-//        if (resultSet.next()) {
-//            String cashierName = resultSet.getString("name");
-//            cashierLoginPane.getChildren().clear();
-//            AnchorPane load = FXMLLoader.load(getClass().getResource("/view/CashierDashboardMenuForm.fxml"));
-//            cashierLoginPane.getChildren().add(load);
-//        } else {
-//            new Alert(Alert.AlertType.ERROR, "Invalid username or password...").show();
-//        }
-//    }
+    private void login() {
+        try {
+            ResultSet resultSet = CrudUtil.execute("SELECT * FROM cashier WHERE username=?",txtFldCashierUserName.getText());
+            if (resultSet.next()){
+                if (resultSet.getString(2).equals(txtFldCashierPassword.getText())){
+                    userName = resultSet.getString(1);
+                    name = resultSet.getString(3);
+                    cashierLoginPane.getChildren().clear();
+                    AnchorPane load = FXMLLoader.load(getClass().getResource("/view/CashierDashboardMenuForm.fxml"));
+                    cashierLoginPane.getChildren().add(load);
+                }else {
+                    new Alert(Alert.AlertType.ERROR, "Wrong Password. Please Try Again...!").show();
+                }
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Wrong Username. Please Try Again...!").show();
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void cashierLoginBackIconOnAction(MouseEvent event) throws IOException {
@@ -72,4 +67,5 @@ public class CashierLoginFormController {
         AnchorPane load = FXMLLoader.load(getClass().getResource("/view/WelcomeForm.fxml"));
         cashierLoginPane.getChildren().add(load);
     }
+
 }

@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="welcomePane" prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: 457b9d;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rdfcarrentals.controller.WelcomeFormController">
    <children>
       <ImageView fitHeight="800.0" fitWidth="885.0" layoutX="-1.0">
@@ -16,9 +15,9 @@
             <Image url="@../asserts/WelcomePage.jpeg" />
          </image>
       </ImageView>
-      <Label layoutX="136.0" layoutY="14.0" prefHeight="82.0" prefWidth="671.0" text="Welcome to RDF Car Rentals">
+      <Label layoutX="71.0" layoutY="22.0" prefHeight="82.0" prefWidth="774.0" text="Welcome to RDF Car Rentals" textFill="#273c75">
          <font>
-            <Font name="System Bold" size="46.0" />
+            <Font name="DejaVu Serif Bold" size="46.0" />
          </font>
       </Label>
       <Pane fx:id="selectRoleSidePane" layoutX="880.0" prefHeight="800.0" prefWidth="420.0" style="-fx-background-color: #84817a;">
@@ -40,12 +39,12 @@
                         <Font name="System Bold" size="32.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnAdmin" layoutX="110.0" layoutY="135.0" mnemonicParsing="false" onAction="#navigateToAdminLoginForm" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffc42a; -fx-background-radius: 10;" text="Admin" textFill="WHITE">
+                  <Button fx:id="btnAdmin" layoutX="110.0" layoutY="135.0" mnemonicParsing="false" onAction="#navigateToAdminLoginForm" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffc42a; -fx-background-radius: 10;" text="Admin" textFill="#273c75">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnCashier" alignment="CENTER" layoutX="111.0" layoutY="219.0" mnemonicParsing="false" onAction="#navigateToCashierLoginForm" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffc42a; -fx-background-radius: 10;" text="Cashier" textFill="WHITE">
+                  <Button fx:id="btnCashier" alignment="CENTER" layoutX="111.0" layoutY="219.0" mnemonicParsing="false" onAction="#navigateToCashierLoginForm" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffc42a; -fx-background-radius: 10;" text="Cashier" textFill="#273c75">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

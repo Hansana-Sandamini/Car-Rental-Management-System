@@ -12,9 +12,9 @@
    <children>
       <AnchorPane fx:id="adminDashboardHeadingPane" layoutX="30.0" layoutY="2.0" prefHeight="102.0" prefWidth="998.0" style="-fx-background-color: white;">
          <children>
-            <Label alignment="CENTER" layoutX="354.0" layoutY="31.0" prefHeight="41.0" prefWidth="108.0" text="Dashboard" textFill="#ffc029">
+            <Label alignment="CENTER" layoutX="354.0" layoutY="31.0" prefHeight="41.0" prefWidth="108.0" text="Dashboard" textFill="#273c75">
                <font>
-                  <Font size="17.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
          </children>
@@ -83,7 +83,7 @@
       </AnchorPane>
       <AnchorPane layoutX="30.0" layoutY="132.0" prefHeight="440.0" prefWidth="690.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <BarChart fx:id="barChart" layoutX="22.0" layoutY="71.0" prefHeight="349.0" prefWidth="647.0">
+            <BarChart fx:id="barChart" layoutX="22.0" layoutY="71.0" prefHeight="349.0" prefWidth="647.0" style="-fx-background-radius: 0; -fx-background-position: left center; -fx-background-color: white; -fx-bar-fill: #ffc029;">
                <xAxis>
                   <CategoryAxis side="BOTTOM" />
                </xAxis>

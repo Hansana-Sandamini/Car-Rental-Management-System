@@ -8,8 +8,8 @@ public class ValidationUtil {
     private static final String addressPattern = "^[A-z0-9 ,/]{4,40}$";
     private static final String emailPattern = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
     private static final String contactNumberPattern = "^(070|072|074|075|076|077|078)[0-9]{7}$";
-    private static final String pricePattern = "^[1-9][0-9]*(.[0-9]{2})?$";
-    private static final String timePattern = "^([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$";
+    private static final String pricePattern = "^(0|[1-9]\\d*)(\\.\\d{2})?$";
+    private static final String timePattern = "^([0-1]?[0-9]|[2][0-3]):([0-5][0-9])(:[0-5][0-9])?$";
     private static final String validStyle = ";-fx-border-color: #7367F0;";
     private static final String invalidStyle = ";-fx-border-color: red;";
 

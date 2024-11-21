@@ -13,7 +13,6 @@ public class ReservationTM {
     private String reservationId;
     private String customerNic;
     private String cashierUsername;
-    private String creditId;
     private Date pickUpDate;
     private String pickUpTime;
     private Date returnDate;

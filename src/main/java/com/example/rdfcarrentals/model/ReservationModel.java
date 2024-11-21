@@ -36,11 +36,10 @@ public class ReservationModel {
             connection.setAutoCommit(false);
 
             boolean isReservationSaved = CrudUtil.execute(
-                    "INSERT INTO reservation VALUES (?,?,?,?,?,?,?,?,?)",
+                    "INSERT INTO reservation VALUES (?,?,?,?,?,?,?,?)",
                     reservationDTO.getReservationId(),
                     reservationDTO.getCustomerNic(),
                     reservationDTO.getCashierUsername(),
-                    reservationDTO.getCreditId(),
                     reservationDTO.getPickUpDate(),
                     reservationDTO.getPickUpTime(),
                     reservationDTO.getReturnDate(),
@@ -71,28 +70,28 @@ public class ReservationModel {
                 }
 
                 if ("Yes".equalsIgnoreCase(reservationDTO.getIsDriverWant())) {
-                        ResultSet rst = CrudUtil.execute(
+                    ResultSet rst = CrudUtil.execute(
                                 "SELECT driver_nic FROM driver_assignment WHERE license_plate_no = ?",
                                 reservationDetailDto.getLicensePlateNo()
                         );
 
-                        if(rst.next()) {
-                            boolean isDriverUpdated = CrudUtil.execute(
+                    if(rst.next()) {
+                        boolean isDriverUpdated = CrudUtil.execute(
                                     "UPDATE driver SET availability_status = 'No' WHERE nic = ?",
                                     rst.getString(1)
-                            );
+                        );
 
-                            if (!isDriverUpdated) {
-                                connection.rollback();
-                                return false;
-                            }
-                        }
-                         else {
+                        if (!isDriverUpdated) {
                             connection.rollback();
-                            throw new SQLException("Driver not linked to the car being reserved.");
+                            return false;
                         }
+                    } else {
+                        connection.rollback();
+                        throw new SQLException("Driver not linked to the car being reserved.");
                     }
+                }
             }
+
             connection.commit();
             return true;
         } catch (SQLException e) {
@@ -114,12 +113,11 @@ public class ReservationModel {
                     rst.getString(1),
                     rst.getString(2),
                     rst.getString(3),
-                    rst.getString(4),
-                    rst.getDate(5),
-                    rst.getString(6),
-                    rst.getDate(7),
-                    rst.getString(8),
-                    rst.getString(9)
+                    rst.getDate(4),
+                    rst.getString(5),
+                    rst.getDate(6),
+                    rst.getString(7),
+                    rst.getString(8)
             );
             reservationDTOS.add(reservationDTO);
         }
@@ -145,12 +143,11 @@ public class ReservationModel {
                     rst.getString(1),
                     rst.getString(2),
                     rst.getString(3),
-                    rst.getString(4),
-                    rst.getDate(5),
-                    rst.getString(6),
-                    rst.getDate(7),
-                    rst.getString(8),
-                    rst.getString(9)
+                    rst.getDate(4),
+                    rst.getString(5),
+                    rst.getDate(6),
+                    rst.getString(7),
+                    rst.getString(8)
             );
         }
         return null;

@@ -15,21 +15,22 @@
    <children>
       <AnchorPane layoutX="25.0" prefHeight="102.0" prefWidth="1006.0" style="-fx-background-color: white;">
          <children>
-            <Label alignment="CENTER" layoutX="375.0" layoutY="34.0" prefHeight="34.0" prefWidth="118.0" text="Credits" textFill="#ffc029">
+            <Label alignment="CENTER" layoutX="375.0" layoutY="34.0" prefHeight="34.0" prefWidth="118.0" text="Credits" textFill="#273c75">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
       <TableView fx:id="tblCredits" layoutX="26.0" layoutY="454.0" onMouseClicked="#tblCreditsOnClicked" prefHeight="324.0" prefWidth="978.0" stylesheets="@../asserts/TableStyle.css">
          <columns>
-            <TableColumn fx:id="colCreditID" prefWidth="130.0" text="Credit ID" />
-            <TableColumn fx:id="colTotalAmount" prefWidth="169.0" text="Total Amount" />
-            <TableColumn fx:id="colAmountPaid" prefWidth="187.0" text="Amount Paid" />
-            <TableColumn fx:id="colAmountToPay" minWidth="1.0" prefWidth="177.0" text="Amount To Pay" />
-            <TableColumn fx:id="colDueDate" prefWidth="193.0" text="Due Date" />
-            <TableColumn fx:id="colOption" prefWidth="120.0" text="Options" />
+            <TableColumn fx:id="colCreditID" prefWidth="147.0" text="Credit ID" />
+            <TableColumn fx:id="colReservationId" prefWidth="135.0" text="Reservation ID" />
+            <TableColumn fx:id="colTotalAmount" prefWidth="161.0" text="Total Amount" />
+            <TableColumn fx:id="colAmountPaid" minWidth="1.0" prefWidth="157.0" text="Amount Paid" />
+            <TableColumn fx:id="colAmountToPay" prefWidth="139.0" text="Amount To Pay" />
+            <TableColumn fx:id="colDueDate" prefWidth="139.0" text="Due Date" />
+            <TableColumn fx:id="colOption" prefWidth="98.0" text="Options" />
          </columns>
       </TableView>
       <TextField fx:id="txtFldSearchHere" layoutX="272.0" layoutY="407.0" onKeyReleased="#txtFldSearchHereOnAction" prefHeight="35.0" prefWidth="500.0" promptText="       Search Here">
@@ -40,25 +41,25 @@
       <FontAwesomeIcon fx:id="searchIcon" fill="#c3bfbf" iconName="SEARCH" layoutX="285.0" layoutY="430.0" />
       <AnchorPane layoutX="26.0" layoutY="128.0" prefHeight="261.0" prefWidth="978.0" style="-fx-background-color: white; -fx-background-radius: 10;">
          <children>
-            <Label layoutX="14.0" layoutY="4.0" prefHeight="43.0" prefWidth="145.0" text="Credit ID">
+            <Label layoutX="14.0" layoutY="4.0" prefHeight="43.0" prefWidth="145.0" text="Credit ID" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="100.0" prefHeight="43.0" prefWidth="145.0" text="Total Amount">
+            <Label layoutX="14.0" layoutY="100.0" prefHeight="43.0" prefWidth="145.0" text="Total Amount" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="148.0" prefHeight="43.0" prefWidth="145.0" text="Amount Paid">
+            <Label layoutX="14.0" layoutY="148.0" prefHeight="43.0" prefWidth="145.0" text="Amount Paid" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
             <ComboBox fx:id="cmbCustomerNIC" layoutX="162.0" layoutY="58.0" onAction="#cmbCustomerNICOnAction" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
-            <Label layoutX="14.0" layoutY="54.0" prefHeight="43.0" prefWidth="145.0" text="Customer NIC">
+            <Label layoutX="14.0" layoutY="54.0" prefHeight="43.0" prefWidth="145.0" text="Customer NIC" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
             <Label fx:id="lblCreditID" layoutX="162.0" layoutY="4.0" prefHeight="43.0" prefWidth="236.0" text="1">
@@ -66,20 +67,20 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="464.0" layoutY="54.0" prefHeight="43.0" prefWidth="145.0" text="Due Date">
+            <Label layoutX="464.0" layoutY="54.0" prefHeight="43.0" prefWidth="145.0" text="Due Date" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="464.0" layoutY="9.0" prefHeight="43.0" prefWidth="145.0" text="Reservation ID">
+            <Label layoutX="464.0" layoutY="9.0" prefHeight="43.0" prefWidth="145.0" text="Reservation ID" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
             <ComboBox fx:id="cmbReservationID" layoutX="615.0" layoutY="13.0" onAction="#cmbReservationIDOnAction" prefHeight="35.0" prefWidth="236.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
-            <Label layoutX="13.0" layoutY="197.0" prefHeight="43.0" prefWidth="145.0" text="Amount To Pay">
+            <Label layoutX="13.0" layoutY="197.0" prefHeight="43.0" prefWidth="145.0" text="Amount To Pay" textFill="#636e72">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
             <DatePicker fx:id="txtDueDate" layoutX="615.0" layoutY="58.0" prefHeight="35.0" prefWidth="236.0" />
@@ -105,13 +106,13 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnRefresh" layoutX="813.0" layoutY="275.0" mnemonicParsing="false" onAction="#btnRefreshOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #dff9fb; -fx-border-radius: 10; -fx-border-color: #ffc029;" text="      REFRESH" textFill="#ffc029">
+      <Button fx:id="btnRefresh" layoutX="813.0" layoutY="275.0" mnemonicParsing="false" onAction="#btnRefreshOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #dff9fb; -fx-border-radius: 10; -fx-border-color: #e84118;" text="      REFRESH" textFill="#e84118">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
       <FontAwesomeIcon fill="#273c75" iconName="SAVE" layoutX="834.0" layoutY="366.0" size="2em" />
-      <FontAwesomeIcon fill="#ffc029" iconName="REFRESH" layoutX="834.0" layoutY="304.0" size="2em" />
+      <FontAwesomeIcon fill="#e84118" iconName="REFRESH" layoutX="834.0" layoutY="304.0" size="2em" />
       <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="756.0" layoutY="31.0" size="2em" />
       <Label fx:id="lblHeadingUserName" layoutX="780.0" layoutY="4.0" prefHeight="35.0" prefWidth="241.0" textFill="#636e72">
          <font>

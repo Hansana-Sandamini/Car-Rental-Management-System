@@ -125,7 +125,7 @@ public class PaymentsFormController implements Initializable {
         String reservationID = cmbReservationID.getValue();
         String billID = lblBillID.getText();
         String paymentMethod = txtFldPaymentMethod.getText();
-        double amount = Double.parseDouble(txtFldAmount.getText());
+        Double amount = Double.parseDouble(txtFldAmount.getText());
         Date date = Date.valueOf(txtDate.getValue());
         String time = txtTime.getText();
 

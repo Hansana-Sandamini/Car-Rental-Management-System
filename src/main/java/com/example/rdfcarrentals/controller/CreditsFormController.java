@@ -45,7 +45,7 @@ public class CreditsFormController implements Initializable {
     private Button btnSave;
 
     @FXML
-    private ComboBox<String > cmbCustomerNIC;
+    private ComboBox<String> cmbCustomerNIC;
 
     @FXML
     private ComboBox<String> cmbReservationID;
@@ -54,10 +54,13 @@ public class CreditsFormController implements Initializable {
     private TableColumn<CreditTM, Double> colAmountPaid;
 
     @FXML
+    private TableColumn<CreditTM, String> colReservationId;
+
+    @FXML
     private TableColumn<CreditTM, Double> colAmountToPay;
 
     @FXML
-    private TableColumn<CreditTM, String > colCreditID;
+    private TableColumn<CreditTM, String> colCreditID;
 
     @FXML
     private TableColumn<CreditTM, Date> colDueDate;
@@ -122,12 +125,13 @@ public class CreditsFormController implements Initializable {
 
     CreditDTO getTextFieldsValues() {
         String creditID = lblCreditID.getText();
+        String reservationId = cmbReservationID.getValue();
         double totalAmount = Double.parseDouble(txtFldTotalAmount.getText());
         double amountPaid = Double.parseDouble(txtFldAmountPaid.getText());
         double amountToPay = Double.parseDouble(txtFldAmountToPay.getText());
         Date dueDate = Date.valueOf(txtDueDate.getValue());
 
-        return new CreditDTO(creditID, totalAmount, amountPaid, amountToPay, dueDate);
+        return new CreditDTO(creditID, reservationId, totalAmount, amountPaid, amountToPay, dueDate);
     }
 
     boolean validateTextFields() {
@@ -171,9 +175,11 @@ public class CreditsFormController implements Initializable {
         ObservableList<CreditTM> filteredCredits = FXCollections.observableArrayList();
 
         for (CreditDTO creditDTO : creditDTOS) {
-            if (creditDTO.getCreditId().toLowerCase().contains(searchText)) {
+            if (creditDTO.getCreditId().toLowerCase().contains(searchText) ||
+                creditDTO.getReservationId().toLowerCase().contains(searchText)) {
                 filteredCredits.add(new CreditTM(
                         creditDTO.getCreditId(),
+                        creditDTO.getReservationId(),
                         creditDTO.getTotalAmount(),
                         creditDTO.getAmountPaid(),
                         creditDTO.getAmountToPay(),
@@ -196,6 +202,7 @@ public class CreditsFormController implements Initializable {
 
         if (selectedItem != null) {
             lblCreditID.setText(selectedItem.getCreditId());
+            cmbReservationID.setValue(selectedItem.getReservationId());
             txtFldTotalAmount.setText(Double.toString(selectedItem.getTotalAmount()));
             txtFldAmountPaid.setText(Double.toString(selectedItem.getAmountPaid()));
             txtFldAmountToPay.setText(Double.toString(selectedItem.getAmountToPay()));
@@ -206,12 +213,13 @@ public class CreditsFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         colCreditID.setCellValueFactory(new PropertyValueFactory<>("creditId"));
+        colReservationId.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
         colTotalAmount.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
         colAmountPaid.setCellValueFactory(new PropertyValueFactory<>("amountPaid"));
         colAmountToPay.setCellValueFactory(new PropertyValueFactory<>("amountToPay"));
         colDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
 
-        tblCredits.getColumns().get(5).setCellValueFactory(param -> {
+        tblCredits.getColumns().get(6).setCellValueFactory(param -> {
             ImageView btnRemove = OptionButtonsUtil.setRemoveButton();
             ImageView btnUpdate = OptionButtonsUtil.setUpdateButton();
 
@@ -313,6 +321,7 @@ public class CreditsFormController implements Initializable {
         for (CreditDTO creditDTO : creditDTOS) {
             CreditTM creditTM = new CreditTM(
                     creditDTO.getCreditId(),
+                    creditDTO.getReservationId(),
                     creditDTO.getTotalAmount(),
                     creditDTO.getAmountPaid(),
                     creditDTO.getAmountToPay(),

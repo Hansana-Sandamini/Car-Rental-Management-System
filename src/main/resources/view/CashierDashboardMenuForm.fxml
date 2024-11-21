@@ -66,7 +66,7 @@
             <FontAwesomeIcon fill="#636e72" iconName="DASHBOARD" layoutX="25.0" layoutY="178.0" size="2em" />
             <FontAwesomeIcon fill="#636e72" iconName="SLIDESHARE" layoutX="24.0" layoutY="278.0" size="2em" />
             <FontAwesomeIcon fill="#636e72" iconName="CC" layoutX="24.0" layoutY="377.0" size="2em" />
-            <FontAwesomeIcon fill="#636e72" layoutX="25.0" layoutY="473.0" size="2em" />
+            <FontAwesomeIcon fill="#636e72" iconName="WRENCH" layoutX="25.0" layoutY="473.0" size="2em" />
             <FontAwesomeIcon fill="#636e72" iconName="CART_PLUS" layoutX="24.0" layoutY="328.0" size="2em" />
             <FontAwesomeIcon fill="#636e72" iconName="CREDIT_CARD" layoutX="25.0" layoutY="428.0" size="2em" />
             <ImageView fitHeight="68.0" fitWidth="60.0" layoutX="14.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">

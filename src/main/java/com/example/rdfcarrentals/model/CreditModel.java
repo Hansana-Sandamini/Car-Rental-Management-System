@@ -24,8 +24,9 @@ public class CreditModel {
 
     public boolean saveCredit(CreditDTO creditDTO) throws SQLException {
         return CrudUtil.execute(
-                "INSERT INTO credit VALUES (?,?,?,?,?)",
+                "INSERT INTO credit VALUES (?,?,?,?,?,?)",
                 creditDTO.getCreditId(),
+                creditDTO.getReservationId(),
                 creditDTO.getTotalAmount(),
                 creditDTO.getAmountPaid(),
                 creditDTO.getAmountToPay(),
@@ -41,10 +42,11 @@ public class CreditModel {
         while (rst.next()) {
             CreditDTO creditDTO = new CreditDTO(
                     rst.getString(1),
-                    rst.getDouble(2),
+                    rst.getString(2),
                     rst.getDouble(3),
                     rst.getDouble(4),
-                    rst.getDate(5)
+                    rst.getDouble(5),
+                    rst.getDate(6)
             );
             creditDTOS.add(creditDTO);
         }
@@ -52,7 +54,8 @@ public class CreditModel {
     }
 
     public boolean updateCredit(CreditDTO creditDTO) throws SQLException {
-        return CrudUtil.execute("UPDATE credit SET total_amount = ?, amount_paid = ?, amount_to_pay = ?, due_date = ? WHERE credit_id = ?",
+        return CrudUtil.execute("UPDATE credit SET reservation_id = ?, total_amount = ?, amount_paid = ?, amount_to_pay = ?, due_date = ? WHERE credit_id = ?",
+                creditDTO.getReservationId(),
                 creditDTO.getTotalAmount(),
                 creditDTO.getAmountPaid(),
                 creditDTO.getAmountToPay(),

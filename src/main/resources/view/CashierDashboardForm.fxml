@@ -11,9 +11,9 @@
    <children>
       <AnchorPane fx:id="cashierDashboardHeadingPane" layoutX="27.0" prefHeight="102.0" prefWidth="998.0" style="-fx-background-color: white;">
          <children>
-            <Label alignment="CENTER" layoutX="372.0" layoutY="33.0" prefHeight="37.0" prefWidth="129.0" text="Dashboard" textFill="#ffc029">
+            <Label alignment="CENTER" layoutX="372.0" layoutY="33.0" prefHeight="37.0" prefWidth="129.0" text="Dashboard" textFill="#273c75">
                <font>
-                  <Font size="17.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
          </children>
@@ -30,9 +30,9 @@
       <AnchorPane fx:id="addCustomerPane" layoutX="32.0" layoutY="146.0" onMouseClicked="#addCustomerPaneOnClicked" prefHeight="155.0" prefWidth="274.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <FontAwesomeIcon fill="#636e72" iconName="SLIDESHARE" layoutX="27.0" layoutY="103.0" size="5em" />
-            <Label layoutX="111.0" layoutY="62.0" prefHeight="50.0" prefWidth="121.0" text="Add Customer" textFill="#636e72">
+            <Label layoutX="111.0" layoutY="62.0" prefHeight="50.0" prefWidth="148.0" text="Add Customer" textFill="#636e72">
                <font>
-                  <Font size="17.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
          </children>
@@ -40,9 +40,9 @@
       <AnchorPane fx:id="makePaymentPane" layoutX="385.0" layoutY="145.0" onMouseClicked="#makePaymentPaneOnClicked" prefHeight="155.0" prefWidth="274.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <FontAwesomeIcon fill="#636e72" iconName="CREDIT_CARD" layoutX="33.0" layoutY="112.0" size="5em" />
-            <Label layoutX="120.0" layoutY="64.0" prefHeight="50.0" prefWidth="121.0" text="Make Payment" textFill="#636e72">
+            <Label layoutX="120.0" layoutY="64.0" prefHeight="50.0" prefWidth="129.0" text="Make Payment" textFill="#636e72">
                <font>
-                  <Font size="17.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
          </children>
@@ -50,9 +50,9 @@
       <AnchorPane fx:id="makeReservationPane" layoutX="732.0" layoutY="143.0" onMouseClicked="#makeReservationPaneOnClicked" prefHeight="155.0" prefWidth="274.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <FontAwesomeIcon fill="#636e72" iconName="CART_PLUS" layoutX="33.0" layoutY="109.0" size="5em" />
-            <Label layoutX="116.0" layoutY="61.0" prefHeight="50.0" prefWidth="148.0" text="Make Reservation" textFill="#636e72">
+            <Label layoutX="116.0" layoutY="61.0" prefHeight="50.0" prefWidth="155.0" text="Make Reservation" textFill="#636e72">
                <font>
-                  <Font size="17.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
          </children>
@@ -61,7 +61,7 @@
          <children>
             <Label layoutX="122.0" layoutY="64.0" prefHeight="50.0" prefWidth="129.0" text="Car List" textFill="#636e72">
                <font>
-                  <Font size="17.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
             <FontAwesomeIcon fill="#636e72" iconName="CAR" layoutX="34.0" layoutY="100.0" size="5em" />

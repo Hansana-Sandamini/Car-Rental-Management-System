@@ -11,9 +11,9 @@
    <children>
       <AnchorPane layoutX="28.0" layoutY="1.0" prefHeight="102.0" prefWidth="998.0" style="-fx-background-color: white;">
          <children>
-            <Label alignment="CENTER" layoutX="338.0" layoutY="21.0" prefHeight="61.0" prefWidth="161.0" text="Reports" textFill="#ffc029">
+            <Label alignment="CENTER" layoutX="353.0" layoutY="21.0" prefHeight="61.0" prefWidth="161.0" text="Reports" textFill="#273c75">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
          </children>
@@ -22,7 +22,7 @@
          <children>
             <DatePicker fx:id="txtTo" layoutX="39.0" layoutY="139.0" prefHeight="40.0" prefWidth="213.0" promptText="To" style="-fx-background-color: #ffc42a;" />
             <DatePicker fx:id="txtFrom" layoutX="39.0" layoutY="78.0" prefHeight="40.0" prefWidth="213.0" promptText="From" style="-fx-background-color: #ffc42a;" />
-            <Button fx:id="btnDurationReportGenerate" layoutX="39.0" layoutY="232.0" mnemonicParsing="false" onAction="#btnDurationReportGenerateOnAction" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #ffc42a; -fx-background-radius: 10;" text="GENERATE" textFill="WHITE">
+            <Button fx:id="btnDurationReportGenerate" layoutX="39.0" layoutY="232.0" mnemonicParsing="false" onAction="#btnDurationReportGenerateOnAction" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #ffc42a; -fx-background-radius: 10;" text="GENERATE" textFill="#273c75">
                <font>
                   <Font size="18.0" />
                </font>
@@ -31,7 +31,7 @@
       </AnchorPane>
       <AnchorPane layoutX="372.0" layoutY="141.0" prefHeight="300.0" prefWidth="283.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <Button fx:id="btnYearReportGenerate" layoutX="38.0" layoutY="235.0" mnemonicParsing="false" onAction="#btnYearReportGenerateOnAction" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #ffc42a; -fx-background-radius: 10;" text="GENERATE" textFill="WHITE">
+            <Button fx:id="btnYearReportGenerate" layoutX="38.0" layoutY="235.0" mnemonicParsing="false" onAction="#btnYearReportGenerateOnAction" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #ffc42a; -fx-background-radius: 10;" text="GENERATE" textFill="#273c75">
                <font>
                   <Font size="18.0" />
                </font>
@@ -45,7 +45,7 @@
       </AnchorPane>
       <AnchorPane layoutX="714.0" layoutY="141.0" prefHeight="300.0" prefWidth="283.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <Button fx:id="btnMonthReportGenerate" layoutX="39.0" layoutY="236.0" mnemonicParsing="false" onAction="#btnMonthReportGenerateOnAction" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #ffc42a; -fx-background-radius: 10;" text="GENERATE" textFill="WHITE">
+            <Button fx:id="btnMonthReportGenerate" layoutX="39.0" layoutY="236.0" mnemonicParsing="false" onAction="#btnMonthReportGenerateOnAction" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #ffc42a; -fx-background-radius: 10;" text="GENERATE" textFill="#273c75">
                <font>
                   <Font size="18.0" />
                </font>
@@ -59,7 +59,7 @@
       </AnchorPane>
       <AnchorPane layoutX="28.0" layoutY="460.0" prefHeight="300.0" prefWidth="283.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <Button fx:id="btnYearOverviewGenerate" layoutX="44.0" layoutY="232.0" mnemonicParsing="false" onAction="#btnYearOverviewGenerateOnAction" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #ffc42a; -fx-background-radius: 10;" text="GENERATE" textFill="WHITE">
+            <Button fx:id="btnYearOverviewGenerate" layoutX="44.0" layoutY="232.0" mnemonicParsing="false" onAction="#btnYearOverviewGenerateOnAction" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #ffc42a; -fx-background-radius: 10;" text="GENERATE" textFill="#273c75">
                <font>
                   <Font size="18.0" />
                </font>
@@ -73,7 +73,7 @@
       </AnchorPane>
       <AnchorPane layoutX="372.0" layoutY="462.0" prefHeight="300.0" prefWidth="283.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <Button fx:id="btnMonthOverviewGenerate" layoutX="39.0" layoutY="233.0" mnemonicParsing="false" onAction="#btnMonthOverviewGenerateOnAction" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #ffc42a; -fx-background-radius: 10;" text="GENERATE" textFill="WHITE">
+            <Button fx:id="btnMonthOverviewGenerate" layoutX="39.0" layoutY="233.0" mnemonicParsing="false" onAction="#btnMonthOverviewGenerateOnAction" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #ffc42a; -fx-background-radius: 10;" text="GENERATE" textFill="#273c75">
                <font>
                   <Font size="18.0" />
                </font>

@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -139,7 +140,7 @@ public class DriverFormController implements Initializable {
         String contactNumber = txtFldContactNumber.getText();
         double pricePerKm = Double.parseDouble(txtPricePerKm.getText());
         String licensePlateNo = cmbLicensePlateNo.getValue();
-        Date date = Date.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy - MM - dd")));
+        Date date = Date.valueOf(LocalDate.now());
         String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
         DriverAssignmentDTO driverAssignmentDTO = new DriverAssignmentDTO(

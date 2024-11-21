@@ -14,7 +14,6 @@ public class ReservationDTO {
     private String reservationId;
     private String customerNic;
     private String cashierUsername;
-    private String creditId;
     private Date pickUpDate;
     private String pickUpTime;
     private Date returnDate;
@@ -24,11 +23,10 @@ public class ReservationDTO {
 
     private ArrayList<ReservationDetailDTO> reservationDetailDTOS;
 
-    public ReservationDTO(String reservationId, String customerNic, String  cashierUsername, String creditId, Date pickUpDate, String pickUpTime, Date returnDate, String returnTime, String isDriverWant) {
+    public ReservationDTO(String reservationId, String customerNic, String  cashierUsername, Date pickUpDate, String pickUpTime, Date returnDate, String returnTime, String isDriverWant) {
         this.reservationId = reservationId;
         this.customerNic = customerNic;
         this.cashierUsername = cashierUsername;
-        this.creditId = creditId;
         this.pickUpDate = pickUpDate;
         this.pickUpTime = pickUpTime;
         this.returnDate = returnDate;
@@ -36,11 +34,10 @@ public class ReservationDTO {
         this.isDriverWant = isDriverWant;
     }
 
-    public ReservationDTO(String reservationId, String customerNic, String cashierUsername, String creditId, Date pickUpDate, String pickUpTime, Date returnDate, String returnTime, String isDriverWant, ArrayList<ReservationDetailDTO> reservationDetailDTOS) {
+    public ReservationDTO(String reservationId, String customerNic, String cashierUsername, Date pickUpDate, String pickUpTime, Date returnDate, String returnTime, String isDriverWant, ArrayList<ReservationDetailDTO> reservationDetailDTOS) {
         this.reservationId = reservationId;
         this.customerNic = customerNic;
         this.cashierUsername = cashierUsername;
-        this.creditId = creditId;
         this.pickUpDate = pickUpDate;
         this.pickUpTime = pickUpTime;
         this.returnDate = returnDate;

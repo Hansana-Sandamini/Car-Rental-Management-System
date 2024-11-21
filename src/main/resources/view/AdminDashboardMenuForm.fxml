@@ -77,16 +77,14 @@
                   </Button>
                </children>
             </VBox>
-            <FontAwesomeIcon fill="#636e72" iconName="DASHBOARD" layoutX="30.0" layoutY="160.0" size="2em" />
-            <FontAwesomeIcon fill="#636e72" iconName="CAR" layoutX="26.0" layoutY="214.0" size="2em" />
+            <FontAwesomeIcon fill="#636e72" iconName="DASHBOARD" layoutX="28.0" layoutY="160.0" size="2em" />
+            <FontAwesomeIcon fill="#636e72" iconName="CAR" layoutX="26.0" layoutY="212.0" size="2em" />
             <FontAwesomeIcon fill="#636e72" iconName="SLIDESHARE" layoutX="28.0" layoutY="315.0" size="2em" />
             <FontAwesomeIcon fill="#636e72" iconName="CART_PLUS" layoutX="29.0" layoutY="360.0" size="2em" />
             <FontAwesomeIcon fill="#636e72" iconName="CREDIT_CARD" layoutX="31.0" layoutY="462.0" size="2em" />
             <FontAwesomeIcon fill="#636e72" iconName="CC" layoutX="30.0" layoutY="410.0" size="2em" />
             <FontAwesomeIcon fill="#636e72" iconName="USERS" layoutX="29.0" layoutY="558.0" size="2em" />
             <FontAwesomeIcon fill="#636e72" iconName="FILE" layoutX="35.0" layoutY="614.0" size="2em" />
-            <FontAwesomeIcon fill="#636e72" layoutX="28.0" layoutY="263.0" size="2em" />
-            <FontAwesomeIcon fill="#636e72" layoutX="31.0" layoutY="507.0" size="2em" />
             <AnchorPane layoutX="-507.0" layoutY="-44.0" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </AnchorPane>
@@ -97,5 +95,7 @@
          </image>
       </ImageView>
       <FontAwesomeIcon fill="#636e72" iconName="SIGN_OUT" layoutX="35.0" layoutY="662.0" size="2em" />
+      <FontAwesomeIcon fill="#636e72" iconName="WRENCH" layoutX="33.0" layoutY="508.0" size="2em" />
+      <FontAwesomeIcon fill="#636e72" iconName="USERS" layoutX="27.0" layoutY="259.0" size="2em" />
    </children>
 </AnchorPane>
