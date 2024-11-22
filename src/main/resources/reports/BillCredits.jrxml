@@ -27,6 +27,11 @@ FROM credit cr
          JOIN car ON rd.license_plate_no = car.license_plate_no
 ORDER BY b.bill_id DESC
 LIMIT 1]]></query>
+	<field name="BillID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="bill_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="BillID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bill"/>
+	</field>
 	<field name="CreditID" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="credit_id"/>
 		<property name="com.jaspersoft.studio.field.label" value="CreditID"/>
@@ -77,6 +82,11 @@ LIMIT 1]]></query>
 		<property name="com.jaspersoft.studio.field.label" value="CustomerEmail"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
 	</field>
+	<field name="BillIssueDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="issue_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="BillIssueDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bill"/>
+	</field>
 	<field name="LicensePlate" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="license_plate_no"/>
 		<property name="com.jaspersoft.studio.field.label" value="LicensePlate"/>
@@ -88,100 +98,99 @@ LIMIT 1]]></query>
 		<property name="com.jaspersoft.studio.field.tree.path" value="car"/>
 	</field>
 	<background splitType="Stretch"/>
-	<title height="79" splitType="Stretch">
+	<title height="64" splitType="Stretch">
 		<element kind="staticText" uuid="72695978-4915-45f8-afa3-de10861f3585" x="80" y="13" width="400" height="47" fontSize="18.0" bold="true" hTextAlign="Center">
 			<text><![CDATA[RDF Car Rentals]]></text>
 		</element>
 	</title>
-	<pageHeader height="136" splitType="Stretch">
-		<element kind="staticText" uuid="95b24933-08a4-4209-8032-781acf5399cf" x="16" y="37" width="100" height="30" fontSize="11.0" bold="true">
+	<pageHeader height="115" splitType="Stretch">
+		<element kind="staticText" uuid="95b24933-08a4-4209-8032-781acf5399cf" x="16" y="15" width="100" height="30" fontSize="14.0" bold="true">
 			<text><![CDATA[Credit ID :]]></text>
 		</element>
-		<element kind="textField" uuid="571e4c16-a7d0-449e-b894-f40621ec83cc" x="131" y="76" width="100" height="30">
+		<element kind="textField" uuid="571e4c16-a7d0-449e-b894-f40621ec83cc" x="169" y="46" width="189" height="30" fontSize="14.0">
 			<expression><![CDATA[$F{ReservationID}]]></expression>
 		</element>
-		<element kind="textField" uuid="d04d2558-31fa-4a0d-ac6b-a4664f624a2a" x="136" y="36" width="100" height="30">
+		<element kind="textField" uuid="d04d2558-31fa-4a0d-ac6b-a4664f624a2a" x="169" y="14" width="157" height="30" fontSize="14.0">
 			<expression><![CDATA[$F{CreditID}]]></expression>
 		</element>
-		<element kind="textField" uuid="fcf06fcb-fc52-4391-bf69-9c0a892e31de" x="450" y="0" width="100" height="30" hTextAlign="Right">
+		<element kind="textField" uuid="fcf06fcb-fc52-4391-bf69-9c0a892e31de" x="450" y="4" width="100" height="30" hTextAlign="Right">
 			<expression><![CDATA[$P{p_Date}]]></expression>
 		</element>
 	</pageHeader>
-	<columnHeader height="157" splitType="Stretch">
-		<element kind="staticText" uuid="7b5fea17-17b6-4bcd-b6fe-c4201795a74e" x="16" y="-55" width="100" height="30" fontSize="11.0" bold="true">
+	<columnHeader height="99" splitType="Stretch">
+		<element kind="staticText" uuid="7b5fea17-17b6-4bcd-b6fe-c4201795a74e" x="15" y="-67" width="125" height="30" fontSize="14.0" bold="true">
 			<text><![CDATA[Reservation ID :]]></text>
 		</element>
-		<element kind="staticText" uuid="d509f3c0-093a-4ca6-aa49-f47f845b7cd9" x="16" y="-20" width="100" height="30" fontSize="11.0" bold="true">
+		<element kind="staticText" uuid="d509f3c0-093a-4ca6-aa49-f47f845b7cd9" x="15" y="-34" width="149" height="30" fontSize="14.0" bold="true">
 			<text><![CDATA[Total Amount :]]></text>
 		</element>
-		<element kind="staticText" uuid="87029eaf-cb0e-45d0-8c9d-eb327135a787" x="17" y="11" width="100" height="30" fontSize="11.0" bold="true">
+		<element kind="staticText" uuid="87029eaf-cb0e-45d0-8c9d-eb327135a787" x="17" y="1" width="100" height="30" fontSize="14.0" bold="true">
 			<text><![CDATA[Amount Paid :]]></text>
 		</element>
-		<element kind="staticText" uuid="6c8a1490-2966-479b-93ba-ed4d447ed265" x="18" y="43" width="100" height="30" fontSize="11.0" bold="true">
+		<element kind="staticText" uuid="6c8a1490-2966-479b-93ba-ed4d447ed265" x="16" y="35" width="146" height="30" fontSize="14.0" bold="true">
 			<text><![CDATA[Amount To Pay :]]></text>
 		</element>
-		<element kind="staticText" uuid="12df36b2-50b9-41b7-901c-71187fd3ce5d" x="20" y="73" width="100" height="30" fontSize="11.0" bold="true">
+		<element kind="staticText" uuid="12df36b2-50b9-41b7-901c-71187fd3ce5d" x="18" y="67" width="100" height="30" fontSize="14.0" bold="true">
 			<text><![CDATA[Due Date :]]></text>
 		</element>
-		<element kind="textField" uuid="49b0507c-9aae-4040-a783-8ea6cbef3179" x="134" y="73" width="100" height="30">
+		<element kind="textField" uuid="49b0507c-9aae-4040-a783-8ea6cbef3179" x="169" y="68" width="216" height="30" fontSize="14.0">
 			<expression><![CDATA[$F{DueDate}]]></expression>
 		</element>
-		<element kind="textField" uuid="4ff69e64-b705-4e25-b628-a708e8a7f24a" x="129" y="41" width="100" height="30">
+		<element kind="textField" uuid="4ff69e64-b705-4e25-b628-a708e8a7f24a" x="170" y="36" width="231" height="30" fontSize="14.0">
 			<expression><![CDATA[$F{AmountToPay}]]></expression>
 		</element>
-		<element kind="textField" uuid="fdbefe1e-c43a-4e42-9603-3fdbf69c92a7" x="131" y="11" width="100" height="30">
+		<element kind="textField" uuid="fdbefe1e-c43a-4e42-9603-3fdbf69c92a7" x="170" y="3" width="189" height="30" fontSize="14.0">
 			<expression><![CDATA[$F{AmountPaid}]]></expression>
 		</element>
-		<element kind="textField" uuid="a6049f66-808a-4f96-82a1-acc532164141" x="135" y="-18" width="100" height="30">
+		<element kind="textField" uuid="a6049f66-808a-4f96-82a1-acc532164141" x="170" y="-35" width="205" height="30" fontSize="14.0">
 			<expression><![CDATA[$F{TotalAmount}]]></expression>
 		</element>
 	</columnHeader>
 	<detail>
-		<band height="132" splitType="Stretch">
-			<element kind="staticText" uuid="ba61e520-40c6-401a-8b2f-e3e42f723470" x="20" y="-50" width="100" height="30" fontSize="11.0" bold="true">
+		<band height="224" splitType="Stretch">
+			<element kind="staticText" uuid="ba61e520-40c6-401a-8b2f-e3e42f723470" x="17" y="2" width="120" height="30" fontSize="14.0" bold="true">
 				<text><![CDATA[Customer NIC :]]></text>
 			</element>
-			<element kind="staticText" uuid="598c4d61-93dc-4cc5-a126-c36d20cf0320" x="20" y="-18" width="100" height="30" fontSize="11.0" bold="true">
+			<element kind="staticText" uuid="598c4d61-93dc-4cc5-a126-c36d20cf0320" x="17" y="34" width="130" height="30" fontSize="14.0" bold="true">
 				<text><![CDATA[Customer Name :]]></text>
 			</element>
-			<element kind="staticText" uuid="8fd33fb4-6530-4ffe-b052-d67ad92f2231" x="20" y="11" width="110" height="30" fontSize="11.0" bold="true">
+			<element kind="staticText" uuid="8fd33fb4-6530-4ffe-b052-d67ad92f2231" x="18" y="68" width="150" height="30" fontSize="14.0" bold="true">
 				<text><![CDATA[Customer Contact :]]></text>
 			</element>
-			<element kind="staticText" uuid="4169b120-c47e-47a9-b195-7537b3efb175" x="20" y="47" width="100" height="30" fontSize="11.0" bold="true">
+			<element kind="staticText" uuid="4169b120-c47e-47a9-b195-7537b3efb175" x="17" y="103" width="150" height="30" fontSize="14.0" bold="true">
 				<text><![CDATA[Customer Email :]]></text>
 			</element>
-			<element kind="textField" uuid="6bccd2fa-ddd5-437b-bd40-81ac459eddbb" x="131" y="53" width="100" height="30">
-				<expression><![CDATA[$F{CustomerEmail}]]></expression>
-				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3e04a3ef-ecb1-49a4-8727-b6d925bd43a6"/>
-			</element>
-			<element kind="textField" uuid="09f1c9bd-9bbd-4260-8f47-03d089a795c6" x="135" y="14" width="100" height="30">
+			<element kind="textField" uuid="4342c8f3-9ba2-43ab-840d-f5887c07a362" x="172" y="69" width="193" height="30" fontSize="14.0">
 				<expression><![CDATA[$F{CustomerContact}]]></expression>
-				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8a92a55c-61aa-4c84-8b40-d94d96200ece"/>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f2a0426a-5ab2-4f60-b848-6efb43de7459"/>
 			</element>
-			<element kind="textField" uuid="c2bd8c53-f975-4729-a26f-d00bcb6c2f69" x="135" y="-16" width="100" height="30">
-				<expression><![CDATA[$F{CustomerName}]]></expression>
-				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d432bac1-7dd0-47e0-94e2-e5d127264056"/>
+			<element kind="textField" uuid="5fbea71f-dacf-4e9b-9cfe-b655b78542ac" x="174" y="103" width="213" height="30" fontSize="14.0">
+				<expression><![CDATA[$F{CustomerEmail}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b021f855-93e9-4f8a-a5c7-e81883602284"/>
 			</element>
-			<element kind="textField" uuid="8369e58b-7c50-4288-8154-9e4a6472123c" x="133" y="-44" width="100" height="30">
+			<element kind="textField" uuid="46237a80-1d8e-4da7-bf6e-6b7ab8e938d3" x="174" y="137" width="222" height="30" fontSize="14.0">
+				<expression><![CDATA[$F{LicensePlate}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="29f94d32-1c10-43e9-b064-e8bcad185e14"/>
+			</element>
+			<element kind="textField" uuid="2558c28d-c864-4675-b9e1-2d7f286a4cb5" x="174" y="170" width="203" height="30" fontSize="14.0">
+				<expression><![CDATA[$F{CarModel}]]></expression>
+			</element>
+			<element kind="staticText" uuid="58c9869d-322c-4aee-bc77-e1cf6140a0d2" x="19" y="172" width="100" height="30" fontSize="14.0" bold="true">
+				<text><![CDATA[Car Model :]]></text>
+			</element>
+			<element kind="staticText" uuid="52fbcd3b-1699-4029-8bb7-2edb69d2b2c1" x="19" y="138" width="127" height="30" fontSize="14.0" bold="true">
+				<text><![CDATA[License Plate No :]]></text>
+			</element>
+			<element kind="textField" uuid="c475151e-a708-4168-b99b-976179100fb3" x="172" y="7" width="173" height="30" fontSize="14.0">
 				<expression><![CDATA[$F{CustomerNIC}]]></expression>
-				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="85a0734f-8619-4e7e-947d-aaac4ad04729"/>
+			</element>
+			<element kind="textField" uuid="ed630608-f04f-4e26-98e7-b7c24d370ed7" x="172" y="42" width="148" height="30" fontSize="14.0">
+				<expression><![CDATA[$F{CustomerName}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b4eb4bb4-80f8-4594-9214-3b160bfa1bac"/>
 			</element>
 		</band>
 	</detail>
-	<columnFooter height="35" splitType="Stretch">
-		<element kind="staticText" uuid="c0fd02ad-08ba-452b-8a67-83baab495abe" x="23" y="-49" width="100" height="30" fontSize="11.0" bold="true">
-			<text><![CDATA[License Plate No :]]></text>
-		</element>
-		<element kind="staticText" uuid="f8c4b886-f7df-43ab-bbc1-f4b1779ba975" x="23" y="-15" width="100" height="30" fontSize="11.0" bold="true">
-			<text><![CDATA[Car Model :]]></text>
-		</element>
-		<element kind="textField" uuid="4105b6ea-d8fd-4d40-a723-9ad66a1fa7dc" x="139" y="-14" width="100" height="30">
-			<expression><![CDATA[$F{CarModel}]]></expression>
-		</element>
-		<element kind="textField" uuid="b8571b37-e8e1-4d7d-a2da-1d259e28810a" x="138" y="-47" width="100" height="30">
-			<expression><![CDATA[$F{LicensePlate}]]></expression>
-		</element>
-	</columnFooter>
-	<pageFooter height="36" splitType="Stretch"/>
+	<columnFooter height="16" splitType="Stretch"/>
+	<pageFooter height="27" splitType="Stretch"/>
 	<summary height="19" splitType="Stretch"/>
 </jasperReport>

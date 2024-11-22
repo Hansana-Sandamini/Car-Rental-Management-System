@@ -83,15 +83,15 @@ public class CarModel {
         return licensePlateNos;
     }
 
-    public CarDTO findByLicensePlateNoTopProducts(String licensePlateNo) throws SQLException {
-        ResultSet resultSet = CrudUtil.execute("SELECT * FROM car WHERE license_plate_no = ?", licensePlateNo);
+    public ArrayList<String> getAvailableCarsLicensePlateNos() throws SQLException {
+        ResultSet rst = CrudUtil.execute("SELECT license_plate_no FROM car WHERE availability_status = 'Yes'");
 
-        if (resultSet.next()) {
-            return new CarDTO(resultSet.getString("license_plate_no"),
-                    resultSet.getString("model")
-            );
+        ArrayList<String> licensePlateNos = new ArrayList<>();
+
+        while (rst.next()) {
+            licensePlateNos.add(rst.getString(1));
         }
-        return null;
+        return licensePlateNos;
     }
 
 }

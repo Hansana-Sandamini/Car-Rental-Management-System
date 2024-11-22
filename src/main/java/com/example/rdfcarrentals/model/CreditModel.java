@@ -65,7 +65,7 @@ public class CreditModel {
     }
 
     public int getCreditNotPaidCount() throws SQLException {
-        ResultSet rst = CrudUtil.execute("SELECT COUNT(credit_id) FROM credit WHERE due_date<now() AND amount_to_pay > 0");
+        ResultSet rst = CrudUtil.execute("SELECT COUNT(credit_id) FROM credit WHERE amount_to_pay > 0");
 
         if (rst.next()) {
             return rst.getInt(1);

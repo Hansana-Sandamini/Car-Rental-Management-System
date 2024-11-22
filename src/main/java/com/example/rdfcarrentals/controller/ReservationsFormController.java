@@ -241,7 +241,7 @@ public class ReservationsFormController implements Initializable {
     }
 
     private void loadLicensePlateNos() throws SQLException {
-        ArrayList<String> licensePlateNos = carModel.getAllLicensePlateNos();
+        ArrayList<String> licensePlateNos = carModel.getAvailableCarsLicensePlateNos();
         ObservableList<String> observableList = FXCollections.observableArrayList();
         observableList.addAll(licensePlateNos);
         cmbLicensePlateNo.setItems(observableList);

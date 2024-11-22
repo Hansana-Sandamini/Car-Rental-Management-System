@@ -152,7 +152,7 @@ public class CashierSignUpFormController implements Initializable {
         String email = txtFldEmail.getText();
         String contactNumber = txtFldContactNumber.getText();
 
-        return new CashierDTO(userName, password, name, email, contactNumber);
+        return new CashierDTO(userName, password, name, contactNumber, email);
     }
 
     boolean validateTextFields(){
@@ -170,8 +170,8 @@ public class CashierSignUpFormController implements Initializable {
             txtFldUserName.setText(selectedItem.getUserName());
             txtFldPassword.setText(selectedItem.getPassword());
             txtFldName.setText(selectedItem.getName());
-            txtFldEmail.setText(selectedItem.getEmail());
             txtFldContactNumber.setText(selectedItem.getContactNumber());
+            txtFldEmail.setText(selectedItem.getEmail());
         }
     }
 
@@ -180,8 +180,8 @@ public class CashierSignUpFormController implements Initializable {
         colUserName.setCellValueFactory(new PropertyValueFactory<>("userName"));
         colPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colContactNumber.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
         tblCashiers.getColumns().get(5).setCellValueFactory(param -> {
             ImageView btnRemove = OptionButtonsUtil.setRemoveButton();
@@ -283,8 +283,8 @@ public class CashierSignUpFormController implements Initializable {
                     cashierDTO.getUserName(),
                     cashierDTO.getPassword(),
                     cashierDTO.getName(),
-                    cashierDTO.getEmail(),
-                    cashierDTO.getContactNumber()
+                    cashierDTO.getContactNumber(),
+                    cashierDTO.getEmail()
             );
             cashierTMS.add(cashierTM);
         }

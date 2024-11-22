@@ -25,6 +25,11 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
+                  <Button fx:id="btnDrivers" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#btnDriversOnAction" prefHeight="50.0" prefWidth="278.0" style="-fx-background-color: white;" text="               Drivers" textFill="#636e72">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="btnCustomers" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#btnCustomersOnAction" prefHeight="50.0" prefWidth="275.0" style="-fx-background-color: white;" text="               Customers" textFill="#636e72">
                      <font>
                         <Font size="20.0" />
@@ -64,19 +69,20 @@
             </Label>
             <FontAwesomeIcon fill="#636e72" iconName="CAR" layoutX="23.0" layoutY="226.0" size="2em" />
             <FontAwesomeIcon fill="#636e72" iconName="DASHBOARD" layoutX="25.0" layoutY="178.0" size="2em" />
-            <FontAwesomeIcon fill="#636e72" iconName="SLIDESHARE" layoutX="24.0" layoutY="278.0" size="2em" />
-            <FontAwesomeIcon fill="#636e72" iconName="CC" layoutX="24.0" layoutY="377.0" size="2em" />
-            <FontAwesomeIcon fill="#636e72" iconName="WRENCH" layoutX="25.0" layoutY="473.0" size="2em" />
-            <FontAwesomeIcon fill="#636e72" iconName="CART_PLUS" layoutX="24.0" layoutY="328.0" size="2em" />
-            <FontAwesomeIcon fill="#636e72" iconName="CREDIT_CARD" layoutX="25.0" layoutY="428.0" size="2em" />
+            <FontAwesomeIcon fill="#636e72" iconName="SLIDESHARE" layoutX="24.0" layoutY="324.0" size="2em" />
+            <FontAwesomeIcon fill="#636e72" iconName="CC" layoutX="24.0" layoutY="423.0" size="2em" />
+            <FontAwesomeIcon fill="#636e72" iconName="WRENCH" layoutX="25.0" layoutY="521.0" size="2em" />
+            <FontAwesomeIcon fill="#636e72" iconName="CART_PLUS" layoutX="24.0" layoutY="374.0" size="2em" />
+            <FontAwesomeIcon fill="#636e72" iconName="CREDIT_CARD" layoutX="25.0" layoutY="474.0" size="2em" />
             <ImageView fitHeight="68.0" fitWidth="60.0" layoutX="14.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../asserts/CarLogo.jpg" />
                </image>
             </ImageView>
-            <FontAwesomeIcon fill="#636e72" iconName="SIGN_OUT" layoutX="29.0" layoutY="524.0" size="2em" />
+            <FontAwesomeIcon fill="#636e72" iconName="SIGN_OUT" layoutX="29.0" layoutY="572.0" size="2em" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="cashierDashboardRightPane" layoutX="274.0" prefHeight="800.0" prefWidth="1026.0" />
+      <FontAwesomeIcon fill="#636e72" iconName="USERS" layoutX="24.0" layoutY="272.0" size="2em" />
    </children>
 </AnchorPane>

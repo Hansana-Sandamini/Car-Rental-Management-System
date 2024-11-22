@@ -15,8 +15,8 @@ public class CashierModel {
                 cashierDTO.getUserName(),
                 cashierDTO.getPassword(),
                 cashierDTO.getName(),
-                cashierDTO.getEmail(),
-                cashierDTO.getContactNumber()
+                cashierDTO.getContactNumber(),
+                cashierDTO.getEmail()
         );
     }
 
@@ -39,11 +39,11 @@ public class CashierModel {
     }
 
     public boolean updateCashier(CashierDTO cashierDTO) throws SQLException {
-        return CrudUtil.execute("UPDATE cashier SET password = ?, name = ?, email = ?, contact_number = ? WHERE username = ?",
+        return CrudUtil.execute("UPDATE cashier SET password = ?, name = ?, contact_number = ?, email = ? WHERE username = ?",
                 cashierDTO.getPassword(),
                 cashierDTO.getName(),
-                cashierDTO.getEmail(),
                 cashierDTO.getContactNumber(),
+                cashierDTO.getEmail(),
                 cashierDTO.getUserName()
         );
     }

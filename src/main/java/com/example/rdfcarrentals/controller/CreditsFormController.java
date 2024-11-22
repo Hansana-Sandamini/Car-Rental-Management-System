@@ -269,6 +269,8 @@ public class CreditsFormController implements Initializable {
         colAmountToPay.setCellValueFactory(new PropertyValueFactory<>("amountToPay"));
         colDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
 
+        addAutoCalculationListeners();
+
         tblCredits.getColumns().get(6).setCellValueFactory(param -> {
             ImageView btnRemove = OptionButtonsUtil.setRemoveButton();
             ImageView btnUpdate = OptionButtonsUtil.setUpdateButton();
@@ -296,6 +298,29 @@ public class CreditsFormController implements Initializable {
             refreshPage();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void addAutoCalculationListeners() {
+        txtFldTotalAmount.textProperty().addListener((observable, oldValue, newValue) -> calculateAmountToPay());
+        txtFldAmountPaid.textProperty().addListener((observable, oldValue, newValue) -> calculateAmountToPay());
+    }
+
+    private void calculateAmountToPay() {
+        try {
+            double totalAmount = Double.parseDouble(txtFldTotalAmount.getText());
+            double amountPaid = Double.parseDouble(txtFldAmountPaid.getText());
+            double amountToPay = totalAmount - amountPaid;
+
+            if (amountToPay < 0) {
+                new Alert(Alert.AlertType.WARNING, "Amount Paid cannot exceed Total Amount!").show();
+                txtFldAmountPaid.setText("0");
+                txtFldAmountToPay.setText(Double.toString(totalAmount));
+            } else {
+                txtFldAmountToPay.setText(Double.toString(amountToPay));
+            }
+        } catch (NumberFormatException e) {
+            txtFldAmountToPay.setText("0.00");
         }
     }
 

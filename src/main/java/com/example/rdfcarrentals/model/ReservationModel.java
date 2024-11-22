@@ -4,8 +4,6 @@ import com.example.rdfcarrentals.db.DBConnection;
 import com.example.rdfcarrentals.dto.ReservationDTO;
 import com.example.rdfcarrentals.dto.ReservationDetailDTO;
 import com.example.rdfcarrentals.util.CrudUtil;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -69,7 +67,7 @@ public class ReservationModel {
                     return false;
                 }
 
-                if ("Yes".equalsIgnoreCase(reservationDTO.getIsDriverWant())) {
+                if (reservationDTO.getIsDriverWant().equalsIgnoreCase("Yes")) {
                     ResultSet rst = CrudUtil.execute(
                                 "SELECT driver_nic FROM driver_assignment WHERE license_plate_no = ?",
                                 reservationDetailDto.getLicensePlateNo()

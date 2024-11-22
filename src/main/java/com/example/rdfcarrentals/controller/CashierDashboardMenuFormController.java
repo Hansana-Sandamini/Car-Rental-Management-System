@@ -8,7 +8,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
-import lombok.Setter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,6 +18,9 @@ public class CashierDashboardMenuFormController implements Initializable {
 
     @FXML
     private AnchorPane cashierDashboardRightPane;
+
+    @FXML
+    private Button btnDrivers;
 
     @FXML
     private AnchorPane cashierPane;
@@ -63,6 +65,7 @@ public class CashierDashboardMenuFormController implements Initializable {
     private void resetButtonStyles() {
         btnCars.setStyle("-fx-background-color:  white;");
         btnCredits.setStyle("-fx-background-color:  white;");
+        btnDrivers.setStyle("-fx-background-color:  white;");
         btnCustomers.setStyle("-fx-background-color:  white;");
         btnDashboard.setStyle("-fx-background-color:  white;");
         btnPayments.setStyle("-fx-background-color:  white;");
@@ -75,6 +78,13 @@ public class CashierDashboardMenuFormController implements Initializable {
         resetButtonStyles();
         navigateTo("/view/CarsForm.fxml");
         btnCars.setStyle("-fx-background-color:  f2e9e4;");
+    }
+
+    @FXML
+    void btnDriversOnAction(ActionEvent event) {
+        resetButtonStyles();
+        navigateTo("/view/DriverForm.fxml");
+        btnDrivers.setStyle("-fx-background-color:  f2e9e4;");
     }
 
     @FXML

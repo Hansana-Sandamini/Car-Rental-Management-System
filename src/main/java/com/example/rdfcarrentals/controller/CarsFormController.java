@@ -216,6 +216,20 @@ public class CarsFormController implements Initializable {
         }
     }
 
+    private void calculateMonthlyRate(String dailyRateInput) {
+        try {
+            if (!dailyRateInput.isEmpty()) {
+                double dailyRate = Double.parseDouble(dailyRateInput);
+                double monthlyRate = dailyRate * 28;
+                txtFldMonthlyRate.setText(String.format("%.2f", monthlyRate));
+            } else {
+                txtFldMonthlyRate.setText("");
+            }
+        } catch (NumberFormatException e) {
+            txtFldMonthlyRate.setText("");
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cmbModel.getItems().addAll("Honda", "Toyota", "Chevrolet", "Ford");
@@ -229,6 +243,10 @@ public class CarsFormController implements Initializable {
         colMonthlyRate.setCellValueFactory(new PropertyValueFactory<>("monthlyRate"));
         colAvailabilityStatus.setCellValueFactory(new PropertyValueFactory<>("availabilityStatus"));
         colTypeID.setCellValueFactory(new PropertyValueFactory<>("typeId"));
+
+        txtFldDailyRate.textProperty().addListener((observable, oldValue, newValue) -> {
+            calculateMonthlyRate(newValue);
+        });
 
         tblCars.getColumns().get(7).setCellValueFactory(param -> {
             ImageView btnRemove = OptionButtonsUtil.setRemoveButton();
