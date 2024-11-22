@@ -14,7 +14,6 @@
     p.amount AS PaymentAmount,
     p.date AS PaymentDate,
     p.time AS PaymentTime,
-    b.description AS BillDescription,
     b.issue_date AS BillIssueDate,
     car.license_plate_no AS LicensePlate,
     car.model AS CarModel
@@ -75,11 +74,6 @@ FROM
 		<property name="com.jaspersoft.studio.field.label" value="PaymentTime"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="payment"/>
 	</field>
-	<field name="BillDescription" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="description"/>
-		<property name="com.jaspersoft.studio.field.label" value="BillDescription"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="bill"/>
-	</field>
 	<field name="BillIssueDate" class="java.sql.Date">
 		<property name="com.jaspersoft.studio.field.name" value="issue_date"/>
 		<property name="com.jaspersoft.studio.field.label" value="BillIssueDate"/>
@@ -139,13 +133,6 @@ FROM
 			</element>
 			<element kind="staticText" uuid="53a232eb-975f-4299-b2a5-57fc62941276" x="20" y="110" width="110" height="30" fontSize="11.0" bold="true">
 				<text><![CDATA[Payment Amount :]]></text>
-			</element>
-			<element kind="staticText" uuid="1f5e3afc-94fb-433c-8029-2c66b90072a2" x="20" y="140" width="110" height="30" fontSize="11.0" bold="true">
-				<text><![CDATA[Bill Description :]]></text>
-			</element>
-			<element kind="textField" uuid="eccd0607-81fe-45d8-8068-998cd33e5dd7" x="130" y="142" width="100" height="30">
-				<expression><![CDATA[$F{BillDescription}]]></expression>
-				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="afec53bf-ec6c-4687-b8b8-7fbb2a04665c"/>
 			</element>
 			<element kind="textField" uuid="3181f999-05a6-498d-b4ae-cd8dbfc74d13" x="131" y="47" width="100" height="30">
 				<expression><![CDATA[$F{CustomerName}]]></expression>

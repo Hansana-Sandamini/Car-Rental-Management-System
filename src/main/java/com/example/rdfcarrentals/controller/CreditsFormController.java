@@ -1,9 +1,11 @@
 package com.example.rdfcarrentals.controller;
 
 import com.example.rdfcarrentals.db.DBConnection;
+import com.example.rdfcarrentals.dto.BillDTO;
 import com.example.rdfcarrentals.dto.CreditDTO;
 import com.example.rdfcarrentals.dto.CustomerDTO;
 import com.example.rdfcarrentals.dto.ReservationDTO;
+import com.example.rdfcarrentals.model.BillModel;
 import com.example.rdfcarrentals.model.CreditModel;
 import com.example.rdfcarrentals.model.CustomerModel;
 import com.example.rdfcarrentals.model.ReservationModel;
@@ -36,6 +38,9 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class CreditsFormController implements Initializable {
+
+    @FXML
+    private Label lblBillID;
 
     @FXML
     private Button btnRefresh;
@@ -103,6 +108,19 @@ public class CreditsFormController implements Initializable {
     private final CreditModel creditModel = new CreditModel();
     private final CustomerModel customerModel = new CustomerModel();
     private final ReservationModel reservationModel = new ReservationModel();
+    private final BillModel billModel = new BillModel();
+
+    private static boolean isDarkMode = false;
+
+    @FXML
+    void darkModeIconOnAction(MouseEvent event) {
+        if (!isDarkMode) {
+            creditsContent.setStyle("-fx-background-color: #293241 ;");
+        } else {
+            creditsContent.setStyle("-fx-background-color:  #dfe4ea ;");
+        }
+        isDarkMode = !isDarkMode;
+    }
 
     @FXML
     void btnRefreshOnAction(ActionEvent event) throws SQLException {
@@ -117,6 +135,7 @@ public class CreditsFormController implements Initializable {
             boolean isSaved = creditModel.saveCredit(creditDTO);
 
             if (isSaved) {
+                billModel.saveBill(new BillDTO(lblBillID.getText(), null, lblCreditID.getText(), "", LocalDate.now()));
                 new Alert(Alert.AlertType.INFORMATION, "Credit Saved...!").show();
                 refreshPage();
             } else {
@@ -177,7 +196,8 @@ public class CreditsFormController implements Initializable {
             Connection connection = DBConnection.getInstance().getConnection();
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("p_Date", LocalDate.now().toString());
-            parameters.put("p_credit_id", lblCreditID.getText());
+            //parameters.put("p_credit_id", lblCreditID.getText());
+            parameters.put("p_Bill_Id", lblBillID.getText());
 
             JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/BillCredits.jrxml"));
             JasperPrint jasperPrint = JasperFillManager.fillReport(
@@ -342,6 +362,7 @@ public class CreditsFormController implements Initializable {
         txtFldAmountPaid.setText("");
         txtFldAmountToPay.setText("");
         txtDueDate.setValue(null);
+        lblBillID.setText(billModel.getNextBillId());
     }
 
     private void refreshTable() throws SQLException {

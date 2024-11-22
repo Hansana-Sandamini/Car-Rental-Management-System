@@ -82,6 +82,18 @@ public class CustomerFormController implements Initializable {
 
     private final CustomerModel customerModel = new CustomerModel();
 
+    private static boolean isDarkMode = false;
+
+    @FXML
+    void darkModeIconOnAction(MouseEvent event) {
+        if (!isDarkMode) {
+            customerContent.setStyle("-fx-background-color: #293241 ;");
+        } else {
+            customerContent.setStyle("-fx-background-color:  #dfe4ea ;");
+        }
+        isDarkMode = !isDarkMode;
+    }
+
     @FXML
     void btnRefreshOnAction(ActionEvent event) throws SQLException {
         refreshPage();

@@ -115,5 +115,11 @@
             <Font size="15.0" />
          </font>
       </Label>
+      <FontAwesomeIcon fx:id="darkModeIcon" fill="#636e72" iconName="TOGGLE_ON" layoutX="600.0" layoutY="32.0" onMouseClicked="#darkModeIconOnAction" size="2em" />
+      <Label fx:id="lblHeadingUserName1" layoutX="635.0" layoutY="6.0" prefHeight="35.0" prefWidth="123.0" text="Dark Mode" textFill="#636e72">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

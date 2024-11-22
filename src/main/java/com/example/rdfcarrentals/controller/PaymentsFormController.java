@@ -106,6 +106,18 @@ public class PaymentsFormController implements Initializable {
     private final ReservationModel reservationModel = new ReservationModel();
     private final BillModel billModel = new BillModel();
 
+    private static boolean isDarkMode = false;
+
+    @FXML
+    void darkModeIconOnAction(MouseEvent event) {
+        if (!isDarkMode) {
+            paymentsContent.setStyle("-fx-background-color: #293241 ;");
+        } else {
+            paymentsContent.setStyle("-fx-background-color:  #dfe4ea ;");
+        }
+        isDarkMode = !isDarkMode;
+    }
+
     @FXML
     void btnAddPaymentOnAction(ActionEvent event) throws SQLException {
         if (validateTextFields()) {
@@ -114,7 +126,7 @@ public class PaymentsFormController implements Initializable {
             boolean isAdded = paymentModel.addPayment(paymentDTO);
 
             if (isAdded) {
-                billModel.saveBill(new BillDTO(lblBillID.getText(), lblPaymentID.getText(), "", LocalDate.now()));
+                billModel.saveBill(new BillDTO(lblBillID.getText(), lblPaymentID.getText(), null, "", LocalDate.now()));
                 new Alert(Alert.AlertType.INFORMATION, "Payment Added...!").show();
                 refreshPage();
             } else {
@@ -200,8 +212,6 @@ public class PaymentsFormController implements Initializable {
             txtFldAmount.setText(String.valueOf(selectedItem.getAmount()));
             txtDate.setValue(selectedItem.getDate().toLocalDate());
             txtTime.setText(selectedItem.getTime());
-
-            btnAddPayment.setDisable(true);
         }
     }
 

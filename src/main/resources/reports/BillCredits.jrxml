@@ -5,6 +5,7 @@
 	<parameter name="p_Date" class="java.lang.String"/>
 	<parameter name="p_credit_id" class="java.lang.String"/>
 	<query language="SQL"><![CDATA[SELECT
+    b.bill_id AS BillID,
     cr.credit_id AS CreditID,
     cr.reservation_id AS ReservationID,
     cr.total_amount AS TotalAmount,
@@ -15,19 +16,17 @@
     c.name AS CustomerName,
     c.contact_number AS CustomerContact,
     c.email AS CustomerEmail,
+    b.issue_date AS BillIssueDate,
     rd.license_plate_no AS LicensePlate,
     car.model AS CarModel
-    FROM credit cr
-        JOIN
-    reservation r ON cr.reservation_id = r.reservation_id
-        JOIN
-    customer c ON r.customer_nic = c.nic
-        JOIN
-    reservation_detail rd ON r.reservation_id = rd.reservation_id
-        JOIN
-    car ON rd.license_plate_no = car.license_plate_no
-WHERE
-    cr.credit_id = $P(p_credit_id)]]></query>
+FROM credit cr
+         JOIN reservation r ON cr.reservation_id = r.reservation_id
+         JOIN bill b ON cr.credit_id = b.credit_id
+         JOIN customer c ON r.customer_nic = c.nic
+         JOIN reservation_detail rd ON r.reservation_id = rd.reservation_id
+         JOIN car ON rd.license_plate_no = car.license_plate_no
+ORDER BY b.bill_id DESC
+LIMIT 1]]></query>
 	<field name="CreditID" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="credit_id"/>
 		<property name="com.jaspersoft.studio.field.label" value="CreditID"/>
@@ -86,11 +85,6 @@ WHERE
 	<field name="CarModel" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="model"/>
 		<property name="com.jaspersoft.studio.field.label" value="CarModel"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="car"/>
-	</field>
-	<field name="CarColor" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="colour"/>
-		<property name="com.jaspersoft.studio.field.label" value="CarColor"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="car"/>
 	</field>
 	<background splitType="Stretch"/>

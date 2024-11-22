@@ -85,6 +85,18 @@ public class CashierSignUpFormController implements Initializable {
 
     private final CashierModel cashierModel = new CashierModel();
 
+    private static boolean isDarkMode = false;
+
+    @FXML
+    void darkModeIconOnAction(MouseEvent event) {
+        if (!isDarkMode) {
+            cashierSignUpPane.setStyle("-fx-background-color: #293241 ;");
+        } else {
+            cashierSignUpPane.setStyle("-fx-background-color:  #dfe4ea ;");
+        }
+        isDarkMode = !isDarkMode;
+    }
+
     @FXML
     void btnRefreshOnAction(ActionEvent event) throws SQLException {
         refreshPage();

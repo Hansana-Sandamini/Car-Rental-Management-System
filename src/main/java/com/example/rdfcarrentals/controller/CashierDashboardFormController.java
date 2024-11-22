@@ -44,6 +44,18 @@ public class CashierDashboardFormController implements Initializable {
     @FXML
     private AnchorPane makeReservationPane;
 
+    private static boolean isDarkMode = false;
+
+    @FXML
+    void darkModeIconOnAction(MouseEvent event) {
+        if (!isDarkMode) {
+            cashierDashboardContent.setStyle("-fx-background-color: #293241 ;");
+        } else {
+            cashierDashboardContent.setStyle("-fx-background-color:  #dfe4ea ;");
+        }
+        isDarkMode = !isDarkMode;
+    }
+
     public void navigateTo(String fxmlPath) {
         try {
             cashierDashboardContent.getChildren().clear();

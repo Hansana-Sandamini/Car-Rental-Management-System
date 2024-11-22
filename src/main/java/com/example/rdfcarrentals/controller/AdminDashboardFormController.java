@@ -3,6 +3,7 @@ package com.example.rdfcarrentals.controller;
 import com.example.rdfcarrentals.model.CreditModel;
 import com.example.rdfcarrentals.model.ReservationModel;
 import com.example.rdfcarrentals.util.ClockUtil;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -62,6 +63,18 @@ public class AdminDashboardFormController implements Initializable {
 
     private final ReservationModel reservationModel = new ReservationModel();
     private final CreditModel creditModel = new CreditModel();
+
+    private static boolean isDarkMode = false;
+
+    @FXML
+    void darkModeIconOnAction(MouseEvent event) {
+        if (!isDarkMode) {
+            adminDashboardContent.setStyle("-fx-background-color: #293241 ;");
+        } else {
+            adminDashboardContent.setStyle("-fx-background-color:  #dfe4ea ;");
+        }
+        isDarkMode = !isDarkMode;
+    }
 
     @FXML
     void creditNotPaidViewDetailsOnAction(MouseEvent event) {

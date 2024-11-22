@@ -23,9 +23,10 @@ public class BillModel {
 
     public boolean saveBill(BillDTO billDTO) throws SQLException {
         return CrudUtil.execute(
-                "INSERT INTO bill VALUES (?,?,?,?)",
+                "INSERT INTO bill VALUES (?,?,?,?,?)",
                 billDTO.getBillId(),
                 billDTO.getPaymentId(),
+                billDTO.getCreditId(),
                 billDTO.getDescription(),
                 billDTO.getIssueDate()
         );

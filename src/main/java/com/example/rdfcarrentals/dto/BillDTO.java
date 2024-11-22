@@ -14,6 +14,7 @@ import java.util.Date;
 public class BillDTO {
     private String billId;
     private String paymentId;
+    private String creditId;
     private String description;
     private LocalDate issueDate;
 

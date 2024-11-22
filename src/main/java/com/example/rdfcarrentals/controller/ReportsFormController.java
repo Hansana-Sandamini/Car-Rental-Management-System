@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
@@ -46,23 +47,25 @@ public class ReportsFormController implements Initializable {
     @FXML
     private DatePicker txtTo;
 
+    private static boolean isDarkMode = false;
+
+    @FXML
+    void darkModeIconOnAction(MouseEvent event) {
+        if (!isDarkMode) {
+            reportsContent.setStyle("-fx-background-color: #293241 ;");
+        } else {
+            reportsContent.setStyle("-fx-background-color:  #dfe4ea ;");
+        }
+        isDarkMode = !isDarkMode;
+    }
+
     @FXML
     void btnDurationReportGenerateOnAction(ActionEvent event) {
         try {
-            LocalDate fromDate = txtFrom.getValue();
-            LocalDate toDate = txtTo.getValue();
-
-            if (fromDate != null && toDate != null) {
-                new Alert(Alert.AlertType.ERROR, "Please select both 'From' and 'To' dates.").show();
-                return;
-            }
-
-            java.sql.Date sqlFromDate = java.sql.Date.valueOf(fromDate);
-            java.sql.Date sqlToDate = java.sql.Date.valueOf(toDate);
-
             Map<String, Object> parameters = new HashMap<>();
-            parameters.put("txtFrom", sqlFromDate);
-            parameters.put("txtTo", sqlToDate);
+            parameters.put("p_Date", LocalDate.now().toString());
+            parameters.put("p_txtFrom", txtFrom.getValue());
+            parameters.put("p_txtTo", txtTo.getValue());
 
             Connection connection = DBConnection.getInstance().getConnection();
             JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/DurationReport.jrxml"));
@@ -75,6 +78,7 @@ public class ReportsFormController implements Initializable {
 
         } catch (JRException e) {
             new Alert(Alert.AlertType.ERROR, "Fail to load Report..!").show();
+            e.printStackTrace();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Data Empty..!").show();
         } catch (Exception e) {

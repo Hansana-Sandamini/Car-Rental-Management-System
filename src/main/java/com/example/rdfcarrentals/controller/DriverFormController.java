@@ -113,6 +113,18 @@ public class DriverFormController implements Initializable {
     private final ObservableList<DriverTM> driverTMS = FXCollections.observableArrayList();
     private final CarModel carModel = new CarModel();
 
+    private static boolean isDarkMode = false;
+
+    @FXML
+    void darkModeIconOnAction(MouseEvent event) {
+        if (!isDarkMode) {
+            driverContent.setStyle("-fx-background-color: #293241 ;");
+        } else {
+            driverContent.setStyle("-fx-background-color:  #dfe4ea ;");
+        }
+        isDarkMode = !isDarkMode;
+    }
+
     @FXML
     void btnSaveOnAction(ActionEvent event) throws SQLException {
         if (validateTextFields()) {

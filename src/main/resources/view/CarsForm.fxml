@@ -48,16 +48,6 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="txtFldModel" layoutX="149.0" layoutY="104.0" prefHeight="35.0" prefWidth="196.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="txtFldColour" layoutX="518.0" layoutY="102.0" prefHeight="35.0" prefWidth="196.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
             <TextField fx:id="txtFldDailyRate" layoutX="149.0" layoutY="149.0" prefHeight="35.0" prefWidth="196.0">
                <font>
                   <Font size="14.0" />
@@ -129,6 +119,14 @@
       </TableView>
       <FontAwesomeIcon fill="#636e72" iconName="USER" layoutX="790.0" layoutY="31.0" size="2em" />
       <Label fx:id="lblHeadingUserName" layoutX="821.0" layoutY="8.0" prefHeight="35.0" prefWidth="198.0" text="Hansana Sandamini" textFill="#636e72">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbModel" layoutX="177.0" layoutY="229.0" prefHeight="35.0" prefWidth="196.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
+      <ComboBox fx:id="cmbColour" layoutX="545.0" layoutY="228.0" prefHeight="35.0" prefWidth="196.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #dcdde1;" />
+      <FontAwesomeIcon fx:id="darkModeIcon" fill="#636e72" iconName="TOGGLE_ON" layoutX="578.0" layoutY="33.0" onMouseClicked="#darkModeIconOnAction" size="2em" />
+      <Label fx:id="lblHeadingUserName1" layoutX="613.0" layoutY="7.0" prefHeight="35.0" prefWidth="123.0" text="Dark Mode" textFill="#636e72">
          <font>
             <Font size="15.0" />
          </font>

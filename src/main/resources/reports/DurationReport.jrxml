@@ -3,8 +3,8 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="RdfCarRentalsDurationDBConnection"/>
 	<parameter name="p_Date" class="java.lang.String"/>
-	<parameter name="txtFrom" class="java.lang.String"/>
-	<parameter name="txtTo" class="java.lang.String"/>
+	<parameter name="p_txtFrom" class="java.lang.String"/>
+	<parameter name="p_txtTo" class="java.lang.String"/>
 	<query language="SQL"><![CDATA[SELECT 
     cu.name AS customer_name,
     cs.name AS cashier_name,
@@ -24,9 +24,7 @@ LEFT JOIN
 LEFT JOIN 
     cashier cs ON r.cashier_username = cs.username
 WHERE 
-    r.pick_up_date BETWEEN $P(txtFrom) AND $P(txtTo)
-ORDER BY 
-    r.pick_up_date
+   ( r.pick_up_date BETWEEN $P{p_txtFrom}  AND $P{p_txtTo})
 ]]></query>
 	<field name="customer_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="name"/>
@@ -65,7 +63,7 @@ ORDER BY
 	</field>
 	<background splitType="Stretch"/>
 	<title height="62" splitType="Stretch">
-		<element kind="staticText" uuid="d9eb8489-67aa-4ccf-b05e-254df5e91226" x="80" y="11" width="400" height="43" fontSize="18.0" bold="true" hTextAlign="Center">
+		<element kind="staticText" uuid="d9eb8489-67aa-4ccf-b05e-254df5e91226" x="80" y="12" width="400" height="43" fontSize="18.0" bold="true" hTextAlign="Center">
 			<text><![CDATA[RDF Car Rentals]]></text>
 		</element>
 	</title>
@@ -126,7 +124,7 @@ ORDER BY
 		</element>
 	</columnHeader>
 	<detail>
-		<band height="30" splitType="Stretch">
+		<band height="31" splitType="Stretch">
 			<element kind="textField" uuid="1acdbf08-8809-47f3-9a77-2ccad34dd2bb" x="0" y="0" width="81" height="30" fontSize="11.0" hTextAlign="Center">
 				<expression><![CDATA[$F{customer_name}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e9cfd41-779f-4e8d-b315-478080c1a8a2"/>

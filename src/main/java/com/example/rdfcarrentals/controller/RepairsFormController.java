@@ -87,6 +87,18 @@ public class RepairsFormController implements Initializable {
     private final ObservableList<RepairTM> repairTMS = FXCollections.observableArrayList();
     private final CarModel carModel = new CarModel();
 
+    private static boolean isDarkMode = false;
+
+    @FXML
+    void darkModeIconOnAction(MouseEvent event) {
+        if (!isDarkMode) {
+            repairsContent.setStyle("-fx-background-color: #293241 ;");
+        } else {
+            repairsContent.setStyle("-fx-background-color:  #dfe4ea ;");
+        }
+        isDarkMode = !isDarkMode;
+    }
+
     @FXML
     void btnAddRepairOnAction(ActionEvent event) throws SQLException {
         RepairDTO repairDTO = getTextFieldsValues();

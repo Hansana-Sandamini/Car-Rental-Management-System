@@ -17,6 +17,12 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
+            <FontAwesomeIcon fx:id="darkModeIcon" fill="#636e72" iconName="TOGGLE_ON" layoutX="568.0" layoutY="29.0" onMouseClicked="#darkModeIconOnAction" size="2em" />
+            <Label fx:id="lblHeadingUserName1" layoutX="603.0" layoutY="3.0" prefHeight="35.0" prefWidth="123.0" text="Dark Mode" textFill="#636e72">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="736.0" layoutY="613.0" prefHeight="155.0" prefWidth="274.0" style="-fx-background-color: white; -fx-background-radius: 20;">

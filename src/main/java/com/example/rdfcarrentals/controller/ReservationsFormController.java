@@ -134,6 +134,18 @@ public class ReservationsFormController implements Initializable {
     private final CashierModel cashierModel = new CashierModel();
     private final CarModel carModel = new CarModel();
 
+    private static boolean isDarkMode = false;
+
+    @FXML
+    void darkModeIconOnAction(MouseEvent event) {
+        if (!isDarkMode) {
+            reservationsContent.setStyle("-fx-background-color: #293241 ;");
+        } else {
+            reservationsContent.setStyle("-fx-background-color:  #dfe4ea ;");
+        }
+        isDarkMode = !isDarkMode;
+    }
+
     @FXML
     void btnAddReservationOnAction(ActionEvent event) throws SQLException {
         if (validateTextFields()) {

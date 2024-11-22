@@ -32,6 +32,12 @@ import java.util.ResourceBundle;
 public class CarsFormController implements Initializable {
 
     @FXML
+    private ComboBox<String> cmbColour;
+
+    @FXML
+    private ComboBox<String> cmbModel;
+
+    @FXML
     private Button btnRefresh;
 
     @FXML
@@ -100,6 +106,18 @@ public class CarsFormController implements Initializable {
     private final FuelTypeModel fuelTypeModel = new FuelTypeModel();
     private final CarModel carModel = new CarModel();
 
+    private static boolean isDarkMode = false;
+
+    @FXML
+    void darkModeIconOnAction(MouseEvent event) {
+        if (!isDarkMode) {
+            carsContent.setStyle("-fx-background-color: #293241 ;");
+        } else {
+            carsContent.setStyle("-fx-background-color:  #dfe4ea ;");
+        }
+        isDarkMode = !isDarkMode;
+    }
+
     @FXML
     void btnRefreshOnAction(ActionEvent event) throws SQLException {
         refreshPage();
@@ -122,8 +140,8 @@ public class CarsFormController implements Initializable {
     CarDTO getTextFieldsValues() {
         String licensePlateNo = txtFldLicensePlateNo.getText();
         String typeId = cmbTypeID.getValue();
-        String model = txtFldModel.getText();
-        String colour = txtFldColour.getText();
+        String model = cmbModel.getValue();
+        String colour = cmbColour.getValue();
         double dailyRate = Double.parseDouble(txtFldDailyRate.getText());
         double monthlyRate = Double.parseDouble(txtFldMonthlyRate.getText());
         String availabilityStatus = cmbAvailabilityStatus.getValue();
@@ -161,8 +179,8 @@ public class CarsFormController implements Initializable {
         if (selectedItem != null) {
             txtFldLicensePlateNo.setText(selectedItem.getLicensePlateNo());
             cmbTypeID.setValue(selectedItem.getTypeId());
-            txtFldModel.setText(selectedItem.getModel());
-            txtFldColour.setText(selectedItem.getColour());
+            cmbModel.setValue(selectedItem.getModel());
+            cmbColour.setValue(selectedItem.getColour());
             txtFldDailyRate.setText(String.valueOf(selectedItem.getDailyRate()));
             txtFldMonthlyRate.setText(String.valueOf(selectedItem.getMonthlyRate()));
             cmbAvailabilityStatus.setValue(selectedItem.getAvailabilityStatus());
@@ -200,6 +218,8 @@ public class CarsFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        cmbModel.getItems().addAll("Honda", "Toyota", "Chevrolet", "Ford");
+        cmbColour.getItems().addAll("Red", "Blue", "Black", "White");
         cmbAvailabilityStatus.getItems().addAll("Yes", "No");
 
         colLicensePlateNo.setCellValueFactory(new PropertyValueFactory<>("licensePlateNo"));
@@ -296,10 +316,10 @@ public class CarsFormController implements Initializable {
         loadFuelTypeIds();
 
         txtFldLicensePlateNo.setText("");
-        cmbTypeID.getSelectionModel().clearSelection();
+        cmbTypeID.setValue("");
         txtFldTypeName.setText("");
-        txtFldModel.setText("");
-        txtFldColour.setText("");
+        cmbModel.setValue("");
+        cmbColour.setValue("");
         txtFldDailyRate.setText("");
         txtFldMonthlyRate.setText("");
         cmbAvailabilityStatus.setValue("");
