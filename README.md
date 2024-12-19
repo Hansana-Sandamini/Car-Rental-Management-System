@@ -1,4 +1,4 @@
-**Car-Rental-Management-System**
+<h1>Car-Rental-Management-System</h1>
 
 **This is a JavaFX stand-alone application (Full-Stack)**
 
